@@ -5,7 +5,7 @@ public class Student extends User {
 	private String status;
 
 	// Constructors
-	public Student(String userID, String name, String faculty, String email){
+	public Student(String userID, String name, Faculty faculty, String email){
 		super(userID, name, faculty);
 		this.email = email;
 		this.status = "";

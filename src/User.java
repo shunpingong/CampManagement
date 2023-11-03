@@ -5,10 +5,10 @@ public class User {
 	private String userID;
 	private String name;
 	private String password;
-	private String faculty;
+	private Faculty faculty;
 
 	// Constructors
-	public User(String userID, String name, String faculty){
+	public User(String userID, String name, Faculty faculty){
 		this.userID = userID;
 		this.name = name;
 		this.password = "password";
@@ -28,7 +28,7 @@ public class User {
 		return this.name;
 	}
 
-	public String getFaculty(){
+	public Faculty getFaculty(){
 		return this.faculty;
 	}
 
@@ -45,7 +45,7 @@ public class User {
 		this.name = name;
 	}
 
-	public void setFaculty(String faculty){
+	public void setFaculty(Faculty faculty){
 		this.faculty = faculty;
 	}
 }

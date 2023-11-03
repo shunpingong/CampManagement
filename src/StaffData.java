@@ -24,7 +24,8 @@ public class StaffData {
                 String email = row.getCell(1).getStringCellValue();
                 String userID = (String) email.subSequence(0, email.indexOf("@"));
                 String name = row.getCell(0).getStringCellValue();
-                String faculty = row.getCell(2).getStringCellValue();
+                String facultyValue = row.getCell(2).getStringCellValue();
+                Faculty faculty = Faculty.valueOf(facultyValue);
 
                 // Save as a Student Object
                 staff[i-1] = new Staff(userID, name, faculty, email);

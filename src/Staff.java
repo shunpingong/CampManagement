@@ -7,7 +7,7 @@ public class Staff extends User {
     private ArrayList<String> campsCreated ;
 
     // Constructors
-    public Staff(String userID, String name, String faculty, String email){
+    public Staff(String userID, String name, Faculty faculty, String email){
         super(userID, name, faculty);
         this.email = email;
         this.campsCreated = new ArrayList<String>(); 

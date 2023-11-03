@@ -5,9 +5,6 @@ import java.util.Scanner;
 
 // Class
 public class App {
-    private static final int TOTAL_STUDENTS = 11;
-    private static final int TOTAL_STAFF = 5;
-
     // Main
     public static void main(String[] args){
         // How to get data from the entity classes
@@ -22,10 +19,12 @@ public class App {
 
         /* [ GETTING DATA ]
          * This is how you can get data from the Data classes. Simply use the static method .getStudent(i)
-         * or .getStaff(i) 
+         * or .getStaff(i), where i is the index 
          */
-        StudentData.getStudent(3);  // Returns the Student object at index 3
-        StaffData.getStaff(1); // Returns the Staff object at index 1
+        StudentData.getStudent(3);                   // Returns the Student object at index 3
+        StaffData.getStaff(1);                       // Returns the Staff object at index 1
+        int totalStudents = StudentData.studentCount;   // Returns the total number of students
+        int totalStaff = StaffData.staffCount;          // Returns the total number of staff members
 
 
 
@@ -33,7 +32,7 @@ public class App {
         System.out.println("--------------------------------------------------------------------------------------");
         System.out.println("|                                    Student Users                                   |");
         System.out.println("--------------------------------------------------------------------------------------");
-        for(int i=0;i<TOTAL_STUDENTS;i++){
+        for(int i=0;i<totalStudents;i++){
             System.out.printf("|Name: %-15s|Email: %-20s|UserID: %-10s| Faculty: %-5s|\n", 
                                 StudentData.getStudent(i).getName(), 
                                 StudentData.getStudent(i).getEmail(), 
@@ -44,7 +43,7 @@ public class App {
         System.out.println("--------------------------------------------------------------------------------------");
         System.out.println("|                                     Staff Users                                    |");
         System.out.println("--------------------------------------------------------------------------------------");
-        for(int i=0;i<TOTAL_STAFF;i++){
+        for(int i=0;i<totalStaff;i++){
             System.out.printf("|Name: %-15s|Email: %-20s|UserID: %-10s| Faculty: %-5s|\n", 
                                 StaffData.getStaff(i).getName(), 
                                 StaffData.getStaff(i).getEmail(), 

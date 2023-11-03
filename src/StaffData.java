@@ -8,8 +8,12 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook; 
 
 public class StaffData {
+    // Instances
+    public static int staffCount = 0;
     public static Staff[] staff = new Staff[5];
 
+
+    // Methods
     public static void init() {
         try{
             File file = new File("data\\staff_list.xlsx");
@@ -29,6 +33,7 @@ public class StaffData {
 
                 // Save as a Student Object
                 staff[i-1] = new Staff(userID, name, faculty, email);
+                staffCount++;
 
                 // Update row iterator
                 i++;

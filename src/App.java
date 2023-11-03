@@ -1,7 +1,7 @@
 package src;
 // Imports
-import java.util.ArrayList;
-import java.util.Scanner;
+// import java.util.ArrayList;
+// import java.util.Scanner;
 
 // Class
 public class App {

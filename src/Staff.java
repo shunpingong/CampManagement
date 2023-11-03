@@ -28,9 +28,6 @@ public class Staff extends User {
     }
 
     public void setCampsCreated(ArrayList<String> createdCamps){
-        this.campsCreated.clear();
-        Object copy = createdCamps.clone();
-        if(copy instanceof ArrayList)
-            this.campsCreated = (ArrayList)createdCamps.clone();
+        this.campsCreated = createdCamps;
     }
 }

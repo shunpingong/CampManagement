@@ -1,9 +1,9 @@
 package src;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
+// import java.util.Date;
+// import java.util.Calendar;
+// import java.text.SimpleDateFormat;
+// import java.util.GregorianCalendar;
 
 public class CampInfo {
 	// Instances
@@ -13,19 +13,19 @@ public class CampInfo {
 	private Faculty userGroup;
 	private String location;
 	private int totalSlots;
-	private ArrayList<String> committeeSlots;
+	private ArrayList<String> committee;
 	private String description;
 	private String inCharge;
 
 	// Constructors
-	public CampInfo(String campName, String[] date, String registerDeadline, Faculty userGroup, String location, int totalSlots, ArrayList<String> committeeSlots, String description, String inCharge){
+	public CampInfo(String campName, String[] date, String registerDeadline, Faculty userGroup, String location, int totalSlots, ArrayList<String> committee, String description, String inCharge){
 		this.campName = campName;
 		this.date = date;
 		this.registerDeadline = registerDeadline;
 		this.userGroup = userGroup;
 		this.location = location;
 		this.totalSlots = totalSlots;
-		this.committeeSlots = committeeSlots;
+		this.committee = committee;
 		this.description = description;
 		this.inCharge = inCharge;
 	}
@@ -49,8 +49,8 @@ public class CampInfo {
 	public int getTotalSlots(){
 		return this.totalSlots;
 	}
-	public ArrayList<String> getCommitteeSlots(){
-		return this.committeeSlots;
+	public ArrayList<String> getCommittee(){
+		return this.committee;
 	}
 	public String getDescription(){
 		return this.description;
@@ -60,31 +60,31 @@ public class CampInfo {
 	}
 
 	// Mutators
-	public void getCampName(String campName){
+	public void setCampName(String campName){
 		this.campName = campName;
 	}
-	public void getDate(String[] date){
+	public void setDate(String[] date){
 		this.date = date;
 	}
-	public void getRegisterDeadline(String registerDeadline){
+	public void setRegisterDeadline(String registerDeadline){
 		this.registerDeadline = registerDeadline;
 	}
-	public void getUserGroup(Faculty faculty){
+	public void setUserGroup(Faculty faculty){
 		this.userGroup = faculty;
 	}
-	public void getLocation(String location){
+	public void setLocation(String location){
 		this.location = location;
 	}
-	public void getTotalSlots(int totalSlots){
+	public void setTotalSlots(int totalSlots){
 		this.totalSlots = totalSlots;
 	}
-	public void getCommitteeSlots(ArrayList<String> committeeSlots){
-		this.committeeSlots = committeeSlots;
+	public void setCommitteeSlots(ArrayList<String> committeeSlots){
+		this.committee = committeeSlots;
 	}
-	public void getDescription(String description){
+	public void setDescription(String description){
 		this.description = description;
 	}
-	public void getInCharge(String inCharge){
+	public void setInCharge(String inCharge){
 		this.inCharge = inCharge;
 	}
 

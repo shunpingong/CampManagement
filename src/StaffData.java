@@ -1,48 +1,27 @@
 package src;
 
-import java.io.File;
-import java.io.FileInputStream;
-
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook; 
+import java.util.ArrayList;
 
 public class StaffData {
     // Instances
     public static int staffCount = 0;
-    public static Staff[] staff = new Staff[5];
+    private static Staff[] staff;
 
 
     // Methods
     public static void init() {
-        try{
-            File file = new File("data\\staff_list.xlsx");
-            FileInputStream fis = new FileInputStream(file);
-            XSSFWorkbook wb = new XSSFWorkbook(fis);
-            XSSFSheet sheet = wb.getSheetAt(0);
-            XSSFRow row = sheet.getRow(1);
-
-            int i=1;
-            while(row!=null){
-                // Read row from excel file
-                String email = row.getCell(1).getStringCellValue();
-                String userID = (String) email.subSequence(0, email.indexOf("@"));
-                String name = row.getCell(0).getStringCellValue();
-                String facultyValue = row.getCell(2).getStringCellValue();
-                Faculty faculty = Faculty.valueOf(facultyValue);
-
-                // Save as a Student Object
-                staff[i-1] = new Staff(userID, name, faculty, email);
-                staffCount++;
-
-                // Update row iterator
-                i++;
-                row = sheet.getRow(i);
-            }
-            wb.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
+        ArrayList<String> data = new ArrayList<String>();
+        data = ExcelReader.readExcel("data\\staff_list.xlsx");
+        staffCount = data.size()-1;   // -1 because the first row in the excel file is the catergories
+        staff = new Staff[staffCount];
+        for(int i=0;i<staffCount;i++){
+            String[] staffInfo = data.get(i+1).split(" ");
+            String userID = staffInfo[1].split("@")[0];
+            String name = staffInfo[0];
+            Faculty faculty = Faculty.valueOf(staffInfo[2]);
+            String email = staffInfo[1];
+            
+            staff[i] = new Staff(userID, name, faculty, email);
         }
     }
 

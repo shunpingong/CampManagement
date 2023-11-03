@@ -1,47 +1,26 @@
 package src;
 
-import java.io.File;  
-import java.io.FileInputStream;
-
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;  
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;  
+import java.util.ArrayList;
 
 public class StudentData {
     // Instances
     public static int studentCount = 0;
-    public static Student[] students = new Student[11];
+    public static Student[] students;
     
     // Methods
     public static void init() {
-        try{
-            File file = new File("data\\student_list.xlsx");
-            FileInputStream fis = new FileInputStream(file);
-            XSSFWorkbook wb = new XSSFWorkbook(fis);
-            XSSFSheet sheet = wb.getSheetAt(0);
-            XSSFRow row = sheet.getRow(1);
-
-            int i=1;
-            while(row!=null){
-                // Read row from excel file
-                String email = row.getCell(1).getStringCellValue();
-                String userID = (String) email.subSequence(0, email.indexOf("@"));
-                String name = row.getCell(0).getStringCellValue();
-                String facultyValue = row.getCell(2).getStringCellValue();
-                Faculty faculty = Faculty.valueOf(facultyValue);
-
-                // Save as a Student Object
-                students[i-1] = new Student(userID, name, faculty, email);
-                studentCount++;
-
-                // Update row iterator
-                i++;
-                row = sheet.getRow(i);
-            }
-            wb.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
+        ArrayList<String> data = new ArrayList<String>();
+        data = ExcelReader.readExcel("data\\student_list.xlsx");
+        studentCount = data.size()-1;   // -1 because the first row in the excel file is the catergories
+        students = new Student[studentCount];
+        for(int i=0;i<studentCount;i++){
+            String[] studentInfo = data.get(i+1).split(" ");
+            String userID = studentInfo[1].split("@")[0];
+            String name = studentInfo[0];
+            Faculty faculty = Faculty.valueOf(studentInfo[2]);
+            String email = studentInfo[1];
+            
+            students[i] = new Student(userID, name, faculty, email);
         }
     }
 

@@ -28,4 +28,10 @@ public class StaffData {
     public static Staff getStaff(int ID){
         return staff[ID];
     }
+    /*
+    public static void printstaff(){
+        System.out.println("1. "+ staffCount);
+        System.out.println("2. "+ staff.length);
+        
+    } */
 }

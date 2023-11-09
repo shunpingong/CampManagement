@@ -1,43 +1,51 @@
 package src;
+import java.time.LocalDate;
 import java.util.ArrayList;
-// import java.util.Date;
-// import java.util.Calendar;
-// import java.text.SimpleDateFormat;
-// import java.util.GregorianCalendar;
 
 public class CampInfo {
 	// Instances
 	private String campName;
-	private String[] date;
-	private String registerDeadline;
+	private LocalDate startDate; //date in DDMMYYYY
+	private LocalDate endDate;
+	private LocalDate registerDeadline; 
 	private Faculty userGroup;
 	private String location;
 	private int totalSlots;
-	private ArrayList<String> committee;
+	private int committeeSlots;
 	private String description;
-	private String inCharge;
+	private Staff inCharge;
+	private ArrayList<Student> studentAttendees; //only accessible by staff & camp com
+	private ArrayList<CampCommittee> campCom; //only accessible by staff & camp com
+	private boolean visibility; //only seen by staff 
 
 	// Constructors
-	public CampInfo(String campName, String[] date, String registerDeadline, Faculty userGroup, String location, int totalSlots, ArrayList<String> committee, String description, String inCharge){
+	public CampInfo(String campName, LocalDate startdate, LocalDate enddate, LocalDate registerDeadline, Faculty userGroup, String location, int totalSlots, int committeeSlots, String description, Staff inCharge, boolean visibility){
 		this.campName = campName;
-		this.date = date;
+		this.startDate = startdate;
+		this.endDate = enddate;
 		this.registerDeadline = registerDeadline;
 		this.userGroup = userGroup;
 		this.location = location;
 		this.totalSlots = totalSlots;
-		this.committee = committee;
+		this.committeeSlots = committeeSlots;
 		this.description = description;
 		this.inCharge = inCharge;
+		studentAttendees = new ArrayList<Student>();
+		campCom = new ArrayList<CampCommittee>();
+		this.visibility = visibility;
 	}
 
 	// Accessors 
 	public String getCampName(){
 		return this.campName;
 	}
-	public String[] getDate(){
-		return this.date;
+	public LocalDate getStartDate(){
+		return this.startDate;
 	}
-	public String getRegisterDeadline(){
+	public LocalDate getEndDate(){
+		return this.endDate;
+	}
+	public LocalDate getRegisterDeadline(){
 		return this.registerDeadline;
 	}
 	public Faculty getUserGroup(){
@@ -49,24 +57,36 @@ public class CampInfo {
 	public int getTotalSlots(){
 		return this.totalSlots;
 	}
-	public ArrayList<String> getCommittee(){
-		return this.committee;
+	public int getCommitteeSlots(){
+		return this.committeeSlots;
 	}
 	public String getDescription(){
 		return this.description;
 	}
-	public String getInCharge(){
+	public Staff getInCharge(){
 		return this.inCharge;
+	}
+	public ArrayList<Student> getStudentAttendees(){ //staff & camp com
+		return this.studentAttendees;
+	}
+	public ArrayList<CampCommittee> getCampCom(){ //staff & camo com
+		return this.campCom;
+	}
+	public boolean getVisibility(){ //staff
+		return this.visibility;
 	}
 
 	// Mutators
 	public void setCampName(String campName){
 		this.campName = campName;
 	}
-	public void setDate(String[] date){
-		this.date = date;
+	public void setStartDate(LocalDate startdate){
+		this.startDate = startdate;
 	}
-	public void setRegisterDeadline(String registerDeadline){
+	public void setEndDate(LocalDate enddate){
+		this.endDate = enddate;
+	}
+	public void setRegisterDeadline(LocalDate registerDeadline){
 		this.registerDeadline = registerDeadline;
 	}
 	public void setUserGroup(Faculty faculty){
@@ -78,13 +98,13 @@ public class CampInfo {
 	public void setTotalSlots(int totalSlots){
 		this.totalSlots = totalSlots;
 	}
-	public void setCommitteeSlots(ArrayList<String> committeeSlots){
-		this.committee = committeeSlots;
+	public void setCommitteeSlots(int committeeSlots){
+		this.committeeSlots = committeeSlots;
 	}
 	public void setDescription(String description){
 		this.description = description;
 	}
-	public void setInCharge(String inCharge){
+	public void setInCharge(Staff inCharge){
 		this.inCharge = inCharge;
 	}
 

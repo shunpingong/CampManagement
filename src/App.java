@@ -3,8 +3,11 @@ package src;
 // import java.util.ArrayList;
 // import java.util.Scanner;
 
+import java.util.ArrayList;
+
 // Class
 public class App {
+    
     // Main
     public static void main(String[] args){
         // How to get data from the entity classes
@@ -50,5 +53,13 @@ public class App {
                                 StaffData.getStaff(i).getID(), 
                                 StaffData.getStaff(i).getFaculty());
         }
+    
+
+        //MAIN
+        
+        //Login.login?
+        Login.run();
+        
+
     }
 }

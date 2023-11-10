@@ -2,8 +2,8 @@
 package src;
 
 public class Login{
-    private static User currentUser = StudentData.getStudent(0);
-    private static int currentUserRole = 1; //0 = staff, 1 = student
+    private static User currentUser = StaffData.getStaff(0);
+    private static int currentUserRole = 0; //0 = staff, 1 = student
 
     public static User getCurrentUser(){
         return currentUser;

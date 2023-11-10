@@ -39,6 +39,13 @@ public class CampInfo {
 	public String getCampName(){
 		return this.campName;
 	}
+	/*
+	public String getCampDesc(){
+		return this.description;
+	}
+	public String getCampLoc(){
+		return this.location;
+	}  */
 	public LocalDate getStartDate(){
 		return this.startDate;
 	}
@@ -55,10 +62,10 @@ public class CampInfo {
 		return this.location;
 	}
 	public int getTotalSlots(){
-		return this.totalSlots;
+		return (this.totalSlots - studentAttendees.size());
 	}
 	public int getCommitteeSlots(){
-		return this.committeeSlots;
+		return (this.committeeSlots-campCom.size());
 	}
 	public String getDescription(){
 		return this.description;

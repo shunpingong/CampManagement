@@ -32,6 +32,7 @@ public class CampMenu {
             choice = sc.nextInt();
             switch(choice){
                 case 1:
+                    
                     break;
                 case 2:
                     break;

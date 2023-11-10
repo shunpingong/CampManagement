@@ -56,7 +56,7 @@ public class App {
     
 
         //MAIN
-        
+        CampList.initCamps();
         //Login.login?
         Login.run();
         

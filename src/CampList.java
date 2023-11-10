@@ -7,26 +7,27 @@ public class CampList { //element in campList in App
 
 
 	// Constructors
-	public CampList(){
+	public CampList(){};
+
+	public static void initCamps(){
 		campList = new ArrayList<CampInfo>();
-	};
+	}
+
 	public static void createCamp(CampInfo campinfo){
 		campList.add(campinfo);
 	}
-	/*
-	// Accessors
-	public CampInfo getInfo(){
-		return this.info;
-	}
-	public boolean getVisibility(){
-		return this.visibility;
+
+	public static void viewCamps(){
+		for(int i=0; i<campList.size(); i++){
+			System.out.println(campList.get(i).getCampName());
+		}
 	}
 
-	// Mutators
-	public void setInfo(CampInfo info){
-		this.info = info;
+	public static int getSize(){
+		return campList.size();
 	}
-	public void setVisibility(boolean visibility){
-		this.visibility = visibility;
-	}*/
+	
+	public static CampInfo getCampInfo(int i){
+		return campList.get(i);
+	}
 }

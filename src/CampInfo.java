@@ -39,13 +39,6 @@ public class CampInfo {
 	public String getCampName(){
 		return this.campName;
 	}
-	/*
-	public String getCampDesc(){
-		return this.description;
-	}
-	public String getCampLoc(){
-		return this.location;
-	}  */
 	public LocalDate getStartDate(){
 		return this.startDate;
 	}

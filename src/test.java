@@ -35,7 +35,7 @@ public class test {
         CampList.createCamp(campinfo);
         CampList.createCamp(c1);
         //CampList.viewCamps();
-        PrintCampInfo.printAll();
+        PrintAllCamp.printAll();
         
     }
 }    

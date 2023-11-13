@@ -1,5 +1,5 @@
 package src;
-public class User {
+public abstract class User {
 
 	// Instances
 	private String userID;
@@ -48,4 +48,8 @@ public class User {
 	public void setFaculty(Faculty faculty){
 		this.faculty = faculty;
 	}
+
+	public abstract int menu();
+	public abstract void menuChoice(int i);
+
 }

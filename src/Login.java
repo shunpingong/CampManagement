@@ -11,12 +11,10 @@ public class Login{
     public static int getCurrentUserRole(){
         return currentUserRole;
     } 
-    public static void run(){
-        if(currentUserRole == 1){
-            CampMenu.staffMenu();
-        }
-        else{
-            CampMenu.studentMenu();
-        }
+
+    public static User login(){
+        //log in and return Staff or Student object of the current user
+        return StaffData.getStaff(0);
     }
+    
 }

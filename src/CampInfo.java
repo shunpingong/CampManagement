@@ -1,6 +1,7 @@
 package src;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CampInfo {
 	// Instances
@@ -36,6 +37,7 @@ public class CampInfo {
 	}
 
 	// Accessors 
+	
 	public String getCampName(){
 		return this.campName;
 	}
@@ -66,6 +68,7 @@ public class CampInfo {
 	public Staff getInCharge(){
 		return this.inCharge;
 	}
+	
 	public ArrayList<Student> getStudentAttendees(){ //staff & camp com
 		return this.studentAttendees;
 	}
@@ -108,4 +111,60 @@ public class CampInfo {
 		this.inCharge = inCharge;
 	}
 
+	public void printCamp(){ 
+        System.out.println("------------------------------------------------------------------------------------");
+		System.out.println("Currently Viewing: " + this.campName);
+        System.out.println("Description: " + this.description);
+        System.out.println("Location: " + this.location);
+        System.out.println("Start Date(YYYY-MM-DD): " + this.startDate);
+        System.out.println("End Date(YYYY-MM-DD): " + this.endDate);
+        System.out.println("Registration Deadline(YYYY-MM-DD): " + this.registerDeadline);
+        System.out.println("Faculty: " + this.userGroup);
+        System.out.println("Total Slots: " + (this.totalSlots - studentAttendees.size()));
+        System.out.println("Committee Slots: " + (this.committeeSlots-campCom.size()));
+        System.out.println("Staff In Charge: " + this.inCharge.getName());
+		System.out.println("------------------------------------------------------------------------------------");
+    }
+
+	public void editCampInfo(){
+		Scanner sc = new Scanner(System.in);
+		int choice = 0;
+		do{
+			System.out.printf("Select Which Parameter To Edit: ");
+			System.out.printf("1. Camp Name");
+			System.out.printf("2. Camp Description");
+			System.out.printf("3. Camp Location");
+			System.out.printf("4. Camp Start Date");
+			System.out.printf("5. Camp End Date");
+			System.out.printf("6. Camp Registration Deadline");
+			System.out.printf("7. Camp Faculty");
+			System.out.printf("8. Total Slots Available");
+			System.out.printf("9. Total Committee Slots Available");
+		}while(choice<1 || choice>9);
+		
+		switch(choice){
+			case 1:
+				System.out.println("Current Name: "+this.campName);
+				System.out.printf("Enter New Camp Name: ");
+				String string = sc.nextLine();
+				this.campName = string;
+				break;
+			case 2:
+				System.out.println("Current Description: "+ this.description);
+				System.out.printf("Enter New Camp Description: ");
+				string = sc.nextLine();
+				this.description = string;
+			case 3:
+				System.out.println("Current Camp Location: "+ this.location);
+				System.out.printf("Enter New Camp Location: ");
+				string = sc.nextLine();
+				this.location = string;
+			case 4:
+				System.out.println("Current Camp Start Date: "+ this.startDate);
+				System.out.printf("Enter New Start Date: ");
+				LocalDate startdate = UserInput.getDate();
+				this.startDate = startdate;
+		}
+	}
+    
 }

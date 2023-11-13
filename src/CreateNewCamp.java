@@ -17,24 +17,27 @@ public class CreateNewCamp {
         String campLoc = sc.nextLine();  //camp location
 
         System.out.println("Please Enter Camp Start Date");
-        LocalDate startdate = GetDate.getDate(); //start date
+        LocalDate startdate = UserInput.getDate(); //start date
+        while(startdate.isBefore(LocalDate.now())){
+            System.out.println("Error: Please Input Start Date After Today's Date: " + LocalDate.now());
+        }
 
         System.out.println("Please Enter Camp End Date");
-        LocalDate enddate = GetDate.getDate(); //end date
+        LocalDate enddate = UserInput.getDate(); //end date
         while(enddate.isBefore(startdate)){
             System.out.println("Error: Please Input End Date After Start Date");
-            enddate = GetDate.getDate();
+            enddate = UserInput.getDate();
         }
 
         System.out.println("Please Enter Camp Registration Deadline");
-        LocalDate deadline = GetDate.getDate(); //registration deadline
+        LocalDate deadline = UserInput.getDate(); //registration deadline
         while(deadline.isAfter(startdate)){
             System.out.println("Error: Please Input Registration Dealine Before Start Date");
-            deadline = GetDate.getDate();
+            deadline = UserInput.getDate();
         }
 
         System.out.println("Select Faculty Which The Camp Is Open To:");
-        Faculty userGroup = SelectFaculty.chooseFaculty(); //camp faculty
+        Faculty userGroup = UserInput.chooseFaculty(); //camp faculty
         
         int totalSlots = -1;
         do{
@@ -53,7 +56,7 @@ public class CreateNewCamp {
 
         Staff IC = GetStaff.getStaff();
 
-        boolean visibility = SetVisibility.setVisibility();
+        boolean visibility = UserInput.setVisibility();
 
         
         CampInfo campinfo = new CampInfo(campName, startdate, enddate, deadline, userGroup, campLoc, totalSlots, committeeSlots, campDesc, IC, visibility);

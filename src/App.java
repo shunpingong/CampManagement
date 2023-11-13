@@ -4,6 +4,7 @@ package src;
 // import java.util.Scanner;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 // Class
 public class App {
@@ -56,9 +57,16 @@ public class App {
     
 
         //MAIN
+        Scanner sc = new Scanner(System.in);
         CampList.initCamps();
-        //Login.login?
-        Login.run();
+
+        //2 while loop, one for main program, one for each login instance
+        User user = Login.login();
+
+        //User user = StudentData.getStudent(0); 
+        int choice = user.menu();
+        System.out.println("Choice: " + choice);
+        user.menuChoice(choice);
         
 
     }

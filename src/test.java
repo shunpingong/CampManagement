@@ -35,7 +35,15 @@ public class test {
         CampList.createCamp(campinfo);
         CampList.createCamp(c1);
         //CampList.viewCamps();
-        PrintAllCamp.printAll();
+        
+        User user = Login.login();
+
+
+        //user = StudentData.getStudent(0);
+        //user = StaffData.getStaff(0);
+        int choice = user.menu();
+        System.out.println("Choice: " + choice);
+        user.menuChoice(choice);
         
     }
 }    

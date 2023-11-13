@@ -1,5 +1,6 @@
 package src;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Staff extends User {
     // Instances
@@ -30,4 +31,42 @@ public class Staff extends User {
     public void setCampsCreated(ArrayList<String> createdCamps){
         this.campsCreated = createdCamps;
     }
+
+    @Override
+    public int menu() {
+        Scanner sc = new Scanner(System.in);
+        int choice = 0;
+        do{
+            System.out.println("--------------------------------------------------------------------------------------");
+            System.out.println("|                                    Camp Menu (Staff)                               |");
+            System.out.println("--------------------------------------------------------------------------------------");
+            System.out.println("|1. View All Camps                                                                   |");
+            System.out.println("|2. View Camps Created By You                                                        |");
+            System.out.println("|3. Create New Camp                                                                  |");
+            System.out.println("|4. Edit Camp Detail                                                                 |");
+            System.out.println("|5. Delete Camp                                                                      |");
+            System.out.println("|6. Toggle Visibility Of Camp                                                        |");
+            System.out.println("|7. View Enquiries                                                                   |");
+            System.out.println("|8. Reply Enquiries                                                                  |");
+            System.out.println("|9. View Suggestions                                                                 |");
+            System.out.println("|10. Reply Suggestions                                                               |");
+            System.out.println("|11. Generate Report Of Created Camp                                                 |");
+            System.out.println("|12. Generate Performance Report Of Camp Committee                                   |");
+            System.out.println("|13. Exit Menu                                                                       |");
+            System.out.println("--------------------------------------------------------------------------------------");
+            System.out.printf("Menu Option: ");
+            choice = sc.nextInt();
+        }while(choice>13||choice<1);
+        return choice;
+	}
+
+    @Override
+	public void menuChoice(int i){
+		switch(i){
+			case 1:
+                CampList.printCampNames();
+				break;
+		}
+
+	}
 }

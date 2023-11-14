@@ -71,6 +71,8 @@ public class Student extends User {
 				//Display List of camps the student signed up for
 				//Let them choose which to submit an enquiry for
 				//public Enquiry(String text,User sender,CampInfo camp){
+				//Get string of enquiry, sender just pass in current user
+				//From list of camps displayed, student will choose which to submit enquiry for
                 break;
 
             case 4:

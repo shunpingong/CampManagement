@@ -1,3 +1,4 @@
+package src;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,17 +13,21 @@ public class EnquiryList {
 
     public static void addEnquiry(Enquiry enquiry) {
         enquiries.add(enquiry);
+        System.out.println("Enquiry for camp " + enquiry.getCamp() + " submitted.");
     }
 
-    //Delete enquiry 
-    public static void deleteEnquiry(Enquiry enquiry) {
-        if (!enquiry.isProcessed()) {
-            enquiries.remove(enquiry);
+    //delete enquiry
+    public static void deleteEnquiry(String campName, User currentUser) {
+        for (Enquiry enquiry : enquiries) {
+            if (!enquiry.isProcessed() && enquiry.getSender().equals(currentUser) && enquiry.getCamp().equals(campName)) {
+                enquiries.remove(enquiry);
+                System.out.println("Enquiry Deleted");
+                return;  // Assuming there is at most one matching enquiry
+            }
         }
-        else{
-            System.out.println("Enquiry is already processed and cannot be deleted.");
-        }
+        System.out.println("Enquiry not found or already processed.");
     }
+    
 
     public static void updateEnquiry(Enquiry updatedEnquiry) {
         for (int i = 0; i < enquiries.size(); i++) {
@@ -31,6 +36,7 @@ public class EnquiryList {
                 existingEnquiry.getCamp().equals(updatedEnquiry.getCamp())) {
                 // Replace the existing enquiry with the updated one
                 enquiries.set(i, updatedEnquiry);
+                System.out.println("Enquiry Updated");
                 return;
             }
         }

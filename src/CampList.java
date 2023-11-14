@@ -20,7 +20,7 @@ public class CampList { //element in campList in App
 
 	public static void viewCamps(){
 		for(int i=0; i<campList.size(); i++){
-			System.out.println(campList.get(i).getCampName());
+			System.out.println(i+1 +": "+ campList.get(i).getCampName());
 		}
 	}
 
@@ -58,7 +58,10 @@ public class CampList { //element in campList in App
             }while(choice > i || choice <= 0);
             campList.get(choice-1).printCamp();
         }
-        sc.close();
+        else if (choice == 2){
+            return;
+        }
+        // sc.close(); //will have error if uncommented
 	}
 
 	

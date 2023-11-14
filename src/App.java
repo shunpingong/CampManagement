@@ -66,7 +66,7 @@ public class App {
         //User user = StudentData.getStudent(0); 
         int choice = user.menu();
         System.out.println("Choice: " + choice);
-        user.menuChoice(choice);
+        // user.menuChoice(choice);
         
 
     }

@@ -1,3 +1,4 @@
+package src;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -41,9 +42,14 @@ public class test {
 
         user = StudentData.getStudent(0);
         //user = StaffData.getStaff(0);
-        int choice = user.menu();
-        System.out.println("Choice: " + choice);
-        user.menuChoice(choice);
+
+        
+        int choice = 0;
+        while (choice!=-1){
+            choice = user.menu();
+            System.out.println("Choice: " + choice);
+            user.menuChoice(choice,user);
+        }
         
     }
 }    

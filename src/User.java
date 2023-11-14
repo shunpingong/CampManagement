@@ -1,5 +1,6 @@
-public abstract class User {
+package src;
 
+public abstract class User {
 	// Instances
 	private String userID;
 	private String name;
@@ -49,6 +50,6 @@ public abstract class User {
 	}
 
 	public abstract int menu();
-	// public abstract void menuChoice(int i, User currentUser); to set who made the enquiry/suggestion
-	public abstract void menuChoice(int i);
+	public abstract void menuChoice(int i, User currentUser); //to set who made the enquiry/suggestion
+	// public abstract void menuChoice(int i);
 }

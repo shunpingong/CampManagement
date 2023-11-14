@@ -1,3 +1,4 @@
+package src;
 public class Enquiry{
     private String text;
     private User sender; //Student, Staff, CommitteeMember

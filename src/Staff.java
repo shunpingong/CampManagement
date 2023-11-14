@@ -52,16 +52,17 @@ public class Staff extends User {
             System.out.println("|10. Reply Suggestions                                                               |");
             System.out.println("|11. Generate Report Of Created Camp                                                 |");
             System.out.println("|12. Generate Performance Report Of Camp Committee                                   |");
-            System.out.println("|13. Exit Menu                                                                       |");
+            System.out.println("|-1. Exit Menu                                                                       |");
             System.out.println("--------------------------------------------------------------------------------------");
             System.out.printf("Menu Option: ");
             choice = sc.nextInt();
-        }while(choice>13||choice<1);
+        }while(choice>12||choice<-1);
         return choice;
 	}
 
     @Override
-	public void menuChoice(int i){
+    //public void menuChoice(int i)
+	public void menuChoice(int i,User currentUser){
 		switch(i)
         {
 			case 1:
@@ -99,6 +100,12 @@ public class Staff extends User {
                 break;
 
             case 12:
+                break;
+                
+            case -1:
+                // Exit Menu
+                System.out.println("Exiting Camp Menu. Goodbye!");
+                System.exit(0);
                 break;
 */
 		}

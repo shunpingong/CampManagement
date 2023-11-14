@@ -1,4 +1,4 @@
-
+package src;
 import java.util.Scanner;
 
 public class Student extends User {
@@ -46,7 +46,7 @@ public class Student extends User {
             System.out.println("|7. View Registered Camps                                                            |");
             System.out.println("|8. Withdraw From Camp                                                               |");
             System.out.println("|9. View Camp Committee Menu                                                         |");
-            System.out.println("|10. Exit Menu                                                                       |");
+            System.out.println("|-1. Exit Menu                                                                       |");
             System.out.println("--------------------------------------------------------------------------------------");
 			System.out.printf("Menu Option: ");
             choice = sc.nextInt();
@@ -56,8 +56,8 @@ public class Student extends User {
 
 	@Override
 
-	// public void menuChoice(int i, User currentUser)
-	public void menuChoice(int i){
+	public void menuChoice(int i, User currentUser){
+	// public void menuChoice(int i){
 		Scanner sc = new Scanner(System.in);
 		switch(i)
 		{
@@ -76,15 +76,16 @@ public class Student extends User {
 
 				// CampList.printCampNames();
 				// Let the student choose which camp to submit an enquiry for
+				CampList.viewCamps();
 				System.out.print("Choose a camp to submit an enquiry for (enter the number): ");
 				int chosenCampIndex = sc.nextInt();
-				String chosenCamp = "hello"; //find a way to obtain the camp from CampList
+				String chosenCamp = "Orientation"; //find a way to obtain the camp from CampList
 				
 				// Create an enquiry object and add it to the enquiry list
 				Enquiry newEnquiry = new Enquiry(text, currentUser, chosenCamp);
 				EnquiryList.addEnquiry(newEnquiry);
 
-				System.out.println("Enquiry for camp " + chosenCamp + " submitted.");
+
 				//Camp Enquiries
 				//Submit enquiries
 				//view, edit, and delete their enquiry before processed
@@ -96,12 +97,36 @@ public class Student extends User {
                 break;
 
             case 4:
+				//For loop to go through all camps and check if current user submitted enquiry and then display
+				EnquiryList.displayEnquiriesForCamp("Orientation",currentUser);
                 break;
 
             case 5:
-                break;
+				//add on from case 4
+				//ask for text to update
+				//chhoose the camp to update enquiry, ensure already made an enquiry to that camp first
+				System.out.print("Enter new enquiry text: ");
+				text = sc.nextLine();
+				CampList.viewCamps();
+				System.out.print("Choose a camp to update the enquiry for (enter the number): ");
+				chosenCampIndex = sc.nextInt();
+				chosenCamp = "Orientation"; //find a way to obtain the camp from CampList
 
-            case 6:
+				newEnquiry = new Enquiry(text, currentUser, chosenCamp);
+				EnquiryList.updateEnquiry(newEnquiry);
+                break;
+			case 6:
+				//add on from case 4
+				//ask for camp to delete enquiry
+				CampList.viewCamps();
+				System.out.print("Choose a camp to submit an enquiry for (enter the number): ");
+				chosenCampIndex = sc.nextInt();
+				chosenCamp = "Orientation"; //find a way to obtain the camp from CampList
+
+				EnquiryList.deleteEnquiry(chosenCamp, currentUser);
+				
+				break;
+            case 9:
 				//Display all enquiries the camp commiittee is in charge of
 				//view and reply to enquiries from students to the camp they oversee. 
 				//Submit suggestions for changes to camp details to staff
@@ -109,7 +134,7 @@ public class Student extends User {
 				//Generate a report of the list of students attending each camp they oversee
                 break;
 
-            case 10:
+            case -1:
                 // Exit Menu
                 System.out.println("Exiting Camp Menu. Goodbye!");
                 System.exit(0);

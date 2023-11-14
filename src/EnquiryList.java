@@ -2,10 +2,10 @@ package src;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnquiryStorage {
+public class EnquiryList {
     private List<Enquiry> enquiries;
 
-    public EnquiryStorage() {
+    public EnquiryList() {
         enquiries = new ArrayList<>();
     }
 
@@ -40,6 +40,17 @@ public class EnquiryStorage {
         // If the enquiry is not found, you can handle it as needed (e.g., raise an error or log it).
     }
     
+    public void displayEnquiriesForCamp(String campName, User currentUser) {
+        System.out.println("Enquiries for Camp: " + campName);
+        for (Enquiry enquiry : enquiries) {
+            if (enquiry.getCamp().equals(campName) && enquiry.getSender().equals(currentUser)) {
+                enquiry.viewDetails();
+                System.out.println("--------------------");
+            }
+        }
+    }
+    
+
     //Display out the unprocessed enquiries for students to choose and delete
     public void displayUnprocessedEnquiries(List<Enquiry> enquiries) {
         for (Enquiry enquiry : enquiries) {

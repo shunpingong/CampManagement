@@ -2,12 +2,12 @@ package src;
 public class Enquiry{
     private String text;
     private User sender; //Student, Staff, CommitteeMember
-    private CampInfo camp; // Reference to the associated camp
+    private String camp; // Reference to the associated camp
     private boolean processed; //True = processed and cannot be modified
     
 
     //Constructor to create an enquiry
-    public Enquiry(String text,User sender,CampInfo camp){
+    public Enquiry(String text,User sender,String camp){
         this.text = text;
         this.sender = sender;
         this.camp = camp;
@@ -25,7 +25,7 @@ public class Enquiry{
 
     //return the name of camp
     public String getCamp() { 
-        return camp.getCampName();
+        return camp;
     }
 
     public boolean isProcessed() {
@@ -59,7 +59,7 @@ public class Enquiry{
         // Display the details of the enquiry, including sender, text, camp, and processing status
         System.out.println("Enquiry Text: " + this.getText());
         System.out.println("Sender: " + this.getSender().getName()); // Assuming User has a 'getName' method
-        System.out.println("Camp: " + this.getCamp()); // Assuming Camp has a 'getCampName' method
+        System.out.println("Camp: " + this.getCamp()); // Assuming Camp has a 'getCamp' method
         System.out.println("Processed: " + this.isProcessed());
         System.out.println("--------------------");
     }

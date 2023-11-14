@@ -1,4 +1,3 @@
-package src;
 public abstract class User {
 
 	// Instances
@@ -50,6 +49,6 @@ public abstract class User {
 	}
 
 	public abstract int menu();
+	// public abstract void menuChoice(int i, User currentUser); to set who made the enquiry/suggestion
 	public abstract void menuChoice(int i);
-
 }

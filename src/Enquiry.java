@@ -1,4 +1,3 @@
-package src;
 public class Enquiry{
     private String text;
     private User sender; //Student, Staff, CommitteeMember
@@ -31,25 +30,7 @@ public class Enquiry{
     public boolean isProcessed() {
         return processed;
     }
-
-    // Methods to allow student to edit and delete enquiries
-    public void editText(String newText) {
-        if (!processed) {
-            text = newText;
-        } else {
-            // Handle error or notify that editing is not allowed for processed enquiries
-        }
-    }
-
-    public void delete() {
-        if (!processed) {
-            // Delete the enquiry
-            // You can implement this according to your storage mechanism
-        } else {
-            // Handle error or notify that deleting is not allowed for processed enquiries
-        }
-    }
-
+    
     // Mark the enquiry as processed
     public void markProcessed() {
         processed = true;

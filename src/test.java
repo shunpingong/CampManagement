@@ -1,4 +1,3 @@
-package src;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -38,8 +37,9 @@ public class test {
         
         User user = Login.login();
 
+        EnquiryList.initEnquiries();
 
-        //user = StudentData.getStudent(0);
+        user = StudentData.getStudent(0);
         //user = StaffData.getStaff(0);
         int choice = user.menu();
         System.out.println("Choice: " + choice);

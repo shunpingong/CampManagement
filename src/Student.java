@@ -54,9 +54,39 @@ public class Student extends User {
 
 	@Override
 	public void menuChoice(int i){
-		switch(i){
+		switch(i)
+		{
 			case 1:
 				break;
+/*
+			case 2:
+				//Register for camps either as a camp attendee or camp committee
+				//Only camp committee for one camp
+                break;
+
+            case 3:
+				//Camp Enquiries
+				//Submit enquiries
+				//view, edit, and delete their enquiry before processed
+				//Display List of camps the student signed up for
+				//Let them choose which to submit an enquiry for
+				//public Enquiry(String text,User sender,CampInfo camp){
+                break;
+
+            case 4:
+                break;
+
+            case 5:
+                break;
+
+            case 6:
+				//Display all enquiries the camp commiittee is in charge of
+				//view and reply to enquiries from students to the camp they oversee. 
+				//Submit suggestions for changes to camp details to staff
+				//view, edit, and delete the details of his/her suggestions before being processed
+				//Generate a report of the list of students attending each camp they oversee
+                break;
+*/
 		}
 
 	}

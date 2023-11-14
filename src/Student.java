@@ -50,7 +50,7 @@ public class Student extends User {
             System.out.println("--------------------------------------------------------------------------------------");
 			System.out.printf("Menu Option: ");
             choice = sc.nextInt();
-        }while(choice>10||choice<1);
+        }while(choice>9||choice<-1);
         return choice;
 	}
 

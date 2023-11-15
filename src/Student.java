@@ -76,7 +76,7 @@ public class Student extends User {
 				System.out.print("Choose a camp to sign up for (enter the number): ");
 				int chosenCampIndex = sc.nextInt();
 				if (CampList.getCampInfo(chosenCampIndex).isStudentWithdrawn(studentUser)) {
-					System.out.println(studentUser.getName() + " has already withdrawn from this camp: " + CampList.getCampInfo(chosenCampIndex).getCampName());
+					System.out.println("Cannot register. "+ studentUser.getName() + " has already withdrawn from this camp: " + CampList.getCampInfo(chosenCampIndex).getCampName());
 				}
 				else{
 					System.out.println("1. Sign up as member");
@@ -170,7 +170,7 @@ public class Student extends User {
 				chosenCampIndex = sc.nextInt();
 
 				if (studentUser.getStatus().equals(CampList.getCampInfo(chosenCampIndex).getCampName())) {
-					System.out.println("Student is a committee for camp: "+ CampList.getCampInfo(chosenCampIndex).getCampName());
+					System.out.println("Cannot withdraw. Student is a committee for camp: "+ CampList.getCampInfo(chosenCampIndex).getCampName());
 				}
 				else{
 					CampList.getCampInfo(chosenCampIndex).removeStudentAttendees(studentUser);

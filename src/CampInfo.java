@@ -15,13 +15,9 @@ public class CampInfo {
 	private int committeeSlots;
 	private String description;
 	private Staff inCharge;
-
-	//private ArrayList<Student> studentAttendees; //only accessible by staff & camp com
-	//private ArrayList<CampCommittee> campCom; //only accessible by staff & camp com
-
-	//made it static -OSP
-	private static ArrayList<Student> studentAttendees; //only accessible by staff & camp com
-	private static ArrayList<CampCommittee> campCom; //only accessible by staff & camp com
+	private ArrayList<Student> studentAttendees; //only accessible by staff & camp 
+	private ArrayList<Student> withdrawnStudents; //keep track of who withdrawn -added by OSP
+	private ArrayList<CampCommittee> campCom; //only accessible by staff & camp com
 	private boolean visibility; //only seen by staff 
 
 	// Constructors
@@ -38,6 +34,7 @@ public class CampInfo {
 		this.inCharge = inCharge;
 		studentAttendees = new ArrayList<Student>();
 		campCom = new ArrayList<CampCommittee>();
+		withdrawnStudents = new ArrayList<Student>(); //added by OSP
 		this.visibility = visibility;
 	}
 
@@ -75,10 +72,10 @@ public class CampInfo {
 	}
 	
 	public ArrayList<Student> getStudentAttendees(){ //staff & camp com
-		return CampInfo.studentAttendees;
+		return this.studentAttendees;
 	}
 	public ArrayList<CampCommittee> getCampCom(){ //staff & camo com
-		return CampInfo.campCom;
+		return this.campCom;
 	}
 	public boolean getVisibility(){ //staff
 		return this.visibility;
@@ -117,16 +114,28 @@ public class CampInfo {
 	}
 
 	public void addStudentAttendees(Student student){
-		CampInfo.studentAttendees.add(student);
+		this.studentAttendees.add(student);
 		//no need to -1 from total slot because getTotalSlot does it
-		System.out.println("Signed up as a member for camp");
+		System.out.println("Signed up as a member for camp: "+ campName);
 	}
 
+	//withdraw from camp
+	public void removeStudentAttendees(Student student){
+		this.studentAttendees.remove(student);
+		this.withdrawnStudents.add(student); 
+		//no need to +1 from total slot because getTotalSlot does it
+		System.out.println("Withdrawn from camp: " + campName);
+	}
+	
+    public boolean isStudentWithdrawn(Student student) {
+        return this.withdrawnStudents.contains(student);
+    }
+
 	public void addCampCom(CampCommittee campCom){
-		CampInfo.campCom.add(campCom);
+		this.campCom.add(campCom);
 		//We assume that the number of camp committee is counted into total slots. - Rubrics
 		this.totalSlots-=1;
-		System.out.println("Signed up as a committee member for camp");
+		System.out.println("Signed up as a committee member for camp: "+ campName);
 	}
 
 	public void printCamp(){ 

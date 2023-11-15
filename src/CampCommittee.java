@@ -4,9 +4,9 @@ public class CampCommittee extends Student {
     private int points;
 
     // Constructors
-    public CampCommittee(String userID, String name, Faculty faculty, String email, int points){
+    public CampCommittee(String userID, String name, Faculty faculty, String email, String status, int points){
         super(userID, name, faculty, email);
-        this.setStatus("Camp Committee");
+        //this.setStatus("Camp Committee");
         this.points = points;
     }
 

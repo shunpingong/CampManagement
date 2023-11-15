@@ -9,7 +9,7 @@ public class Student extends User {
 	public Student(String userID, String name, Faculty faculty, String email){
 		super(userID, name, faculty);
 		this.email = email;
-		this.status = "";
+		this.status = ""; //to store the camp name that student is a committee of??
 	}
 
 	// Accessors
@@ -58,6 +58,11 @@ public class Student extends User {
 	public void menuChoice(int i, User currentUser){
 	// public void menuChoice(int i){
 		Scanner sc = new Scanner(System.in);
+
+		if (currentUser instanceof Student){
+			Student studentUser = (Student) currentUser; //downcast to make it perform the methods as a student
+		}
+		
 		switch(i)
 		{
 			case 1:
@@ -67,28 +72,42 @@ public class Student extends User {
 
 			case 2:
 				//Register for camps either as a camp attendee or camp committee
-				//Only camp committee for one 
+				//Only camp committee for one camp only
+	
 				CampList.viewCamps();
 				System.out.print("Choose a camp to sign up for (enter the number): ");
 				int chosenCampIndex = sc.nextInt();
-
-				System.out.println("1. Sign up as member");
-				System.out.println("2. Sign up as committee");
-				System.out.print("Enter your choice:");
-				int choice = sc.nextInt();
-
-				if (choice ==1){
-					Student studentUser = (Student) currentUser; //downcast to pass into the addStudentAttendees -OSP , call me to tell u reason
-					CampList.getCampInfo(chosenCampIndex).addStudentAttendees(studentUser); //index alr automatically -1 in CampList
+				if (CampList.getCampInfo(chosenCampIndex).isStudentWithdrawn(studentUser)) {
+					System.out.println(studentUser.getName() + " has already withdrawn from this camp: " + CampList.getCampInfo(chosenCampIndex).getCampName());
 				}
-				if (choice ==2){
-					// public Student(String userID, String name, Faculty faculty, String email){
-					// public CampCommittee(String userID, String name, Faculty faculty, String email, int points)
+				else{
+					System.out.println("1. Sign up as member");
+					System.out.println("2. Sign up as committee");
+					System.out.print("Enter your choice:");
+					int choice = sc.nextInt();
 
-					CampCommittee commUser = new CampCommittee(currentUser.getID(), currentUser.getName(), currentUser.getFaculty(), email, 0);
-					CampList.getCampInfo(chosenCampIndex).addCampCom(commUser); //index alr automatically -1 in CampList
+					if (choice ==1){
+						CampList.getCampInfo(chosenCampIndex).addStudentAttendees(studentUser); //index alr automatically -1 in CampList
+					}
+
+					if (choice ==2){
+						//if user is already a committee for a camp -> cannot register as committee
+						if (studentUser.getStatus() != "") {
+							System.out.println("You are already a committee member for the camp: " + (studentUser.getStatus()));
+							break;
+						}
+
+						// public Student(String userID, String name, Faculty faculty, String email){
+						// public CampCommittee(String userID, String name, Faculty faculty, String email, int points)
+						else{
+							//NOT REALLY SURE OF THE LOGIC HERE FOR CAMP COMMITTEE, I WANT TO MAKE THIS STUDENT INTO CAMP COMMITTEE BUT IDK HOW
+							studentUser.setStatus(CampList.getCampInfo(chosenCampIndex).getCampName());
+							CampCommittee commUser = new CampCommittee(studentUser.getID(), studentUser.getName(), studentUser.getFaculty(), email, studentUser.getStatus(), 0);
+							CampList.getCampInfo(chosenCampIndex).addCampCom(commUser); //index alr automatically -1 in CampList
+						}
+					}
 				}	
-                break;
+					break;
 
             case 3:
 				//Enter enquiry
@@ -104,13 +123,13 @@ public class Student extends User {
 				String chosenCamp = CampList.getCampInfo(chosenCampIndex).getCampName();
 				
 				// Create an enquiry object and add it to the enquiry list
-				Enquiry newEnquiry = new Enquiry(text, currentUser, chosenCamp);
+				Enquiry newEnquiry = new Enquiry(text, studentUser, chosenCamp);
 				EnquiryList.addEnquiry(newEnquiry);
                 break;
 
             case 4:
-				//For loop to go through all camps and check if current user submitted enquiry and then display
-				EnquiryList.displayEnquiriesForCamp("Orientation",currentUser);
+				//For loop to go through all camps and check if current user submitted enquiry and then 
+				EnquiryList.displayEnquiriesForCamp("Orientation",studentUser);
                 break;
 
             case 5:
@@ -126,27 +145,44 @@ public class Student extends User {
 				chosenCampIndex = sc.nextInt();
 				chosenCamp = CampList.getCampInfo(chosenCampIndex).getCampName();
 
-				newEnquiry = new Enquiry(text, currentUser, chosenCamp);
+				newEnquiry = new Enquiry(text, studentUser, chosenCamp);
 				EnquiryList.updateEnquiry(newEnquiry);
                 break;
 
 			case 6:
-				//add on from case 4
-				//ask for camp to delete enquiry
-				CampList.viewCamps();
-				System.out.print("Choose a camp to submit an enquiry for (enter the number): ");
-				chosenCampIndex = sc.nextInt();
-				chosenCamp = "Orientation"; //find a way to obtain the camp from CampList
+				//show enquiry submitted first - to add on
 
-				EnquiryList.deleteEnquiry(chosenCamp, currentUser);
+				CampList.viewCamps();
+				System.out.print("Choose a camp to delete an enquiry for (enter the number): ");
+				chosenCampIndex = sc.nextInt();
+				chosenCamp = CampList.getCampInfo(chosenCampIndex).getCampName();
+
+				EnquiryList.deleteEnquiry(chosenCamp, studentUser);
 				
 				break;
+
 			case 7:
 				// view registered camp
 				break;
 
 			case 8:
 				// Withdraw from camp
+				//public void removeStudentAttendees(Student student){
+				System.out.print("Choose a camp registered to withdraw (enter the number): ");
+				chosenCampIndex = sc.nextInt();
+
+				if (studentUser.getStatus().equals(CampList.getCampInfo(chosenCampIndex).getCampName())) {
+					System.out.println("Student is a committee for camp: "+ CampList.getCampInfo(chosenCampIndex).getCampName());
+				}
+				else{
+					CampList.getCampInfo(chosenCampIndex).removeStudentAttendees(studentUser);
+
+				}
+
+				//Show his registered camp - from case 7
+				//Let him choose which to withdraw
+				//Check if he is a committee for the camp if not let him withdraw
+				//If withdrawn, cannot register for same camp again
 				break;
 					
             case 9:

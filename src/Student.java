@@ -59,10 +59,8 @@ public class Student extends User {
 	// public void menuChoice(int i){
 		Scanner sc = new Scanner(System.in);
 
-		if (currentUser instanceof Student){
-			Student studentUser = (Student) currentUser; //downcast to make it perform the methods as a student
-		}
-		
+		Student studentUser = (Student) currentUser; //downcast to make it perform the methods as a student
+
 		switch(i)
 		{
 			case 1:

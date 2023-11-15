@@ -27,7 +27,12 @@ public class CampList { //element in campList in App
 	public static int getSize(){
 		return campList.size();
 	}
-	
+
+    //added method to get the respective campInfo for student menu 2. Register for camp - OSP
+    public static CampInfo getCampInfo(int index){
+		return campList.get(index-1);
+	}
+
 	public static void printCampNames(){ //take in int for filter
 		System.out.println("------------------------------------------------------------------------------------");
         System.out.println("|                                    Camp List                                     |");

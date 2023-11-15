@@ -2,7 +2,6 @@ package src;
 import java.util.Scanner;
 
 public class Student extends User {
-	// Instances
 	private String email;
 	private String status;
 
@@ -62,38 +61,51 @@ public class Student extends User {
 		switch(i)
 		{
 			case 1:
+				//If student signed up, don't show the camp again
 				CampList.printCampNames();
 				break;
 
 			case 2:
 				//Register for camps either as a camp attendee or camp committee
-				//Only camp committee for one camp
+				//Only camp committee for one 
+				CampList.viewCamps();
+				System.out.print("Choose a camp to sign up for (enter the number): ");
+				int chosenCampIndex = sc.nextInt();
+
+				System.out.println("1. Sign up as member");
+				System.out.println("2. Sign up as committee");
+				System.out.print("Enter your choice:");
+				int choice = sc.nextInt();
+
+				if (choice ==1){
+					Student studentUser = (Student) currentUser; //downcast to pass into the addStudentAttendees -OSP , call me to tell u reason
+					CampList.getCampInfo(chosenCampIndex).addStudentAttendees(studentUser); //index alr automatically -1 in CampList
+				}
+				if (choice ==2){
+					// public Student(String userID, String name, Faculty faculty, String email){
+					// public CampCommittee(String userID, String name, Faculty faculty, String email, int points)
+
+					CampCommittee commUser = new CampCommittee(currentUser.getID(), currentUser.getName(), currentUser.getFaculty(), email, 0);
+					CampList.getCampInfo(chosenCampIndex).addCampCom(commUser); //index alr automatically -1 in CampList
+				}	
                 break;
 
             case 3:
+				//Enter enquiry
 				System.out.print("Enter enquiry text: ");
 				String text = sc.nextLine();
 
-				// CampList.printCampNames();
 				// Let the student choose which camp to submit an enquiry for
 				CampList.viewCamps();
 				System.out.print("Choose a camp to submit an enquiry for (enter the number): ");
-				int chosenCampIndex = sc.nextInt();
-				String chosenCamp = "Orientation"; //find a way to obtain the camp from CampList
+				chosenCampIndex = sc.nextInt();
+
+				// Get the camp Name
+				String chosenCamp = CampList.getCampInfo(chosenCampIndex).getCampName();
 				
 				// Create an enquiry object and add it to the enquiry list
 				Enquiry newEnquiry = new Enquiry(text, currentUser, chosenCamp);
 				EnquiryList.addEnquiry(newEnquiry);
-
-
-				//Camp Enquiries
-				//Submit enquiries
-				//view, edit, and delete their enquiry before processed
-				//Display List of camps the student signed up for
-				//Let them choose which to submit an enquiry for
-				//public Enquiry(String text,User sender,CampInfo camp){
-				//Get string of enquiry, sender just pass in current user
-				//From list of camps displayed, student will choose which to submit enquiry for
                 break;
 
             case 4:
@@ -107,14 +119,17 @@ public class Student extends User {
 				//chhoose the camp to update enquiry, ensure already made an enquiry to that camp first
 				System.out.print("Enter new enquiry text: ");
 				text = sc.nextLine();
+
 				CampList.viewCamps();
+
 				System.out.print("Choose a camp to update the enquiry for (enter the number): ");
 				chosenCampIndex = sc.nextInt();
-				chosenCamp = "Orientation"; //find a way to obtain the camp from CampList
+				chosenCamp = CampList.getCampInfo(chosenCampIndex).getCampName();
 
 				newEnquiry = new Enquiry(text, currentUser, chosenCamp);
 				EnquiryList.updateEnquiry(newEnquiry);
                 break;
+
 			case 6:
 				//add on from case 4
 				//ask for camp to delete enquiry
@@ -126,6 +141,14 @@ public class Student extends User {
 				EnquiryList.deleteEnquiry(chosenCamp, currentUser);
 				
 				break;
+			case 7:
+				// view registered camp
+				break;
+
+			case 8:
+				// Withdraw from camp
+				break;
+					
             case 9:
 				//Display all enquiries the camp commiittee is in charge of
 				//view and reply to enquiries from students to the camp they oversee. 

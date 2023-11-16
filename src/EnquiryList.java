@@ -1,9 +1,8 @@
 package src;
 import java.util.ArrayList;
-import java.util.List;
 
 public class EnquiryList {
-    private static ArrayList<Enquiry> enquiries;
+    private static ArrayList<Enquiry> enquiries = new ArrayList<>();
 
     public EnquiryList() {}
     
@@ -27,43 +26,54 @@ public class EnquiryList {
         }
         System.out.println("Enquiry not found or already processed.");
     }
-    
 
-    public static void updateEnquiry(Enquiry updatedEnquiry) {
-        for (int i = 0; i < enquiries.size(); i++) {
-            Enquiry existingEnquiry = enquiries.get(i);
-            if (existingEnquiry.getSender().equals(updatedEnquiry.getSender()) &&
-                existingEnquiry.getCamp().equals(updatedEnquiry.getCamp())) {
-                // Replace the existing enquiry with the updated one
-                enquiries.set(i, updatedEnquiry);
-                System.out.println("Enquiry Updated");
-                return;
-            }
-        }
-        // If the enquiry is not found, you can handle it as needed (e.g., raise an error or log it).
-    }
+    public static Enquiry getEnquiry(int index){
+		return enquiries.get(index-1);
+	}
     
+    //Display enquiries by the currentUser
     public static void displayEnquiriesForCamp(String campName, User currentUser) {
         System.out.println("Enquiries for Camp: " + campName);
+    
+        int count = 1;  // Initialize a counter variable
+    
         for (Enquiry enquiry : enquiries) {
             if (enquiry.getCamp().equals(campName) && enquiry.getSender().equals(currentUser)) {
+                System.out.println("Enquiry " + count + ":");
                 enquiry.viewDetails();
-                System.out.println("--------------------");
+                count++;  // Increment the counter after printing an enquiry
             }
+        }
+    
+        // Check if no enquiries were displayed
+        if (count == 1) {
+            System.out.println("None");
         }
     }
     
-    //Display out the unprocessed enquiries for students to choose and delete
-    public static  void displayUnprocessedEnquiries(List<Enquiry> enquiries) {
+    // //Display out the unprocessed enquiries for students to choose and delete
+    // public static  void displayUnprocessedEnquiries(ArrayList<Enquiry> enquiries) {
+    //     for (Enquiry enquiry : enquiries) {
+    //         if (!enquiry.isProcessed()) {
+    //             System.out.println("Unprocessed Enquiry:");
+    //             enquiry.viewDetails();
+    //             System.out.println("--------------------");
+    //         }
+    //     }
+    // }
+    
+    //To check whether camp have enquiries or not
+    public static ArrayList<Enquiry> getEnquiriesForCamp(String campName, User currentUser) {
+        ArrayList<Enquiry> campEnquiries = new ArrayList<>();
+    
         for (Enquiry enquiry : enquiries) {
-            if (!enquiry.isProcessed()) {
-                System.out.println("Unprocessed Enquiry:");
-                enquiry.viewDetails();
-                System.out.println("--------------------");
+            if (enquiry.getCamp().equals(campName) && enquiry.getSender().equals(currentUser)) {
+                campEnquiries.add(enquiry);
             }
         }
+    
+        return campEnquiries;
     }
     
-
     // You can implement additional methods for managing and retrieving enquiries as needed.
 }

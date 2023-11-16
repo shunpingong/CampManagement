@@ -54,15 +54,16 @@ public class Student extends User {
 	}
 
 	@Override
-
 	public void menuChoice(int i, User currentUser){
 	// public void menuChoice(int i){
 		Scanner sc = new Scanner(System.in);
 
-		Student studentUser = (Student) currentUser; //downcast to make it perform the methods as a student
-
+		Student studentUser = (Student) currentUser; //downcast to make it perform the methods as a 
+		CampCommittee commUser = null;
+		
 		switch(i)
 		{
+
 			case 1:
 				//If student signed up, don't show the camp again
 				CampList.printCampNames();
@@ -100,7 +101,8 @@ public class Student extends User {
 						else{
 							//NOT REALLY SURE OF THE LOGIC HERE FOR CAMP COMMITTEE, I WANT TO MAKE THIS STUDENT INTO CAMP COMMITTEE BUT IDK HOW
 							studentUser.setStatus(CampList.getCampInfo(chosenCampIndex).getCampName());
-							CampCommittee commUser = new CampCommittee(studentUser.getID(), studentUser.getName(), studentUser.getFaculty(), email, studentUser.getStatus(), 0);
+							commUser = new CampCommittee(studentUser.getID(), studentUser.getName(), studentUser.getFaculty(), studentUser.getEmail(), studentUser.getStatus(), 0);
+
 							CampList.getCampInfo(chosenCampIndex).addCampCom(commUser); //index alr automatically -1 in CampList
 						}
 					}
@@ -108,56 +110,82 @@ public class Student extends User {
 					break;
 
             case 3:
-				//Enter enquiry
-				System.out.print("Enter enquiry text: ");
-				String text = sc.nextLine();
-
 				// Let the student choose which camp to submit an enquiry for
 				CampList.viewCamps();
 				System.out.print("Choose a camp to submit an enquiry for (enter the number): ");
 				chosenCampIndex = sc.nextInt();
 
+				// Consume the newline character
+				sc.nextLine();
+
 				// Get the camp Name
 				String chosenCamp = CampList.getCampInfo(chosenCampIndex).getCampName();
 				
+				//Enter enquiry
+				System.out.print("Enter enquiry text: ");
+				String text = sc.nextLine();
+
 				// Create an enquiry object and add it to the enquiry list
 				Enquiry newEnquiry = new Enquiry(text, studentUser, chosenCamp);
 				EnquiryList.addEnquiry(newEnquiry);
                 break;
 
             case 4:
+				//View Submitted Enquiries  
 				//For loop to go through all camps and check if current user submitted enquiry and then 
-				EnquiryList.displayEnquiriesForCamp("Orientation",studentUser);
+				if (EnquiryList.getEnquiriesForCamp("Orientation", studentUser).isEmpty()) {
+					System.out.println("No enquiries to view.");
+				}
+				else
+				{
+					EnquiryList.displayEnquiriesForCamp("Orientation",studentUser);
+				}
                 break;
 
             case 5:
+				//Edit Submitted Enquiries  
 				//add on from case 4
 				//ask for text to update
 				//chhoose the camp to update enquiry, ensure already made an enquiry to that camp first
-				System.out.print("Enter new enquiry text: ");
-				text = sc.nextLine();
 
-				CampList.viewCamps();
+				if (EnquiryList.getEnquiriesForCamp("Orientation", studentUser).isEmpty()) 
+				{
+					System.out.println("No enquiries to update.");
+				} 
+				else 
+				{
+					EnquiryList.displayEnquiriesForCamp("Orientation",currentUser);
+					System.out.print("Choose an enquiry to update (enter the number): ");
+					int chosenEnquiryIndex = sc.nextInt();
+					chosenCamp = EnquiryList.getEnquiry(chosenEnquiryIndex).getCamp();
+					
+					// Consume the newline character
+					sc.nextLine();
 
-				System.out.print("Choose a camp to update the enquiry for (enter the number): ");
-				chosenCampIndex = sc.nextInt();
-				chosenCamp = CampList.getCampInfo(chosenCampIndex).getCampName();
+					System.out.print("Enter new enquiry text: ");
+					text = sc.nextLine();
 
-				newEnquiry = new Enquiry(text, studentUser, chosenCamp);
-				EnquiryList.updateEnquiry(newEnquiry);
+					EnquiryList.getEnquiry(chosenEnquiryIndex).updateEnquiry(text);
+				}
                 break;
 
 			case 6:
-				//show enquiry submitted first - to add on
+				//show enquiry submitted first
+				//Delete Submitted Enquiries  
+				// Check if there are no enquiries
+				if (EnquiryList.getEnquiriesForCamp("Orientation", studentUser).isEmpty()) {
+					System.out.println("No enquiries to delete.");
+				} else {
+					EnquiryList.displayEnquiriesForCamp("Orientation",currentUser);
+					System.out.print("Choose an enquiry to delete (enter the number): ");
+					int chosenEnquiryIndex = sc.nextInt();
+					chosenCamp = EnquiryList.getEnquiry(chosenEnquiryIndex).getCamp();
 
-				CampList.viewCamps();
-				System.out.print("Choose a camp to delete an enquiry for (enter the number): ");
-				chosenCampIndex = sc.nextInt();
-				chosenCamp = CampList.getCampInfo(chosenCampIndex).getCampName();
+					// Consume the newline character
+					sc.nextLine();
 
-				EnquiryList.deleteEnquiry(chosenCamp, studentUser);
-				
-				break;
+					EnquiryList.deleteEnquiry(chosenCamp, studentUser);
+				}
 
 			case 7:
 				// view registered camp
@@ -182,14 +210,22 @@ public class Student extends User {
 				//Check if he is a committee for the camp if not let him withdraw
 				//If withdrawn, cannot register for same camp again
 				break;
-					
-            case 9:
+				
+			case 9:
+				// if (commUser == null){
+				// 	System.out.println("Student is not committee of any camp.");
+				// }
+				// else{
+				// 	int choice = commUser.menu();
+				// 	commUser.menuChoice(choice, commUser);
+				// }
+				break;
+		
 				//Display all enquiries the camp commiittee is in charge of
 				//view and reply to enquiries from students to the camp they oversee. 
 				//Submit suggestions for changes to camp details to staff
 				//view, edit, and delete the details of his/her suggestions before being processed
 				//Generate a report of the list of students attending each camp they oversee
-                break;
 
             case -1:
                 // Exit Menu

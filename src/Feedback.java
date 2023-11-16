@@ -53,15 +53,16 @@ public abstract class Feedback {
     // Abstract method to be implemented by subclasses
 
     public abstract void updateText(String newText);
+    public abstract void viewDetails();
+    // public abstract void reply(User currentUser, String replyText); 
 
-    // Additional methods or attributes common to all feedback types can be added 
+
     
-    public void viewDetails() {
-        // Display the details of the enquiry, including sender, text, camp, and processing status
-        System.out.println("Enquiry Text: " + this.getText());
-        System.out.println("Sender: " + this.getSender().getName()); // Assuming User has a 'getName' method
-        System.out.println("Camp: " + this.getCamp()); // Assuming Camp has a 'getCamp' method
-        System.out.println("Processed: " + this.isProcessed());
-        System.out.println("--------------------");
+//-----------------------------------------------------------------------------------//
+    // Additional methods or attributes common to all feedback types can be added 
+    //Concrete
+    public boolean isUserFeedback(User currentUser) {
+        // Check if the sender of the enquiry is the current user
+        return getSender().equals(currentUser);
     }
 }

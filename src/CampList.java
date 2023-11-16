@@ -30,22 +30,71 @@ public class CampList { //element in campList in App
 
     //added method to get the respective campInfo for student menu 2. Register for camp - OSP
     public static CampInfo getCampInfo(int index){
-		return campList.get(index-1);
+		return campList.get(index);
 	}
 
-	public static void printCampNames(){ //take in int for filter
-		System.out.println("------------------------------------------------------------------------------------");
-        System.out.println("|                                    Camp List                                     |");
-        System.out.println("------------------------------------------------------------------------------------");
-        int i;
-        for(i=0;i<CampList.getSize();i++){
-            System.out.printf("|%-3s|Name: %-13s|Date: %-5s to %-15s|Available Slots: %-5s|\n", 
-                                i+1,
-                                campList.get(i).getCampName(), 
-                                campList.get(i).getStartDate(), 
-                                campList.get(i).getEndDate(), 
-                                campList.get(i).getTotalSlots());
+    public static int viewAllAvailableCamps(User currentUser){
+        //Same faculty
+        //Visibility is ON
+        //Staff can see all
+        int count=0;
+        if (currentUser instanceof Staff){
+            System.out.println("--------------------------------------------------------------------------------------");
+            System.out.println("|                                    Camp List                                       |");
+            System.out.println("--------------------------------------------------------------------------------------");
+            for (int i=0;i < CampList.getSize(); i++){
+                System.out.printf("|%-3s|Name: %-13s|Date: %-5s to %-15s|Available Slots: %-5s  |\n", 
+                                    i+1,
+                                    campList.get(i).getCampName(), 
+                                    campList.get(i).getStartDate(), 
+                                    campList.get(i).getEndDate(), 
+                                    campList.get(i).getTotalSlots());
+                    // System.out.printf("%d. %s\n",count,CampList.getCampInfo(i).getCampName());
+                    count++;
+                }
+            if (count==0){
+                System.out.println("No visible camps.");
+            }
         }
+        else{
+            count=0;
+            System.out.println("--------------------------------------------------------------------------------------");
+            System.out.println("|                                    Camp List                                       |");
+            System.out.println("--------------------------------------------------------------------------------------");
+            for (int i=0;i< CampList.getSize(); i++){
+                if (CampList.getCampInfo(i).getUserGroup() == currentUser.getFaculty() && CampList.getCampInfo(i).getVisibility()){
+                System.out.printf("|%-3s|Name: %-13s|Date: %-5s to %-15s|Available Slots: %-5s  |\n", 
+                                    i+1,
+                                    campList.get(i).getCampName(), 
+                                    campList.get(i).getStartDate(), 
+                                    campList.get(i).getEndDate(), 
+                                    campList.get(i).getTotalSlots());
+                    count++;
+                    // System.out.printf("%d. %s\n",count,CampList.getCampInfo(i).getCampName());
+                }
+
+            }
+            if (count==0){
+                System.out.println("No visible camps.");
+            }
+        }
+        return count;
+    }
+
+    //For staff and committee
+	public static void printCampDetails(){ //take in int for filter
+		// System.out.println("------------------------------------------------------------------------------------");
+        // System.out.println("|                                    Camp List                                     |");
+        // System.out.println("------------------------------------------------------------------------------------");
+        // int i;
+        // for(i=0;i<CampList.getSize();i++){
+        //     System.out.printf("|%-3s|Name: %-13s|Date: %-5s to %-15s|Available Slots: %-5s|\n", 
+        //                         i+1,
+        //                         campList.get(i).getCampName(), 
+        //                         campList.get(i).getStartDate(), 
+        //                         campList.get(i).getEndDate(), 
+        //                         campList.get(i).getTotalSlots());
+        // }
 
         Scanner sc = new Scanner(System.in);
         int choice = -1;
@@ -60,7 +109,7 @@ public class CampList { //element in campList in App
             do{
                 System.out.printf("Which Camp To View: ");
                 choice = sc.nextInt();
-            }while(choice > i || choice <= 0);
+            }while(choice > CampList.getSize() || choice <= 0);
             campList.get(choice-1).printCamp();
         }
         else if (choice == 2){

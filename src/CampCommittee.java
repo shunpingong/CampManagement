@@ -30,7 +30,7 @@ public class CampCommittee extends Student {
 
     public boolean isInChargeOfCamp(String camp) {
         // Check if the CampCommittee is in charge of the specified camp
-        return (this.getStatus().equals(camp));
+        return (this.getCommitteeOf().equals(camp));
     }
 
     

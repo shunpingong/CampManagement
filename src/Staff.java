@@ -66,7 +66,9 @@ public class Staff extends User {
 		switch(i)
         {
 			case 1:
-                CampList.printCampNames();
+                System.out.println("OK");
+                CampList.viewAllAvailableCamps(currentUser);
+                CampList.printCampDetails();
 				break;
 /*
             case 2:
@@ -101,13 +103,12 @@ public class Staff extends User {
 
             case 12:
                 break;
-                
+*/            
             case -1:
                 // Exit Menu
                 System.out.println("Exiting Camp Menu. Goodbye!");
                 System.exit(0);
                 break;
-*/
 		}
 
 	}

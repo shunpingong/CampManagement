@@ -38,9 +38,11 @@ public class test {
         
         User user = Login.login();
 
-        EnquiryList.initEnquiries();
 
-        user = StudentData.getStudent(0);
+        // user = StudentData.getStudent(0);
+        user = new Student("Teemo","AK47",Faculty.ALL, "test@gmail.com");
+
+        // user = new CampCommittee(campDesc, campName, userGroup, campLoc, campDesc, 0);
         //user = StaffData.getStaff(0);
 
         

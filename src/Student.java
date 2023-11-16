@@ -165,7 +165,7 @@ public class Student extends User {
 					System.out.print("Enter new enquiry text: ");
 					text = sc.nextLine();
 
-					EnquiryList.getEnquiry(chosenEnquiryIndex).updateEnquiry(text);
+					EnquiryList.getEnquiry(chosenEnquiryIndex).updateText(text);
 				}
                 break;
 

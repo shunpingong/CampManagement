@@ -1,30 +1,9 @@
 package src;
 public class Enquiry extends Feedback{
 
-    private String camp; // Reference to the associated camp
-    private boolean processed; //True = processed and cannot be modified
-    
-
     //Constructor to create an enquiry
     public Enquiry(String text,User sender,String camp){
-        super(text,sender);
-        this.camp = camp;
-        this.processed = false; // Initialize as unprocessed
-
-    }
-    // Getter methods
-    //return the name of camp
-    public String getCamp() { 
-        return camp;
-    }
-
-    public boolean isProcessed() {
-        return processed;
-    }
-    
-    // Mark the enquiry as processed
-    public void markProcessed() {
-        processed = true;
+        super(text,sender,camp);
     }
 
     //NON MUTATOR/GETTER FUNCTION
@@ -46,14 +25,23 @@ public class Enquiry extends Feedback{
     // }
 
     // Update the enquiry
-    public void updateEnquiry(String newText) {
+    @Override
+    public void updateText(String newText) {
         // Check if the enquiry is not processed
-        if (!processed) {
+        if (!this.isProcessed()) {
             // Update the text of the enquiry
             this.setText(newText);
             System.out.println("Enquiry Updated");
         } else {
             System.out.println("Cannot update processed enquiry.");
+        }
+    }
+
+    public void reply(User currentUser, String replyText) {
+        this.markProcessed();
+        //If replied by camp committee, they will get 1 point
+        if (currentUser instanceof CampCommittee){
+            ((CampCommittee) currentUser).addPoints();
         }
     }
 
@@ -65,14 +53,6 @@ public class Enquiry extends Feedback{
         System.out.println("Processed: " + this.isProcessed());
         System.out.println("--------------------");
     }
-
-    public void reply(User currentUser, String replyText) {
-        this.markProcessed();
-        //If replied by camp committee, they will get 1 point
-        if (currentUser instanceof CampCommittee){
-            ((CampCommittee) currentUser).addPoints();
-        }
-    }
-
+    
 }   
     

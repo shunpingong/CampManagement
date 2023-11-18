@@ -59,4 +59,20 @@ public class UserInput {
         
         return Faculty.values()[choice-1];
     }
+
+    public static int sortCampMenu(){
+        Scanner sc = new Scanner(System.in);
+        int choice=0;
+        do{
+            System.out.println("How Do You Want The Camps to Be Sorted? (Default: Date Created)");
+            System.out.println("1. Name (Ascending)");
+            System.out.println("2. Name (Descending)");
+            System.out.println("3. Start Date");
+            System.out.println("4. End Date");
+            System.out.println("5. Registration Deadline");
+            choice = sc.nextInt();
+        }while(choice<1 || choice>5);
+        return choice;
+        
+    }
 }

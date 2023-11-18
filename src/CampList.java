@@ -10,6 +10,10 @@ public class CampList { //element in campList in App
 	// Constructors
 	public CampList(){};
 
+    public static ArrayList<CampInfo> getCampList(){
+        return campList;
+    }
+
 	public static void initCamps(){
 		campList = new ArrayList<CampInfo>();
 	}

@@ -1,6 +1,10 @@
 package src;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Scanner;
+
+import src.sorter.CampNameAscendingSorter;
+import src.sorter.CampSorter;
 
 public class test {
     public static void main(String[] args){
@@ -34,8 +38,19 @@ public class test {
         CampInfo campinfo = new CampInfo(campName, date2, date2, date2, userGroup, campLoc, 12, 3, campDesc, IC, visibility);
         CampList.createCamp(campinfo);
         CampList.createCamp(c1);
+        CampInfo c2 = new CampInfo("camp2", LocalDate.of(2023, 1, 2), LocalDate.of(2023, 2, 2), LocalDate.of(2023,1,1), Faculty.values()[1], "There", 100, 1, "hi", GetStaff.getStaff(), true);
+        CampList.createCamp(c2);
+        CampInfo c4 = new CampInfo("camp4", LocalDate.of(2023, 4, 4), LocalDate.of(2023, 5, 5), LocalDate.of(2023,2,2), Faculty.values()[1], "Over here", 100, 1, "hi", GetStaff.getStaff(), true);
+        CampList.createCamp(c4);
+        CampInfo c3 = new CampInfo("camp3", LocalDate.of(2023, 3, 3), LocalDate.of(2023, 2, 2), LocalDate.of(2023,1,10), Faculty.values()[1], "Over There", 100, 1, "hi", GetStaff.getStaff(), true);
+        CampList.createCamp(c3);
+        CampList.viewCamps();
+
+        //Arrays.sort(CampList.getCampList(), CampSorter.createCampSorter(UserInput.sortCampMenu()));
+        //Arrays.sort(CampList.getCampList(), new CampNameAscendingSorter());
         //CampList.viewCamps();
-        
+
+        /*
         User user = Login.login();
 
 
@@ -52,6 +67,6 @@ public class test {
             System.out.println("Choice: " + choice);
             user.menuChoice(choice,user);
         }
-        
+         */
     }
 }    

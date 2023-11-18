@@ -15,9 +15,11 @@ public class CampInfo {
 	private int committeeSlots;
 	private String description;
 	private Staff inCharge;
-	private ArrayList<Student> studentAttendees; //only accessible by staff & camp 
-	private ArrayList<Student> withdrawnStudents; //keep track of who withdrawn -added by OSP
-	private ArrayList<CampCommittee> campCom; //only accessible by staff & camp com
+	private ArrayList<Student> studentAttendees; //only accessible by staff & camp //List of students signed up for this camp
+	private ArrayList<CampCommittee> campCom; //only accessible by staff & camp com //List of students who signed up as committee for this camp
+	private ArrayList<Student> withdrawnStudents; //List of students who withdrawn from this camp once
+    private EnquiryList enquiriesForCamp; //Enquiries made for this specific camp
+	private SuggestionList suggestionForCamp;  //Suggestions made for this specific camp
 	private boolean visibility; //only seen by staff 
 
 	// Constructors
@@ -33,13 +35,15 @@ public class CampInfo {
 		this.description = description;
 		this.inCharge = inCharge;
 		studentAttendees = new ArrayList<Student>();
-		campCom = new ArrayList<CampCommittee>();
-		withdrawnStudents = new ArrayList<Student>(); //added by OSP
+		campCom = new ArrayList<CampCommittee>(); 
+		withdrawnStudents = new ArrayList<Student>(); 
+		enquiriesForCamp = new EnquiryList();
+		suggestionForCamp = new SuggestionList();
 		this.visibility = visibility;
 	}
 
-	// Accessors 
-	
+
+/*---------------------------------------------------------------Accessors -------------------------------------------------------------------------*/
 	public String getCampName(){
 		return this.campName;
 	}
@@ -81,7 +85,20 @@ public class CampInfo {
 		return this.visibility;
 	}
 
-	// Mutators
+	public ArrayList<Student> getWithdrawStudents(){
+		return this.withdrawnStudents;
+	}
+
+	public EnquiryList getEnquiriesForCamp(){
+		return this.enquiriesForCamp;
+	}
+
+	public SuggestionList getSuggestionForCamp(){
+		return this.suggestionForCamp;
+	}
+
+
+/*--------------------------------------------------------------- Mutators -------------------------------------------------------------------------*/
 	public void setCampName(String campName){
 		this.campName = campName;
 	}
@@ -120,17 +137,13 @@ public class CampInfo {
 	}
 
 	//withdraw from camp
-	public void removeStudentAttendees(Student student){
+	public void addWithdrawnStudents(Student student){
 		this.studentAttendees.remove(student);
 		this.withdrawnStudents.add(student); 
 		//no need to +1 from total slot because getTotalSlot does it
 		System.out.println("Withdrawn from camp: " + campName);
 	}
 	
-    public boolean isStudentWithdrawn(Student student) {
-        return this.withdrawnStudents.contains(student);
-    }
-
 	public void addCampCom(CampCommittee campCom){
 		this.campCom.add(campCom);
 		//We assume that the number of camp committee is counted into total slots. - Rubrics
@@ -138,6 +151,18 @@ public class CampInfo {
 		System.out.println("Signed up as a committee member for camp: "+ campName);
 	}
 
+	public void addSuggestionForCamp(Suggestion suggestion){
+		this.suggestionForCamp.addSuggestion(suggestion);
+	}
+	public void addEnquiriesForCamp(Enquiry enquiry){
+		this.enquiriesForCamp.addEnquiry(enquiry);
+	}
+
+	public void setVisibility(Boolean choice){
+		this.visibility = choice;
+	}
+
+/*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
 	public void printCamp(){ 
         System.out.println("------------------------------------------------------------------------------------");
 		System.out.println("Currently Viewing: " + this.campName);

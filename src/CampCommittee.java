@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class CampCommittee extends Student {
     // Instances
     private int points;
+	private static SuggestionList suggestionsMade  = new SuggestionList(); //List of Suggestions Camp Committee made
+
 
     // Constructors
     public CampCommittee(String userID, String name, Faculty faculty, String email, String status, int points){

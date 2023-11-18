@@ -12,6 +12,7 @@ public class Staff extends User {
         super(userID, name, faculty);
         this.email = email;
         this.campsCreated = new ArrayList<String>(); 
+        //1 staff in charge of 1 camp, unique
     }
 
 	// Accessors
@@ -87,6 +88,9 @@ public class Staff extends User {
                 break;
 
             case 7:
+                //Create enquiry
+                //Check enquiry for given camp
+                
                 break;
 
             case 8:

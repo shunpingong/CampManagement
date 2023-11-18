@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class EnquiryList {
     private final static ArrayList<Enquiry> totalEnquiries = new ArrayList<Enquiry>(); //Keep track of all enquiries by all students
-    private ArrayList<Enquiry> enquiries; //Keep track of enquiries by specific student
+    private ArrayList<Enquiry> enquiries = new ArrayList<Enquiry>(); //Keep track of enquiries by specific student
 
     public EnquiryList() {
       enquiries = new ArrayList<Enquiry>();

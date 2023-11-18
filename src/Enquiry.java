@@ -24,7 +24,7 @@ public class Enquiry extends Feedback{
     //     }
     // }
 
-    // Update the enquiry
+/*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
     @Override
     public void updateText(String newText) {
         // Check if the enquiry is not processed

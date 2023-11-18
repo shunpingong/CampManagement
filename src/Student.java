@@ -16,8 +16,8 @@ public class Student extends User {
 		this.committeeOf = null;
 	}
 
-	// Accessors
-	public String getEmail(){
+/*--------------------------------------------------------------- ACCESSORS -------------------------------------------------------------------------*/
+public String getEmail(){
 		return this.email;
 	}
 	public CampInfo getCommitteeOf(){
@@ -65,7 +65,7 @@ public class Student extends User {
     }
 
 
-	// Mutators
+/*---------------------------------------------------------------MUTATORS -------------------------------------------------------------------------*/
 	public void setEmail(String email){
 		this.email = email;
 	}
@@ -93,7 +93,7 @@ public class Student extends User {
 
     }
 
-
+/*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
 	@Override
     public int menu() {
 		Scanner sc = new Scanner(System.in);

@@ -13,7 +13,7 @@ public abstract class Feedback {
         this.processed = false;
     }
 
-    // Getter methods
+/*---------------------------------------------------------------ACCESSORS -------------------------------------------------------------------------*/
     public String getText() {
         return text;
     }
@@ -31,7 +31,7 @@ public abstract class Feedback {
         return processed;
     }
     
-    //Setter Methods
+/*---------------------------------------------------------------MUTATORS -------------------------------------------------------------------------*/
     // Mark the enquiry as processed
     public void markProcessed() {
         processed = true;
@@ -49,16 +49,13 @@ public abstract class Feedback {
         this.camp = camp;
     }
 
-//-----------------------------------------------------------------------------------//
+/*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
     // Abstract method to be implemented by subclasses
 
     public abstract void updateText(String newText);
     public abstract void viewDetails();
     // public abstract void reply(User currentUser, String replyText); 
 
-
-    
-//-----------------------------------------------------------------------------------//
     // Additional methods or attributes common to all feedback types can be added 
     //Concrete
     public boolean isUserFeedback(User currentUser) {

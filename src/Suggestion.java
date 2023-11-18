@@ -6,6 +6,7 @@ public class Suggestion extends Feedback{
 
     }
 
+/*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
     // Update the suggestion
     @Override
     public void updateText(String newText) {

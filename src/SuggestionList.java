@@ -5,8 +5,13 @@ import java.util.ArrayList;
 public class SuggestionList {
     private ArrayList<Suggestion> suggestions = new ArrayList<Suggestion>(); //Keep track of suggestion by specific student
 
+    //Constructor
     public SuggestionList() {
+        suggestions = new ArrayList<Suggestion>();
+
     }
+
+/*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
 
     public void addSuggestion(Suggestion suggestion) {
         suggestions.add(suggestion);

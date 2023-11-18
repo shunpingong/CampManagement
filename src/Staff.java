@@ -5,34 +5,36 @@ import java.util.Scanner;
 public class Staff extends User {
     // Instances
 	private String email;
-    private ArrayList<String> campsCreated ;
+    private ArrayList<CampInfo> campsOwned ;
 
     // Constructors
     public Staff(String userID, String name, Faculty faculty, String email){
         super(userID, name, faculty);
         this.email = email;
-        this.campsCreated = new ArrayList<String>(); 
+        this.campsOwned = new ArrayList<CampInfo>(); 
         //1 staff in charge of 1 camp, unique
     }
 
-	// Accessors
+/*---------------------------------------------------------------ACCESSORS -------------------------------------------------------------------------*/
 	public String getEmail(){
         return this.email;
     }
 
-    public ArrayList<String> getCampsCreated(){
-        return this.campsCreated;
+    public ArrayList<CampInfo> getCampsCreated(){
+        return this.campsOwned;
     }
 
-    // Mutators
+/*---------------------------------------------------------------MUTATORS -------------------------------------------------------------------------*/
     public void setEmail(String email){
         this.email = email;
     }
 
-    public void setCampsCreated(ArrayList<String> createdCamps){
-        this.campsCreated = createdCamps;
+    public void AddCampsOwned(CampInfo camp){
+        this.campsOwned.add(camp);
     }
 
+
+/*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
     @Override
     public int menu() {
         Scanner sc = new Scanner(System.in);

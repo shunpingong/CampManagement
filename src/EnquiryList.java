@@ -22,10 +22,12 @@ public class EnquiryList {
     private final static ArrayList<Enquiry> totalEnquiries = new ArrayList<Enquiry>(); //Keep track of all enquiries by all students
     private ArrayList<Enquiry> enquiries = new ArrayList<Enquiry>(); //Keep track of enquiries by specific student
 
+    //Constructor
     public EnquiryList() {
       enquiries = new ArrayList<Enquiry>();
     }
 
+/*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
     public int getSize(){
         return enquiries.size();
     }

@@ -102,6 +102,7 @@ public class Student extends User {
         int choice = 0;
         do{
 			showStudentMenu();
+			System.out.println("|-1. Exit Menu                                                                       |");
 			System.out.println("--------------------------------------------------------------------------------------");
 			System.out.print("Menu Option: ");
         	choice = sc.nextInt();

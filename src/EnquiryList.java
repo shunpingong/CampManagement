@@ -1,23 +1,6 @@
 package src;
 import java.util.ArrayList;
 
-// public class EnquiryList {
-//     private static ArrayList<Enquiry> enquiries = new ArrayList<>();
-
-//     public EnquiryList() {}
-    
-//     public static void initEnquiries(){
-//         enquiries = new ArrayList<Enquiry>();
-//     }
-
-//     public int getSize(){
-//         return enquiries.size();
-//     }
-//     public static void addEnquiry(Enquiry enquiry) {
-//         enquiries.add(enquiry);
-//         System.out.println("Enquiry for camp " + enquiry.getCamp() + " submitted.");
-//     }
-
 public class EnquiryList {
     private final static ArrayList<Enquiry> totalEnquiries = new ArrayList<Enquiry>(); //Keep track of all enquiries by all students
     private ArrayList<Enquiry> enquiries = new ArrayList<Enquiry>(); //Keep track of enquiries by specific student
@@ -35,11 +18,11 @@ public class EnquiryList {
     public void addEnquiry(Enquiry enquiry) {
         enquiries.add(enquiry);
         totalEnquiries.add(enquiry);
-        System.out.println("Enquiry for camp " + enquiry.getCamp() + " submitted.");
+        System.out.println("Enquiry for camp " + enquiry.getCamp().getCampName() + " submitted.");
     }
 
     //delete enquiry
-    public void deleteEnquiry(String campName, User currentUser) {
+    public void deleteEnquiry(CampInfo campName, User currentUser) {
         for (Enquiry enquiry : enquiries) {
             if (!enquiry.isProcessed() && enquiry.getSender().equals(currentUser) && enquiry.getCamp().equals(campName)) {
                 totalEnquiries.remove(enquiry);
@@ -56,13 +39,13 @@ public class EnquiryList {
 	}
     
     //Display enquiries by the currentUser
-    public void displayEnquiriesForCamp(String campName, User currentUser) {
-        System.out.println("Enquiries for Camp: " + campName);
+    public void displayEnquiriesByCamp(CampInfo camp, User currentUser) {
+        System.out.println("Enquiries for Camp: " + camp.getCampName());
     
         int count = 1;  // Initialize a counter variable
     
         for (Enquiry enquiry : totalEnquiries) {
-            if (enquiry.getCamp().equals(campName) && enquiry.getSender().equals(currentUser)) {
+            if (enquiry.getCamp().equals(camp) && enquiry.getSender().equals(currentUser)) {
                 System.out.println("Enquiry " + count + ":");
                 enquiry.viewDetails();
                 count++;  // Increment the counter after printing an enquiry
@@ -74,11 +57,11 @@ public class EnquiryList {
         }
     }
 
-    public void displayEnquiriesByUser() {    
+    public void displayEnquiries() {    
         int count = 1;  // Initialize a counter variable
     
         for (Enquiry enquiry : enquiries) {
-            System.out.println("Enquiry " + count + ":");
+            System.out.println("Enquiry " + count );
             enquiry.viewDetails();
             count++;  // Increment the counter after printing an enquiry
         }

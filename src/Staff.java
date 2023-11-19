@@ -119,26 +119,31 @@ public class Staff extends User {
 
             case 6:
                 break;
+*/
 
-            case 7:
-                //Create enquiry
-                //Check enquiry for given camp
-                
+            //will add case 8 and 10 logic
+            case 7: //View Enquiries for camp his/her has created
+            case 8: //Reply Enquiries to camp his/her has created
+                for (CampInfo camps : campsCreated){
+                    System.out.println("CAMP: "+ camps.getCampName());
+                    camps.getEnquiriesForCamp().displayEnquiries();
+                }
+
                 break;
 
-            case 8:
+            case 9:  //View Suggestions to camp details from camp committee
+            case 10: //approve suggestions to changes to camp details from camp committee
+                for (CampInfo camps : campsCreated){
+                    camps.getSuggestionForCamp().displaySuggestions();
+                }
+
                 break;
 
-            case 9:
+                /* 
+            case 11: //Generate Report Of Created Camp
                 break;
 
-            case 10:
-                break;
-
-            case 11:
-                break;
-
-            case 12:
+            case 12: //Generate Performance Report Of Camp Committee
                 break;
 */            
             case -1:

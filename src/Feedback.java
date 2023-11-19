@@ -2,14 +2,16 @@ package src;
 public abstract class Feedback {
     private String text;
     private User sender; //Student, Staff, CommitteeMember
-    private String camp; // Reference to the associated camp
+    private CampInfo camp; // Reference to the associated camp
+    private String reply; // The reply to the feedback
     private boolean processed; //True = processed and cannot be modified
     
     // Constructor
-    public Feedback(String text, User sender, String camp) {
+    public Feedback(String text, User sender, CampInfo camp, String reply) {
         this.text = text;
         this.sender = sender;
         this.camp = camp;
+        this.reply = reply;
         this.processed = false;
     }
 
@@ -22,9 +24,12 @@ public abstract class Feedback {
         return sender;
     }
     
-    //return the name of camp
-    public String getCamp() { 
+    public CampInfo getCamp() { 
         return camp;
+    }
+
+    public String getReply(){
+        return reply;
     }
 
     public boolean isProcessed() {
@@ -41,11 +46,15 @@ public abstract class Feedback {
         this.text = text;
     }
 
+    public void setReply(String reply){
+        this.reply = reply;
+    }
+
     public void setSender(User sender){
         this.sender = sender;
     }
 
-    public void setCamp (String camp){
+    public void setCamp (CampInfo camp){
         this.camp = camp;
     }
 
@@ -54,6 +63,7 @@ public abstract class Feedback {
 
     public abstract void updateText(String newText);
     public abstract void viewDetails();
+    public abstract void reply(User currentUser, String replyText);
     // public abstract void reply(User currentUser, String replyText); 
 
     // Additional methods or attributes common to all feedback types can be added 

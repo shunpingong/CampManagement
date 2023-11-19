@@ -4,24 +4,29 @@ import java.util.Scanner;
 
 public class Student extends User {
 	private String email;
-	private CampInfo committeeOf; //to store the camp that student is a committee of
+	// private CampInfo committeeOf; //to store the camp that student is a committee of
 	private ArrayList<CampInfo> registeredCamps = new ArrayList<CampInfo>(); //List of Camps Student Registered for
 	private ArrayList<CampInfo> withdrawnCamps = new ArrayList<CampInfo>(); //List of Camps Student Withdrawn from
     private EnquiryList enquiriesMade = new EnquiryList(); //List of Enquiries Student made
+	private CampCommittee committeeUser; //null if current student is not committee
 
 	// Constructors
 	public Student(String userID, String name, Faculty faculty, String email){
 		super(userID, name, faculty);
 		this.email = email;
-		this.committeeOf = null;
+		// this.committeeOf = null;
 	}
 
 /*--------------------------------------------------------------- ACCESSORS -------------------------------------------------------------------------*/
-public String getEmail(){
+	public String getEmail(){
 		return this.email;
 	}
-	public CampInfo getCommitteeOf(){
-		return this.committeeOf;
+	// public CampInfo getCommitteeOf(){
+	// 	return this.committeeOf;
+	// }
+
+	public CampCommittee getCommitteeUser(){
+		return this.committeeUser;
 	}
 
     public void viewRegisteredCamps() {
@@ -52,16 +57,7 @@ public String getEmail(){
 
 	//Enquiries made by student: Bala
 	public void viewEnquiriesMade() {
-        System.out.println("Enquiries Made By: " + this.getName());
-        System.out.println("--------------------");
-        int i = 1;
-        for (CampInfo camp : registeredCamps) {
-            System.out.printf("%d. %s\n",i,camp.getCampName());
-            i++;
-        }
-		if (i==1){
-			System.out.println("No enquiries made yet.");
-		}
+		enquiriesMade.displayEnquiriesByUser();
     }
 
 
@@ -69,10 +65,11 @@ public String getEmail(){
 	public void setEmail(String email){
 		this.email = email;
 	}
-	public void setCommitteeOf(CampInfo camp){
-		this.committeeOf = camp; //CommitteeOf this camp
 
-	}
+	// public void setCommitteeOf(CampInfo camp){
+	// 	this.committeeOf = camp; //CommitteeOf this camp
+
+	// }
 
 	public void addRegisteredCamp(CampInfo camp) {
         this.registeredCamps.add(camp);
@@ -96,12 +93,7 @@ public String getEmail(){
 /*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
 	@Override
 	public User getIfCommittee() {
-		if (committeeOf == null) {
-			return this;
-		}
-		else {
-			return new CampCommittee(); //SHUN PING DO PLS
-		}
+		return committeeUser == null ? this : committeeUser;
 	}
 
 	@Override
@@ -109,7 +101,16 @@ public String getEmail(){
 		Scanner sc = new Scanner(System.in);
         int choice = 0;
         do{
-            System.out.println("--------------------------------------------------------------------------------------");
+			showStudentMenu();
+			System.out.println("--------------------------------------------------------------------------------------");
+			System.out.print("Menu Option: ");
+        	choice = sc.nextInt();
+        }while(choice>9||choice<-1);
+        return choice;
+	}
+
+	protected void showStudentMenu() {
+		    System.out.println("--------------------------------------------------------------------------------------");
             System.out.println("|                                    Camp Menu (Student)                             |");
             System.out.println("--------------------------------------------------------------------------------------");
             System.out.println("|1. View All Available Camps                                                         |");
@@ -120,41 +121,18 @@ public String getEmail(){
             System.out.println("|6. Delete Submitted Enquiries                                                       |");
             System.out.println("|7. View Registered Camps                                                            |");
             System.out.println("|8. Withdraw From Camp                                                               |");
-
-			//Output committee Menu for this student
-			if (this.committeeOf != null){
-
-				System.out.println("|1. View Details Of Registered Camp                                                  |");
-				System.out.println("|2. View All Enquiries Of Oversee Camp                                               |");
-				System.out.println("|3. Reply To Enquiries Of Oversee Camp                                               |");
-				System.out.println("|4. Submit Camp Suggestions                                                          |");
-				System.out.println("|5. View Submitted Suggestions                                                       |");
-				System.out.println("|6. Edit Submitted Suggestions                                                       |");
-				System.out.println("|7. Delete Submitted Suggestions                                                     |");
-				System.out.println("|8. Generate Report                                                                  |");		
-			}		
-            System.out.println("|-1. Exit Menu                                                                       |");
-            System.out.println("--------------------------------------------------------------------------------------");
-			System.out.printf("Menu Option: ");
-            choice = sc.nextInt();
-        }while(choice>9||choice<-1);
-        return choice;
 	}
 
 	@Override
-	public void menuChoice(int i, User currentUser){
-	// public void menuChoice(int i){
+	public void menuChoice(int i){
 		Scanner sc = new Scanner(System.in);
 
-		Student studentUser = (Student) currentUser; //downcast to make it perform the methods as a student
-		CampCommittee commUser = null; //current student is not committee 
-		
 		switch(i)
 		{
 
 			case 1:
 				//If student signed up, don't show the camp again -> need to implement
-				int availCamps = CampList.viewAllAvailableCamps(currentUser);
+				int availCamps = CampList.viewAllAvailableCamps(this);
 				break;
 
 			case 2:
@@ -162,12 +140,12 @@ public String getEmail(){
 				//Only camp committee for one camp only
 				//registerCamp(currentUser) -> a registerCamp class?
 				// CampList.viewCamps();
-				availCamps = CampList.viewAllAvailableCamps(currentUser);
+				availCamps = CampList.viewAllAvailableCamps(this);
 				if (availCamps !=0){
 					System.out.print("Choose a camp to sign up for (enter the number): ");
 					int chosenCampIndex = sc.nextInt();
 					if (withdrawnCamps.contains(CampList.getCampInfo(chosenCampIndex-1))) {
-						System.out.println("Cannot register. "+ studentUser.getName() + " has already withdrawn from this camp: " + CampList.getCampInfo(chosenCampIndex-1).getCampName());
+						System.out.println("Cannot register. "+ this.getName() + " has already withdrawn from this camp: " + CampList.getCampInfo(chosenCampIndex-1).getCampName());
 					}
 					else{
 						System.out.println("1. Sign up as member");
@@ -176,21 +154,19 @@ public String getEmail(){
 						int choice = sc.nextInt();
 
 						if (choice ==1){
-							CampList.getCampInfo(chosenCampIndex-1).addStudentAttendees(studentUser);
+							CampList.getCampInfo(chosenCampIndex-1).addStudentAttendees(this);
 							this.addRegisteredCamp(CampList.getCampInfo(chosenCampIndex-1));
 						}
 
 						if (choice == 2){
 							//if user is already a committee for a camp -> cannot register as committee
-							if (studentUser.getCommitteeOf() != null) {
-								System.out.println("You are already a committee member for the camp: " + (studentUser.getCommitteeOf()));
+							if (this.committeeUser != null) {
+								System.out.println("You are already a committee member for the camp: " + (committeeUser.getCommitteeOf().getCampName()));
 								break;
 							}
 							else{
-								//NOT REALLY SURE OF THE LOGIC HERE FOR CAMP COMMITTEE, I WANT TO MAKE THIS STUDENT INTO CAMP COMMITTEE BUT IDK HOW
-								studentUser.setCommitteeOf(CampList.getCampInfo(chosenCampIndex-1));
-								commUser = new CampCommittee(this.getID(), this.getName(), this.getFaculty(), this.getEmail(), this.getCommitteeOf().getCampName(), 0);
-								CampList.getCampInfo(chosenCampIndex-1).addCampCom(commUser); 
+								this.committeeUser = new CampCommittee(this.getID(), this.getName(), this.getFaculty(), this.getEmail(), CampList.getCampInfo(chosenCampIndex-1), 0);
+								CampList.getCampInfo(chosenCampIndex-1).addCampCom(committeeUser); 
 							}
 						}
 					}	
@@ -200,7 +176,7 @@ public String getEmail(){
 
             case 3:
 				// Let the student choose which camp to submit an enquiry for
-				availCamps = CampList.viewAllAvailableCamps(currentUser);
+				availCamps = CampList.viewAllAvailableCamps(this);
 				if (availCamps !=0){
 					System.out.print("Choose a camp to submit enquiry for (enter the number): ");
 					int chosenCampIndex = sc.nextInt();
@@ -216,7 +192,7 @@ public String getEmail(){
 					String text = sc.nextLine();
 					
 					// Create an enquiry object and add it to the enquiry list
-					Enquiry newEnquiry = new Enquiry(text, studentUser, chosenCamp);
+					Enquiry newEnquiry = new Enquiry(text, this, chosenCamp);
 					enquiriesMade.addEnquiry(newEnquiry);
 				}
 				else{
@@ -264,7 +240,7 @@ public String getEmail(){
 				}
 
 				else {
-					enquiriesMade.displayEnquiriesByUser(currentUser);
+					this.viewEnquiriesMade();
 					System.out.print("Choose an enquiry to delete (enter the number): ");
 					int chosenEnquiryIndex = sc.nextInt();
 					String chosenCamp = enquiriesMade.getEnquiry(chosenEnquiryIndex).getCamp();
@@ -272,7 +248,7 @@ public String getEmail(){
 					// Consume the newline character
 					sc.nextLine();
 
-					enquiriesMade.deleteEnquiry(chosenCamp, studentUser);
+					enquiriesMade.deleteEnquiry(chosenCamp, this);
 				}
 				break;
 
@@ -289,29 +265,16 @@ public String getEmail(){
 					int chosenCampIndex = sc.nextInt();
 					
 
-					if (studentUser.getCommitteeOf()!= null && studentUser.getCommitteeOf().equals(CampList.getCampInfo(chosenCampIndex-1))) {
+					if (this.getCommitteeUser()!= null && this.getCommitteeUser().getCommitteeOf().equals(CampList.getCampInfo(chosenCampIndex-1))) {
 						System.out.println("Cannot withdraw. Student is a committee for camp: "+ CampList.getCampInfo(chosenCampIndex-1).getCampName());
 					}
 					else{
-						CampList.getCampInfo(chosenCampIndex-1).addWithdrawnStudents(studentUser); //For camp class to keep track of all the students that withdrawn
+						CampList.getCampInfo(chosenCampIndex-1).addWithdrawnStudents(this); //For camp class to keep track of all the students that withdrawn
 						this.addWithdrawnCamp(CampList.getCampInfo(chosenCampIndex-1)); //For student class to keep track of camp withdrawn
 					}
 				}
 				break;
 				
-			// case 9:
-			// 	// Assuming menu returns the choice for both students and committee members
-
-			// 	// Check if the user is a committee member and handle committee-specific choices
-			// 	if (studentUser instanceof CampCommittee) {
-			// 		commUser = (CampCommittee) studentUser;
-			// 		int choice = commUser.menu();
-			// 		commUser.menuChoice(choice, commUser);
-			// 	} else {
-			// 		System.out.println("Not a committee of any camp.");
-			// 	}
-			// 	break;
-		
             case -1:
                 // Exit Menu
                 System.out.println("Exiting Camp Menu. Goodbye!");
@@ -320,4 +283,5 @@ public String getEmail(){
 		}
 
 	}
+
 }

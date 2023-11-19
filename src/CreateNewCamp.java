@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class CreateNewCamp {
     public CreateNewCamp(){}; //constructor
 
-    public static void create(){ //String campName, LocalDate startdate, LocalDate enddate, LocalDate registerDeadline, Faculty userGroup, String location, int totalSlots, int committeeSlots, String description, Staff inCharge
+    public static CampInfo create(){ //String campName, LocalDate startdate, LocalDate enddate, LocalDate registerDeadline, Faculty userGroup, String location, int totalSlots, int committeeSlots, String description, Staff inCharge
         Scanner sc = new Scanner(System.in);
         System.out.printf("Enter Camp Name: ");
         String campName = sc.nextLine();  //camp name
@@ -20,6 +20,7 @@ public class CreateNewCamp {
         LocalDate startdate = UserInput.getDate(); //start date
         while(startdate.isBefore(LocalDate.now())){
             System.out.println("Error: Please Input Start Date After Today's Date: " + LocalDate.now());
+            startdate = UserInput.getDate();
         }
 
         System.out.println("Please Enter Camp End Date");
@@ -60,7 +61,7 @@ public class CreateNewCamp {
 
         
         CampInfo campinfo = new CampInfo(campName, startdate, enddate, deadline, userGroup, campLoc, totalSlots, committeeSlots, campDesc, IC, visibility);
-        CampList.createCamp(campinfo); //create new camp
+        return campinfo;
         
     }
 }

@@ -3,8 +3,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
-
-import src.sorter.CampNameAscendingSorter;
 import src.sorter.CampSorter;
 
 public class test {
@@ -45,31 +43,29 @@ public class test {
         CampList.createCamp(c4);
         CampInfo c3 = new CampInfo("camp3", LocalDate.of(2023, 3, 3), LocalDate.of(2023, 2, 2), LocalDate.of(2023,1,10), Faculty.values()[1], "Over There", 100, 1, "hi", GetStaff.getStaff(), true);
         CampList.createCamp(c3);
-        CampList.viewCamps();
+        //CampList.viewCamps();
+        //int choice = UserInput.selectCamp();
 
-        CampSorter campSorter = CampSorter.createCampSorter(UserInput.sortCampMenu());
-
-        Collections.sort(CampList.getCampList(), campSorter);
-        //Arrays.sort(CampList.getCampList(), new CampNameAscendingSorter());
-        CampList.viewCamps();
 
         /*
         User user = Login.login();
 
 
-        // user = StudentData.getStudent(0);
-        user = new Student("Teemo","AK47",Faculty.ALL, "test@gmail.com");
+        //user = StudentData.getStudent(0);
+        */
+        User user = new Student("Teemo","AK47",Faculty.ALL, "test@gmail.com");
 
         // user = new CampCommittee(campDesc, campName, userGroup, campLoc, campDesc, 0);
         //user = StaffData.getStaff(0);
 
-        
+    
         int choice = 0;
         while (choice!=-1){
             choice = user.menu();
             System.out.println("Choice: " + choice);
-            user.menuChoice(choice,user);
+            user.menuChoice(choice);
+            user = user.getIfCommittee(); //Convert student to committee member if required
         }
-         */
+         
     }
 }    

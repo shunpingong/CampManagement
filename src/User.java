@@ -54,6 +54,6 @@ public abstract class User {
 	}
 
 	public abstract int menu();
-	public abstract void menuChoice(int i, User currentUser); //to set who made the enquiry/suggestion and differentiate student/camp committee
+	public abstract void menuChoice(int i); //to set who made the enquiry/suggestion and differentiate student/camp committee
 	// public abstract void menuChoice(int i);
 }

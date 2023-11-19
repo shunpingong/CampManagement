@@ -64,7 +64,7 @@ public class UserInput {
         Scanner sc = new Scanner(System.in);
         int choice=0;
         do{
-            System.out.println("How Do You Want The Camps to Be Sorted? (Default: Date Created)");
+            System.out.println("How Do You Want The Camps To Be Sorted?");
             System.out.println("1. Name (Ascending)");
             System.out.println("2. Name (Descending)");
             System.out.println("3. Start Date");
@@ -73,6 +73,36 @@ public class UserInput {
             choice = sc.nextInt();
         }while(choice<1 || choice>5);
         return choice;
-        
+    }
+
+    public static int editCampMenu(){
+        Scanner sc = new Scanner(System.in);
+        int choice=0;
+        do{//Faculty userGroup,int totalSlots, int committeeSlots, Staff inCharge
+            System.out.println("Which Attribute To Edit?");
+            System.out.println("1. Camp Name");
+            System.out.println("2. Camp Location");
+            System.out.println("3. Camp Description");
+            System.out.println("4. Start Date");
+            System.out.println("5. End Date");
+            System.out.println("6. Registration Deadline");
+            System.out.println("7. Faculty Group");
+            System.out.println("8. Total Slots");
+            System.out.println("9. Committee Slots");
+            choice = sc.nextInt();
+        }while(choice<1 || choice>9);
+        return choice;
+    }
+
+    public static int selectCamp(){
+        Scanner sc = new Scanner(System.in);
+        int choice=0;
+        CampList.viewCamps();
+        int length = CampList.getSize();
+        do{
+            System.out.println("Which Camp To Edit?");
+            choice = sc.nextInt();
+        }while(choice<1 || choice>length);
+        return choice;
     }
 }

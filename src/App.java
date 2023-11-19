@@ -61,13 +61,54 @@ public class App {
         CampList.initCamps();
 
         //2 while loop, one for main program, one for each login instance
-        User user = Login.login();
+        //User user = Login.login();
+        int choice;
+        int option = 0;
+        User user;
 
-        //User user = StudentData.getStudent(0); 
-        int choice = user.menu();
-        System.out.println("Choice: " + choice);
-        // user.menuChoice(choice);
-        
+        do {
+            System.out.println("Choose options: ");
+            System.out.println("(1) Login");
+            System.out.println("(2) Exit");
+            option = sc.nextInt();
+
+            switch(option) {
+                case 1:
+                    user = Login.login();
+                    while (user == null) {
+                        System.out.println("Invalid userID. Please try again.");
+                        user = Login.login();
+                    }
+                    choice = user.menu();
+                    while (choice != -1) {
+                        user.menuChoice(choice);
+                        choice = user.menu();
+                    }
+                    //System.out.println("Choice: " + choice);
+                    break;
+                case 2:
+                    System.out.println("Terminating program...");
+                    break;
+            }
+        } while (option != 2);
+
+        /*while (true) {
+            while (user == null) {
+                System.out.println("Invalid userID. Please try again.");
+                user = Login.login();
+            }
+            choice = user.menu();
+            System.out.println("Choice: " + choice);
+
+            System.out.println("Exit program? (Y/N): ");
+            if (sc.nextLine().equals("Y")) {
+                break;
+            }
+
+            user = Login.login();
+        }
+
+        System.out.println("Terminating...");*/
 
     }
 }

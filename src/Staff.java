@@ -5,13 +5,13 @@ import java.util.Scanner;
 public class Staff extends User {
     // Instances
 	private String email;
-    private ArrayList<CampInfo> campsOwned ;
+    private ArrayList<CampInfo> campsCreated;
 
     // Constructors
     public Staff(String userID, String name, Faculty faculty, String email){
         super(userID, name, faculty);
         this.email = email;
-        this.campsOwned = new ArrayList<CampInfo>(); 
+        this.campsCreated = new ArrayList<CampInfo>(); 
         //1 staff in charge of 1 camp, unique
     }
 
@@ -20,8 +20,22 @@ public class Staff extends User {
         return this.email;
     }
 
-    public ArrayList<CampInfo> getCampsCreated(){
-        return this.campsOwned;
+    public void getCampsCreated(){
+        if(campsCreated.size() == 0){
+                    System.out.println("No Camps Created");
+                    return;
+        }
+        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.println("|                                   Created Camps                                    |");
+        System.out.println("--------------------------------------------------------------------------------------");
+        for(int j=0; j<campsCreated.size();j++){
+            System.out.printf("|%-3s|Name: %-13s|Date: %-5s to %-15s|Available Slots: %-5s  |\n", 
+                            j+1,
+                            campsCreated.get(j).getCampName(), 
+                            campsCreated.get(j).getStartDate(), 
+                            campsCreated.get(j).getEndDate(), 
+                            campsCreated.get(j).getTotalSlots());
+        }
     }
 
 /*---------------------------------------------------------------MUTATORS -------------------------------------------------------------------------*/
@@ -30,7 +44,7 @@ public class Staff extends User {
     }
 
     public void AddCampsOwned(CampInfo camp){
-        this.campsOwned.add(camp);
+        this.campsCreated.add(camp);
     }
 
 
@@ -65,24 +79,41 @@ public class Staff extends User {
 
     @Override
     //public void menuChoice(int i)
-	public void menuChoice(int i,User currentUser){
+	public void menuChoice(int i){
 		switch(i)
         {
-			case 1:
+			case 1: //view all camps
                 System.out.println("OK");
-                CampList.viewAllAvailableCamps(currentUser);
+                CampList.viewAllAvailableCamps(this);
                 CampList.printCampDetails();
 				break;
+
+            case 2: //view created camps
+                this.getCampsCreated();
+                break;
+
+            case 3: //create new camp
+                CampInfo camp = CreateNewCamp.create();
+                CampList.createCamp(camp);
+                this.campsCreated.add(camp);
+                break;
+
+            case 4: //edit camp detail
+                Scanner sc = new Scanner(System.in);
+                this.getCampsCreated();
+                int choice = 0;
+                do{
+                    System.out.printf("Which Camp To Edit?");
+                    choice = sc.nextInt();
+                }while(choice<1 || choice>campsCreated.size());
+                for(int k=0;k<CampList.getCampList().size();k++){
+                    if (campsCreated.get(choice).getCampName().equals(CampList.getCampList().get(k).getCampName()) == true){
+                        CampList.getCampList().get(k).editCampInfo();
+                    }
+                }
+                
+                break;
 /*
-            case 2:
-                break;
-
-            case 3:
-                break;
-
-            case 4:
-                break;
-
             case 5:
                 break;
 
@@ -118,4 +149,8 @@ public class Staff extends User {
 		}
 
 	}
+
+    private Object CreateNewCamp() {
+        return null;
+    }
 }

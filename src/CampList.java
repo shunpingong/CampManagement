@@ -1,6 +1,9 @@
 package src;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
+
+import src.sorter.CampSorter;
 
 public class CampList { //element in campList in App
 	// Instances
@@ -22,8 +25,14 @@ public class CampList { //element in campList in App
 		campList.add(campinfo);
 	}
 
+    public static void deleteCamp(CampInfo campinfo){
+        campList.remove(campinfo);
+    }
+
 	public static void viewCamps(){
-		for(int i=0; i<campList.size(); i++){
+		CampSorter campSorter = CampSorter.createCampSorter(UserInput.sortCampMenu());
+        Collections.sort(CampList.getCampList(), campSorter);
+        for(int i=0; i<campList.size(); i++){
 			System.out.println(i+1 +": "+ campList.get(i).getCampName());
 		}
 	}
@@ -42,45 +51,24 @@ public class CampList { //element in campList in App
         //Visibility is ON
         //Staff can see all
         int count=0;
-        if (currentUser instanceof Staff){
-            System.out.println("--------------------------------------------------------------------------------------");
-            System.out.println("|                                    Camp List                                       |");
-            System.out.println("--------------------------------------------------------------------------------------");
-            for (int i=0;i < CampList.getSize(); i++){
-                System.out.printf("|%-3s|Name: %-13s|Date: %-5s to %-15s|Available Slots: %-5s  |\n", 
-                                    i+1,
-                                    campList.get(i).getCampName(), 
-                                    campList.get(i).getStartDate(), 
-                                    campList.get(i).getEndDate(), 
-                                    campList.get(i).getTotalSlots());
-                    // System.out.printf("%d. %s\n",count,CampList.getCampInfo(i).getCampName());
-                    count++;
-                }
-            if (count==0){
-                System.out.println("No visible camps.");
+        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.println("|                                    Camp List                                       |");
+        System.out.println("--------------------------------------------------------------------------------------");
+        for (int i=0;i< CampList.getSize(); i++){
+            if ((currentUser instanceof Staff) || (CampList.getCampInfo(i).getUserGroup() == currentUser.getFaculty() && CampList.getCampInfo(i).getVisibility())){
+            System.out.printf("|%-3s|Name: %-13s|Date: %-5s to %-15s|Available Slots: %-5s  |\n", 
+                                i+1,
+                                campList.get(i).getCampName(), 
+                                campList.get(i).getStartDate(), 
+                                campList.get(i).getEndDate(), 
+                                campList.get(i).getTotalSlots());
+                count++;
+                // System.out.printf("%d. %s\n",count,CampList.getCampInfo(i).getCampName());
             }
-        }
-        else{
-            count=0;
-            System.out.println("--------------------------------------------------------------------------------------");
-            System.out.println("|                                    Camp List                                       |");
-            System.out.println("--------------------------------------------------------------------------------------");
-            for (int i=0;i< CampList.getSize(); i++){
-                if (CampList.getCampInfo(i).getUserGroup() == currentUser.getFaculty() && CampList.getCampInfo(i).getVisibility()){
-                System.out.printf("|%-3s|Name: %-13s|Date: %-5s to %-15s|Available Slots: %-5s  |\n", 
-                                    i+1,
-                                    campList.get(i).getCampName(), 
-                                    campList.get(i).getStartDate(), 
-                                    campList.get(i).getEndDate(), 
-                                    campList.get(i).getTotalSlots());
-                    count++;
-                    // System.out.printf("%d. %s\n",count,CampList.getCampInfo(i).getCampName());
-                }
 
-            }
-            if (count==0){
-                System.out.println("No visible camps.");
-            }
+        }
+        if (count==0){
+            System.out.println("No visible camps.");
         }
         return count;
     }

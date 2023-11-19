@@ -180,42 +180,72 @@ public class CampInfo {
 
 	public void editCampInfo(){
 		Scanner sc = new Scanner(System.in);
-		int choice = 0;
-		do{
-			System.out.printf("Select Which Parameter To Edit: ");
-			System.out.printf("1. Camp Name");
-			System.out.printf("2. Camp Description");
-			System.out.printf("3. Camp Location");
-			System.out.printf("4. Camp Start Date");
-			System.out.printf("5. Camp End Date");
-			System.out.printf("6. Camp Registration Deadline");
-			System.out.printf("7. Camp Faculty");
-			System.out.printf("8. Total Slots Available");
-			System.out.printf("9. Total Committee Slots Available");
-		}while(choice<1 || choice>9);
-		
+		int choice = UserInput.editCampMenu();
+
 		switch(choice){
-			case 1:
+			case 1: //name
 				System.out.println("Current Name: "+this.campName);
 				System.out.printf("Enter New Camp Name: ");
 				String string = sc.nextLine();
 				this.campName = string;
 				break;
-			case 2:
-				System.out.println("Current Description: "+ this.description);
-				System.out.printf("Enter New Camp Description: ");
-				string = sc.nextLine();
-				this.description = string;
-			case 3:
+			case 2: //location
 				System.out.println("Current Camp Location: "+ this.location);
 				System.out.printf("Enter New Camp Location: ");
 				string = sc.nextLine();
 				this.location = string;
-			case 4:
+				break;
+			case 3: //desc
+				System.out.println("Current Description: "+ this.description);
+				System.out.printf("Enter New Camp Description: ");
+				string = sc.nextLine();
+				this.description = string;
+				break;
+			case 4: //start date
 				System.out.println("Current Camp Start Date: "+ this.startDate);
-				System.out.printf("Enter New Start Date: ");
-				LocalDate startdate = UserInput.getDate();
-				this.startDate = startdate;
+				LocalDate date =UserInput.getDate();
+				while(date.isBefore(LocalDate.now())){
+					System.out.println("Error: Please Input Start Date After Today's Date: " + LocalDate.now());
+					date = UserInput.getDate();
+				}
+				this.startDate = date;
+				break;
+			case 5: //end date
+				System.out.println("Current Camp End Date: "+ this.endDate);
+				LocalDate endDate = UserInput.getDate();
+				while(endDate.isBefore(this.startDate)){
+					System.out.println("Error: Please Input End Date After Start Date: " + this.startDate);
+					endDate = UserInput.getDate();
+				}
+				this.endDate = endDate;
+				break;
+			case 6: //reg deadline
+				System.out.println("Current Registration Deadline: "+ this.registerDeadline);
+				LocalDate regDate = UserInput.getDate();
+				while(regDate.isAfter(this.startDate)){
+					System.out.println("Error: Please Input Registration Deadline Before Start Date: " + this.startDate);
+					regDate = UserInput.getDate();
+				}
+				this.registerDeadline = regDate;
+				break;
+			case 7: //Faculty Group
+				System.out.println("Current Faculty Group" + this.userGroup);
+				Faculty userGroup = UserInput.chooseFaculty();
+				this.userGroup = userGroup;
+			case 8: //total Slots
+				System.out.println("Current Total Slots" + this.totalSlots);
+				int totalSlots = 0;
+				do{
+					totalSlots = sc.nextInt();
+				}while(totalSlots<1 || totalSlots<this.studentAttendees.size());
+				this.totalSlots = totalSlots;
+			case 9: //committee slots
+				System.out.println("Current Committee Slots" + this.committeeSlots);
+				int comSlots = 0;
+				do{
+					comSlots = sc.nextInt();
+				}while(comSlots<1 || comSlots<this.campCom.size());
+				this.committeeSlots = comSlots;
 		}
 	}
     

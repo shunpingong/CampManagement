@@ -74,19 +74,17 @@ public class EnquiryList {
         }
     }
 
-    public void displayEnquiriesByUser(User currentUser) {    
+    public void displayEnquiriesByUser() {    
         int count = 1;  // Initialize a counter variable
     
-        for (Enquiry enquiry : totalEnquiries) {
-            if (enquiry.getSender().equals(currentUser)) {
-                System.out.println("Enquiry " + count + ":");
-                enquiry.viewDetails();
-                count++;  // Increment the counter after printing an enquiry
-            }
+        for (Enquiry enquiry : enquiries) {
+            System.out.println("Enquiry " + count + ":");
+            enquiry.viewDetails();
+            count++;  // Increment the counter after printing an enquiry
         }
         // Check if no enquiries were displayed
         if (count == 1) {
-            System.out.println("No enquiries");
+            System.out.println("No enquiries made");
         }
     }
 

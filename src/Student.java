@@ -95,6 +95,16 @@ public String getEmail(){
 
 /*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
 	@Override
+	public User getIfCommittee() {
+		if (committeeOf == null) {
+			return this;
+		}
+		else {
+			return new CampCommittee(); //SHUN PING DO PLS
+		}
+	}
+
+	@Override
     public int menu() {
 		Scanner sc = new Scanner(System.in);
         int choice = 0;

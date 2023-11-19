@@ -1,6 +1,7 @@
 package src;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 import src.sorter.CampNameAscendingSorter;
@@ -46,9 +47,11 @@ public class test {
         CampList.createCamp(c3);
         CampList.viewCamps();
 
-        //Arrays.sort(CampList.getCampList(), CampSorter.createCampSorter(UserInput.sortCampMenu()));
+        CampSorter campSorter = CampSorter.createCampSorter(UserInput.sortCampMenu());
+
+        Collections.sort(CampList.getCampList(), campSorter);
         //Arrays.sort(CampList.getCampList(), new CampNameAscendingSorter());
-        //CampList.viewCamps();
+        CampList.viewCamps();
 
         /*
         User user = Login.login();

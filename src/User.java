@@ -49,10 +49,6 @@ public abstract class User {
 		this.faculty = faculty;
 	}
 
-	public User getIfCommittee() {
-		return this;
-	}
-
 	public abstract int menu();
 	public abstract void menuChoice(int i); //to set who made the enquiry/suggestion and differentiate student/camp committee
 	// public abstract void menuChoice(int i);

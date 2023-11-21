@@ -23,12 +23,8 @@ public class Login{
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter UserID: ");
         userID = sc.nextLine();
-        StaffData.init();
-        int totalStaff = StaffData.staffCount;
-        StudentData.init();
-        int totalStudents = StudentData.studentCount;
 
-        for (int i=0; i<totalStaff; i++) {
+        for (int i=0; i<StaffData.staffCount; i++) {
             if (StaffData.getStaff(i).getID().equals(userID)) {
                 System.out.println("Enter password: ");
                 password = sc.nextLine();
@@ -42,7 +38,7 @@ public class Login{
         }
 
         
-        for (int i=0; i<totalStudents; i++) {
+        for (int i=0; i<StudentData.studentCount; i++) {
             if (StudentData.getStudent(i).getID().equals(userID)) {
                 System.out.println("Enter password: ");
                 password = sc.nextLine();

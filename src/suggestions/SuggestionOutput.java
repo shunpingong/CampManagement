@@ -1,6 +1,5 @@
 package src.suggestions;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
@@ -10,15 +9,7 @@ import src.CampCommittee;
 public interface SuggestionOutput{
 
     public static void viewSuggestion(Suggestion suggestion) {
-    ArrayList<String> fieldNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
-        "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
-        System.out.println("Suggestion Description: " + suggestion.getDescription());
-        System.out.println("Suggestion Category: " + fieldNames.get(suggestion.getCategory()));
-        System.out.println("Suggestion Changes: " + suggestion.getChange());
-        System.out.println("Sender: " + suggestion.getSender().getName()); 
-        System.out.println("Camp: " + suggestion.getCamp().getCampName()); 
-        System.out.println("Status: " + suggestion.getStatus());
-        System.out.println("---------------------------------------------");
+        suggestion.viewDetails();
     }
 
     //Get list of suggestions process/ not processed
@@ -36,7 +27,7 @@ public interface SuggestionOutput{
     public static void viewModifiableSuggestions(CampCommittee commUser, SuggestionStatus status) {
         ArrayList<Suggestion> suggestionList = SuggestionOutput.getModifiableSuggestions(commUser,status);
         if(suggestionList.size()==0){
-            System.out.println("No suggestions to show;");
+            System.out.println("No suggestions to show.\n");
             return;
         }
         else{

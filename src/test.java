@@ -1,9 +1,9 @@
 package src;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collections;
+
+
 import java.util.Scanner;
-import src.sorter.CampSorter;
+
 
 public class test {
     public static void main(String[] args){
@@ -47,16 +47,16 @@ public class test {
         //int choice = UserInput.selectCamp();
 
 
-        /*
-        User user = Login.login();
+        
+        // User user = Login.login();
 
 
-        //user = StudentData.getStudent(0);
-        */
-        User user = new Student("Teemo","AK47",Faculty.SCSE, "test@gmail.com");
+        //User user = StudentData.getStudent(0);
+        
+        User user = new CampCommittee("Teemo","AK47",Faculty.SCSE, "test@gmail.com",null);
 
         // user = new CampCommittee(campDesc, campName, userGroup, campLoc, campDesc, 0);
-        user = StaffData.getStaff(0);
+        // user = StaffData.getStaff(0);
 
     
         int choice = 0;
@@ -64,7 +64,7 @@ public class test {
             choice = user.menu();
             System.out.println("Choice: " + choice);
             user.menuChoice(choice);
-            user = user.getIfCommittee(); //Convert student to committee member if required
+            // user = user.getIfCommittee(); //Convert student to committee member if required
         }
          
     }

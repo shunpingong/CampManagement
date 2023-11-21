@@ -78,7 +78,7 @@ public class Staff extends User {
             // System.out.println("|10. Reply Suggestions                                                               |");
             System.out.println("|9. Generate Report Of Created Camp                                                  |");
             System.out.println("|10. Generate Performance Report Of Camp Committee                                   |");
-            System.out.println("|-1. Exit Menu                                                                       |");
+            System.out.println("|-1. Logout                                                                          |");
             System.out.println("--------------------------------------------------------------------------------------");
             System.out.printf("Menu Option: ");
             choice = sc.nextInt();
@@ -116,7 +116,7 @@ public class Staff extends User {
                     choice = sc.nextInt();
                 }while(choice<1 || choice>campsCreated.size());
                 for(int k=0;k<CampList.getCampList().size();k++){
-                    if (campsCreated.get(choice).getCampName().equals(CampList.getCampList().get(k).getCampName()) == true){
+                    if (campsCreated.get(choice-1).getCampName().equals(CampList.getCampList().get(k).getCampName()) == true){
                         CampList.getCampList().get(k).editCampInfo();
                     }
                 }

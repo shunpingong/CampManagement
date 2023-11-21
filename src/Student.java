@@ -7,12 +7,11 @@ import src.enquiry.Enquiry;
 
 public class Student extends User {
 	private String email;
-	protected ArrayList<CampInfo> availableCamps = new ArrayList<CampInfo>(); //List of Camps available for student
-	protected ArrayList<CampInfo> registeredCamps = new ArrayList<CampInfo>(); //List of Camps Student Registered for
-	protected ArrayList<CampInfo> withdrawnCamps = new ArrayList<CampInfo>(); //List of Camps Student Withdrawn from
-    protected ArrayList<Enquiry> enquiriesMade = new ArrayList<Enquiry>(); //List of Enquiries Student made
-	protected CampCommittee committeeUser; //null if current student is not committee
-	protected CampInfo committeeOf; //Camp the student is a committee of
+	private ArrayList<CampInfo> availableCamps = new ArrayList<CampInfo>(); //List of Camps available to student
+	private ArrayList<CampInfo> registeredCamps = new ArrayList<CampInfo>(); //List of Camps Student Registered for
+	private ArrayList<CampInfo> withdrawnCamps = new ArrayList<CampInfo>(); //List of Camps Student Withdrawn from
+    private ArrayList<Enquiry> enquiriesMade = new ArrayList<Enquiry>(); //List of Enquiries Student made
+	private CampInfo committeeOf; //Camp the student is a committee of
 
 	// Constructors
 	public Student(String userID, String name, Faculty faculty, String email){
@@ -21,8 +20,7 @@ public class Student extends User {
 		this.registeredCamps = new ArrayList<CampInfo>();
 		this.withdrawnCamps = new ArrayList<CampInfo>();
 		this.enquiriesMade = new ArrayList<Enquiry>();
-		this.availableCamps = this.generateAvailableCamps();
-		this.committeeUser = null;
+		this.availableCamps = new ArrayList<CampInfo>();
 		this.committeeOf = null;
 
 	}
@@ -30,10 +28,6 @@ public class Student extends User {
 /*--------------------------------------------------------------- ACCESSORS -------------------------------------------------------------------------*/
 	public String getEmail(){
 		return this.email;
-	}
-
-	public CampCommittee getCommitteeUser(){
-		return this.committeeUser;
 	}
 
 	public CampInfo getCommitteeOf(){
@@ -80,16 +74,6 @@ public class Student extends User {
 	}
 
 /*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
-	@Override
-	public User getIfCommittee() {
-		if (this.committeeUser == null){
-			return this;
-		}
-		else{
-			return committeeUser;
-		}
-		// return committeeUser == null ? this : committeeUser;
-	}
 
 	@Override
     public int menu() {
@@ -102,7 +86,7 @@ public class Student extends User {
             System.out.println("User ID: " + this.getID());
             System.out.println("Name: " + this.getName());			
 			showStudentMenu();
-			System.out.println("|-1. Exit Menu                                                                       |");
+			System.out.println("|-1. Logout                                                                          |");
 			System.out.println("--------------------------------------------------------------------------------------");
 			System.out.print("Menu Option: ");
         	choice = sc.nextInt();
@@ -120,10 +104,11 @@ public class Student extends User {
 }
 
 	public ArrayList<CampInfo> generateAvailableCamps(){
-		ArrayList<CampInfo> availableCamps = new ArrayList<>();
+		ArrayList<CampInfo> availableCamps = new ArrayList<CampInfo>();
 		//For each camp in camp list
         for (CampInfo eachCamp : CampList.getCampList()){
-            if ((eachCamp.getUserGroup() == Faculty.ALL || this.getFaculty() == eachCamp.getUserGroup()) && eachCamp.getVisibility()){ 
+            if ((eachCamp.getUserGroup() == Faculty.ALL || this.getFaculty() == eachCamp.getUserGroup()) && eachCamp.getVisibility() == true 
+			&& !this.getRegisteredCamps().contains(eachCamp) && !this.getWithdrawnCamps().contains(eachCamp)){ 
                 availableCamps.add(eachCamp);
             }
 		}
@@ -133,6 +118,7 @@ public class Student extends User {
 	@Override
 	public void menuChoice(int i){
 		Scanner sc = new Scanner(System.in);
+		this.setAvailableCamp(this.generateAvailableCamps());
 		switch(i)
 		{
 			case 1: //View All Available Camps
@@ -144,8 +130,9 @@ public class Student extends User {
 				if (this.getAvailableCamps().size() !=0){
 					System.out.print("Choose a camp to sign up for (enter the number): ");
 					int chosenCampIndex = sc.nextInt();
-					if (this.getWithdrawnCamps().contains(this.getAvailableCamps().get(chosenCampIndex-1))) {
-						System.out.println("Cannot register. "+ this.getName() + " has already withdrawn from this camp: " + CampList.getCampInfo(chosenCampIndex-1).getCampName());
+					if (this.getWithdrawnCamps().contains(this.getAvailableCamps().get(chosenCampIndex-1)) ||
+					this.getRegisteredCamps().contains(this.getAvailableCamps().get(chosenCampIndex-1))) {
+						System.out.println("Cannot register. "+ this.getName() + " has already registered/withdrawn from this camp: " + this.getAvailableCamps().get(chosenCampIndex-1).getCampName());
 					}
 					else{
 						System.out.println("1. Sign up as member");
@@ -157,7 +144,6 @@ public class Student extends User {
 						CampInfo correctCampInfo = this.getAvailableCamps().get(chosenCampIndex-1);
 
 						if (choice ==1){
-
 							// Adjust the student attendees for that camp
 							correctCampInfo.addStudentAttendees(this);
 							this.addRegisteredCamp(this.getAvailableCamps().get(chosenCampIndex-1));
@@ -173,9 +159,9 @@ public class Student extends User {
 							else if(correctCampInfo.getCommitteeSlots()>0){
 								this.addRegisteredCamp(correctCampInfo);
 								this.setCommitteeOf(correctCampInfo); 
-								this.committeeUser = new CampCommittee(this.getID(), this.getName(), this.getFaculty(), this.getEmail(), correctCampInfo,
-								this.getRegisteredCamps(), this.getWithdrawnCamps(), this.getEnquiriesMade(), this.getAvailableCamps(), 0);
-								correctCampInfo.addCampCom(committeeUser);
+								// this.committeeUser = new CampCommittee(this.getID(), this.getName(), this.getFaculty(), this.getEmail(), correctCampInfo,
+								// this.getRegisteredCamps(), this.getWithdrawnCamps(), this.getEnquiriesMade(), this.getAvailableCamps(), 0);
+								// correctCampInfo.addCampCom(committeeUser);
 							}
 							else{
 								System.out.println("No more committee slots availalble");

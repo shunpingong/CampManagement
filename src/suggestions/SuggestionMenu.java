@@ -11,8 +11,8 @@ public interface SuggestionMenu {
         Scanner sc = new Scanner(System.in);
         while (true) {
             final String menu = "Welcome to Committee Suggestions Menu.\n" +
-                    "1: Make a new suggestion for a camp\n" +
-                    "2: View, edit or delete pending suggestion\n" +
+                    "1: Make a new suggestion for the camp: "+ commUser.getCommitteeOf().getCampName() + 
+                    "\n2: View, edit or delete pending suggestion\n" +
                     "-1: Go back to main menu.\n" +
                     "Enter choice: ";
 

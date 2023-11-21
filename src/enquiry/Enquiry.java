@@ -56,16 +56,20 @@ public class Enquiry extends Feedback{
         }
     }
 
+    @Override
     public void viewDetails() {
-        // Display the details of the enquiry, including sender, text, camp, and processing status
-        System.out.println("Enquiry Text: " + this.getDescription());
-        System.out.println("Sender: " + this.getSender().getName()); // Assuming User has a 'getName' method
-        System.out.println("Camp: " + this.getCamp().getCampName()); // Assuming Camp has a 'getCamp' method
-        System.out.println("Processed: " + this.isProcessed());
-        System.out.println("Reply: " + this.getReply());
-        System.out.println("Replied By: " + this.getReplyAuthor());
-        System.out.println("--------------------");
+        System.out.println("Enquiry Description: " + getDescription());
+        System.out.println("Sender: " + getSender().getName());
+        System.out.println("Camp: " + getCamp().getCampName()); 
+        System.out.println("Processed: " + isProcessed());
+        System.out.println("Reply: " + getReply());
+        if (getReplyAuthor()!= null){
+            System.out.println("Replied by: " + getReplyAuthor().getName());
+        }
+        else{
+            System.out.println("Replied by: This enquiry has not been replied");
+            }
+            System.out.println("---------------------------------------------");
     }
-    
 }   
     

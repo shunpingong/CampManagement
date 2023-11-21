@@ -47,13 +47,6 @@ public abstract class Feedback {
 
     public abstract void updateDescription(String newText);
     public abstract void viewDetails();
-    // public abstract void reply(User currentUser, String replyText);
-    // public abstract void reply(User currentUser, String replyText); 
-
     // Additional methods or attributes common to all feedback types can be added 
-    //Concrete
-    public boolean isUserFeedback(Student currentUser) {
-        // Check if the sender of the enquiry is the current user
-        return getSender().equals(currentUser);
-    }
+
 }

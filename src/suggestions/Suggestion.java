@@ -1,5 +1,8 @@
 package src.suggestions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import src.CampCommittee;
 import src.CampInfo;
 import src.enquiry.Feedback;
@@ -83,13 +86,15 @@ public class Suggestion extends Feedback{
 
     @Override
     public void viewDetails() {
-        // Display the details of the enquiry, including sender, text, camp, and processing status
-        System.out.println("Suggestion Status: " + this.getStatus());
-        System.out.println("Suggestion Description: " + this.getDescription());
-        System.out.println("Sender: " + this.getSender().getName()); // Assuming User has a 'getName' method
-        System.out.println("Camp: " + this.getCamp().getCampName()); // Assuming Camp has a 'getCamp' method
-        System.out.println("Status: " + this.getStatus());
-        System.out.println("--------------------");
+        ArrayList<String> fieldNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
+            "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
+            System.out.println("Suggestion Description: " + getDescription());
+            System.out.println("Suggestion Category: " + fieldNames.get(getCategory()-1));
+            System.out.println("Suggestion Changes: " + getChange());
+            System.out.println("Sender: " + getSender().getName()); 
+            System.out.println("Camp: " + getCamp().getCampName()); 
+            System.out.println("Status: " + getStatus());
+            System.out.println("---------------------------------------------");
     }
 
 }

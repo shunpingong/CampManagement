@@ -30,32 +30,6 @@ public class App {
         int totalStudents = StudentData.studentCount;   // Returns the total number of students
         int totalStaff = StaffData.staffCount;          // Returns the total number of staff members
 
-
-
-        // // Example of how to print out data using the Data classes
-        // System.out.println("--------------------------------------------------------------------------------------");
-        // System.out.println("|                                    Student Users                                   |");
-        // System.out.println("--------------------------------------------------------------------------------------");
-        // for(int i=0;i<totalStudents;i++){
-        //     System.out.printf("|Name: %-15s|Email: %-20s|UserID: %-10s| Faculty: %-5s|\n", 
-        //                         StudentData.getStudent(i).getName(), 
-        //                         StudentData.getStudent(i).getEmail(), 
-        //                         StudentData.getStudent(i).getID(), 
-        //                         StudentData.getStudent(i).getFaculty());
-        // }
-
-        // System.out.println("--------------------------------------------------------------------------------------");
-        // System.out.println("|                                     Staff Users                                    |");
-        // System.out.println("--------------------------------------------------------------------------------------");
-        // for(int i=0;i<totalStaff;i++){
-        //     System.out.printf("|Name: %-15s|Email: %-20s|UserID: %-10s| Faculty: %-5s|\n", 
-        //                         StaffData.getStaff(i).getName(), 
-        //                         StaffData.getStaff(i).getEmail(), 
-        //                         StaffData.getStaff(i).getID(), 
-        //                         StaffData.getStaff(i).getFaculty());
-        // }
-    
-
         //MAIN
         Scanner sc = new Scanner(System.in);
         CampList.initCamps();
@@ -107,7 +81,6 @@ public class App {
                         System.out.println("Choice: " + choice);
                         user.menuChoice(choice);
                         choice = user.menu();
-                        user = user.getIfCommittee(); //Convert student to committee member if required
                     }
                     //System.out.println("Choice: " + choice);
                     break;

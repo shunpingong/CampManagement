@@ -10,18 +10,7 @@ import java.util.Comparator;
 public class EnquiryOutput {
     //Printing of each enquiry
     public static void viewEnquiry(Enquiry enquiry) {
-        System.out.println("Enquiry Description: " + enquiry.getDescription());
-        System.out.println("Sender: " + enquiry.getSender().getName());
-        System.out.println("Camp: " + enquiry.getCamp().getCampName()); 
-        System.out.println("Processed: " + enquiry.isProcessed());
-        System.out.println("Reply: " + enquiry.getReply());
-        if (enquiry.getReplyAuthor()!= null){
-            System.out.println("Replied by: " + enquiry.getReplyAuthor().getName());
-        }
-        else{
-            System.out.println("Replied by: This enquiry has not been replied");
-            }
-            System.out.println("---------------------------------------------");
+        enquiry.viewDetails();
     }
 
     //Get list of enquiries process/ not processed
@@ -37,7 +26,7 @@ public class EnquiryOutput {
     }
 
 
-    //Print out the every single enquiries of processed/ not processed
+    //Print out every single enquiries of processed/ not processed
     public static void viewRequiredEnquiries(ArrayList<Enquiry> enquiryList) {
         if(enquiryList.size()==0){
             System.out.println("No enquiries to show.\n");

@@ -36,13 +36,13 @@ public interface SuggestionProcessor {
         Suggestion activeSuggestion = suggestionList.get(choice - 1);
         System.out.println("Changing: " + fieldNames.get(activeSuggestion.getCategory()));
         System.out.println("to: " + activeSuggestion.getChange());
-        System.out.println("Accept? Y/N, any other input to exit without making a decision.");
+        System.out.println("Accept? 1) Yes  2) No  3) Cancel.");
         int decision = sc.nextInt();
         if (decision == 1){
             System.out.println("Suggestion accepted");
             activeSuggestion.accept();
         }
-        else if(decision == 0){
+        else if(decision == 2){
             System.out.println("Suggestion rejected");
             activeSuggestion.reject();
         }

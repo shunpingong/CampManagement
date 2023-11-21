@@ -3,6 +3,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import src.enquiry.Enquiry;
+import src.suggestions.Suggestion;
+
 public class CampInfo {
 	// Instances
 	private String campName;
@@ -18,8 +21,8 @@ public class CampInfo {
 	private ArrayList<Student> studentAttendees; //only accessible by staff & camp //List of students signed up for this camp
 	private ArrayList<CampCommittee> campCom; //only accessible by staff & camp com //List of students who signed up as committee for this camp
 	private ArrayList<Student> withdrawnStudents; //List of students who withdrawn from this camp once
-    private EnquiryList enquiriesForCamp; //Enquiries made for this specific camp
-	private SuggestionList suggestionForCamp;  //Suggestions made for this specific camp
+    private ArrayList<Enquiry> enquiriesForCamp; //Enquiries made for this specific camp
+	private ArrayList<Suggestion> suggestionForCamp;  //Suggestions made for this specific camp
 	private boolean visibility; //only seen by staff 
 
 	// Constructors
@@ -37,8 +40,8 @@ public class CampInfo {
 		studentAttendees = new ArrayList<Student>();
 		campCom = new ArrayList<CampCommittee>(); 
 		withdrawnStudents = new ArrayList<Student>(); 
-		enquiriesForCamp = new EnquiryList();
-		suggestionForCamp = new SuggestionList();
+		enquiriesForCamp = new ArrayList<Enquiry>();
+		suggestionForCamp = new ArrayList<Suggestion>();
 		this.visibility = visibility;
 	}
 
@@ -89,11 +92,11 @@ public class CampInfo {
 		return this.withdrawnStudents;
 	}
 
-	public EnquiryList getEnquiriesForCamp(){
+	public ArrayList<Enquiry> getEnquiriesForCamp(){
 		return this.enquiriesForCamp;
 	}
 
-	public SuggestionList getSuggestionForCamp(){
+	public ArrayList<Suggestion> getSuggestionForCamp(){
 		return this.suggestionForCamp;
 	}
 
@@ -152,10 +155,10 @@ public class CampInfo {
 	}
 
 	public void addSuggestionForCamp(Suggestion suggestion){
-		this.suggestionForCamp.addSuggestion(suggestion);
+		this.suggestionForCamp.add(suggestion);
 	}
 	public void addEnquiriesForCamp(Enquiry enquiry){
-		this.enquiriesForCamp.addEnquiry(enquiry);
+		this.enquiriesForCamp.add(enquiry);
 	}
 
 	public void setVisibility(Boolean choice){

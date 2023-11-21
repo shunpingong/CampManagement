@@ -2,6 +2,9 @@ package src;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import src.enquiry.EnquiryReply;
+import src.suggestions.SuggestionProcessor;
+
 public class Staff extends User {
     // Instances
 	private String email;
@@ -19,8 +22,10 @@ public class Staff extends User {
 	public String getEmail(){
         return this.email;
     }
-
-    public void getCampsCreated(){
+    public ArrayList<CampInfo> getCampsCreated(){
+        return this.campsCreated;
+    }
+    public void printCampsCreated(){
         if(campsCreated.size() == 0){
                     System.out.println("No Camps Created");
                     return;
@@ -63,12 +68,14 @@ public class Staff extends User {
             System.out.println("|4. Edit Camp Detail                                                                 |");
             System.out.println("|5. Delete Camp                                                                      |");
             System.out.println("|6. Toggle Visibility Of Camp                                                        |");
-            System.out.println("|7. View Enquiries                                                                   |");
-            System.out.println("|8. Reply Enquiries                                                                  |");
-            System.out.println("|9. View Suggestions                                                                 |");
-            System.out.println("|10. Reply Suggestions                                                               |");
-            System.out.println("|11. Generate Report Of Created Camp                                                 |");
-            System.out.println("|12. Generate Performance Report Of Camp Committee                                   |");
+            System.out.println("|7. View Enquiries Menu For Staff                                                    |");
+            // System.out.println("|10. View All Unprocessed Enquiries Of Oversee Camp                                  |");
+            // System.out.println("|11. Reply To Unprocessed Enquiries Of Oversee Camp                                  |");
+            System.out.println("|8. View Suggestion Menu For Staff                                                   |");
+            // System.out.println("|9. View Suggestions                                                                 |");
+            // System.out.println("|10. Reply Suggestions                                                               |");
+            System.out.println("|9. Generate Report Of Created Camp                                                 |");
+            System.out.println("|10. Generate Performance Report Of Camp Committee                                   |");
             System.out.println("|-1. Exit Menu                                                                       |");
             System.out.println("--------------------------------------------------------------------------------------");
             System.out.printf("Menu Option: ");
@@ -83,13 +90,12 @@ public class Staff extends User {
 		switch(i)
         {
 			case 1: //view all camps
-                System.out.println("OK");
                 CampList.viewAllAvailableCamps(this);
                 CampList.printCampDetails();
 				break;
 
             case 2: //view created camps
-                this.getCampsCreated();
+                this.printCampsCreated();
                 break;
 
             case 3: //create new camp
@@ -100,7 +106,8 @@ public class Staff extends User {
 
             case 4: //edit camp detail
                 Scanner sc = new Scanner(System.in);
-                this.getCampsCreated();
+                this.printCampsCreated();
+                if (this.getCampsCreated().size() == 0) return;
                 int choice = 0;
                 do{
                     System.out.printf("Which Camp To Edit?");
@@ -121,29 +128,26 @@ public class Staff extends User {
                 break;
 */
 
-            //will add case 8 and 10 logic
-            case 7: //View Enquiries for camp his/her has created
-            case 8: //Reply Enquiries to camp his/her has created
-                for (CampInfo camps : campsCreated){
-                    System.out.println("CAMP: "+ camps.getCampName());
-                    camps.getEnquiriesForCamp().displayEnquiries();
+            case 7: //View Enquiry Menu For Staff
+                for (CampInfo c1 : this.getCampsCreated()){
+                        System.out.println("Camp "+ c1.getCampName());
+                        EnquiryReply.replyMenu(c1, this, EnquiryReply.getCampEnquiries(c1));
                 }
-
                 break;
 
-            case 9:  //View Suggestions to camp details from camp committee
-            case 10: //approve suggestions to changes to camp details from camp committee
-                for (CampInfo camps : campsCreated){
-                    camps.getSuggestionForCamp().displaySuggestions();
-                }
+            case 8: //View Suggestion Menu For Staff
+                SuggestionProcessor.processMenu(this.getCampsCreated(), this);
+                // for (CampInfo camps : this.getCampsCreated()){
+                //     System.out.println("CAMP: "+ camps.getCampName());
+                //     camps.getEnquiriesForCamp().displayEnquiries();
+                // }
 
                 break;
-
                 /* 
-            case 11: //Generate Report Of Created Camp
+            case 9: //Generate Report Of Created Camp
                 break;
 
-            case 12: //Generate Performance Report Of Camp Committee
+            case 10: //Generate Performance Report Of Camp Committee
                 break;
 */            
             case -1:

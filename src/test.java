@@ -39,7 +39,7 @@ public class test {
         CampList.createCamp(c1);
         CampInfo c2 = new CampInfo("camp2", LocalDate.of(2023, 1, 2), LocalDate.of(2023, 2, 2), LocalDate.of(2023,1,1), Faculty.values()[1], "There", 100, 1, "hi", GetStaff.getStaff(), true);
         CampList.createCamp(c2);
-        CampInfo c4 = new CampInfo("camp4", LocalDate.of(2023, 4, 4), LocalDate.of(2023, 5, 5), LocalDate.of(2023,2,2), Faculty.values()[1], "Over here", 100, 1, "hi", GetStaff.getStaff(), true);
+        CampInfo c4 = new CampInfo("camp4", LocalDate.of(2023, 4, 4), LocalDate.of(2023, 5, 5), LocalDate.of(2023,2,2), Faculty.values()[0], "Over here", 100, 1, "hi", GetStaff.getStaff(), true);
         CampList.createCamp(c4);
         CampInfo c3 = new CampInfo("camp3", LocalDate.of(2023, 3, 3), LocalDate.of(2023, 2, 2), LocalDate.of(2023,1,10), Faculty.values()[1], "Over There", 100, 1, "hi", GetStaff.getStaff(), true);
         CampList.createCamp(c3);
@@ -53,10 +53,10 @@ public class test {
 
         //user = StudentData.getStudent(0);
         */
-        User user = new Student("Teemo","AK47",Faculty.ALL, "test@gmail.com");
+        User user = new Student("Teemo","AK47",Faculty.SCSE, "test@gmail.com");
 
         // user = new CampCommittee(campDesc, campName, userGroup, campLoc, campDesc, 0);
-        //user = StaffData.getStaff(0);
+        user = StaffData.getStaff(0);
 
     
         int choice = 0;

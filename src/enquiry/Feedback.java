@@ -1,26 +1,26 @@
-package src;
+package src.enquiry;
+
+import src.CampInfo;
+import src.Student;
+
 public abstract class Feedback {
-    private String text;
-    private User sender; //Student, Staff, CommitteeMember
+    private String description;
+    private Student sender; //Student, CommitteeMember
     private CampInfo camp; // Reference to the associated camp
-    private String reply; // The reply to the feedback
-    private boolean processed; //True = processed and cannot be modified
     
     // Constructor
-    public Feedback(String text, User sender, CampInfo camp, String reply) {
-        this.text = text;
+    public Feedback(String text, Student sender, CampInfo camp) {
+        this.description = text;
         this.sender = sender;
         this.camp = camp;
-        this.reply = reply;
-        this.processed = false;
     }
 
 /*---------------------------------------------------------------ACCESSORS -------------------------------------------------------------------------*/
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return this.description;
     }
 
-    public User getSender() {
+    public Student getSender() {
         return sender;
     }
     
@@ -28,29 +28,13 @@ public abstract class Feedback {
         return camp;
     }
 
-    public String getReply(){
-        return reply;
-    }
-
-    public boolean isProcessed() {
-        return processed;
-    }
-    
 /*---------------------------------------------------------------MUTATORS -------------------------------------------------------------------------*/
-    // Mark the enquiry as processed
-    public void markProcessed() {
-        processed = true;
+
+    public void setDescription(String description){
+        this.description = description;
     }
 
-    public void setText(String text){
-        this.text = text;
-    }
-
-    public void setReply(String reply){
-        this.reply = reply;
-    }
-
-    public void setSender(User sender){
+    public void setSender(Student sender){
         this.sender = sender;
     }
 
@@ -61,14 +45,14 @@ public abstract class Feedback {
 /*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
     // Abstract method to be implemented by subclasses
 
-    public abstract void updateText(String newText);
+    public abstract void updateDescription(String newText);
     public abstract void viewDetails();
-    public abstract void reply(User currentUser, String replyText);
+    // public abstract void reply(User currentUser, String replyText);
     // public abstract void reply(User currentUser, String replyText); 
 
     // Additional methods or attributes common to all feedback types can be added 
     //Concrete
-    public boolean isUserFeedback(User currentUser) {
+    public boolean isUserFeedback(Student currentUser) {
         // Check if the sender of the enquiry is the current user
         return getSender().equals(currentUser);
     }

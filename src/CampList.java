@@ -7,8 +7,7 @@ import src.sorter.CampSorter;
 
 public class CampList { //element in campList in App
 	// Instances
-	private static ArrayList<CampInfo> campList;
-
+	private static ArrayList<CampInfo> campList = new ArrayList<CampInfo>();
 
 	// Constructors
 	public CampList(){};
@@ -71,6 +70,21 @@ public class CampList { //element in campList in App
             System.out.println("No visible camps.");
         }
         return count;
+    }
+
+	public static void viewAllCamps(ArrayList<CampInfo> camps, String prefix) {
+        System.out.printf("%s Camps: %d\n",prefix,camps.size());
+        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.println("|                                    Camp List                                       |");
+        System.out.println("--------------------------------------------------------------------------------------");
+        for (int i=0;i< camps.size(); i++){
+            System.out.printf("|%-3s|Name: %-13s|Date: %-5s to %-15s|Available Slots: %-5s  |\n", 
+                                i+1,
+                                camps.get(i).getCampName(), 
+                                camps.get(i).getStartDate(), 
+                                camps.get(i).getEndDate(), 
+                                camps.get(i).getTotalSlots());
+        }
     }
 
     //For staff and committee

@@ -1,5 +1,6 @@
 package src.suggestions;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
@@ -9,8 +10,10 @@ import src.CampCommittee;
 public interface SuggestionOutput{
 
     public static void viewSuggestion(Suggestion suggestion) {
+    ArrayList<String> fieldNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
+        "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
         System.out.println("Suggestion Description: " + suggestion.getDescription());
-        System.out.println("Suggestion Category: " + suggestion.getCategory());
+        System.out.println("Suggestion Category: " + fieldNames.get(suggestion.getCategory()));
         System.out.println("Suggestion Changes: " + suggestion.getChange());
         System.out.println("Sender: " + suggestion.getSender().getName()); 
         System.out.println("Camp: " + suggestion.getCamp().getCampName()); 

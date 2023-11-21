@@ -47,6 +47,7 @@ public interface SuggestionEditor {
             System.out.println("[5] Camp Committee Slots");
             System.out.println("[6] Faculty opened to");
         int choice = sc.nextInt();
+        String newline = sc.nextLine();
         if (choice >= 1 && choice <= 6) {
             System.out.println("Please enter the new " + fieldNames.get(choice - 1));
             String change = sc.nextLine();
@@ -89,6 +90,7 @@ public interface SuggestionEditor {
         Scanner sc = new Scanner(System.in);
         System.out.println("Would you like to edit the 1. Description or 2. Suggestion Category/Value?");
         int selection = sc.nextInt();
+        String newline = sc.nextLine();
         if(selection == 1){
             System.out.println("Enter new description for your suggestion: ");
             String newDescription = sc.nextLine() + "\n**This suggestion has been edited**";

@@ -75,6 +75,10 @@ public class Student extends User {
 		this.availableCamps = campList;
 	}
 
+	public void setCommitteeOf(CampInfo camp){
+		this.committeeOf = camp;
+	}
+
 /*---------------------------------------------------------------ADDITIONAL METHODS -------------------------------------------------------------------------*/
 	@Override
 	public User getIfCommittee() {
@@ -95,6 +99,8 @@ public class Student extends User {
 		    System.out.println("--------------------------------------------------------------------------------------");
             System.out.println("|                                    Camp Menu (Student)                             |");
             System.out.println("--------------------------------------------------------------------------------------");
+            System.out.println("User ID: " + this.getID());
+            System.out.println("Name: " + this.getName());			
 			showStudentMenu();
 			System.out.println("|-1. Exit Menu                                                                       |");
 			System.out.println("--------------------------------------------------------------------------------------");
@@ -166,6 +172,7 @@ public class Student extends User {
 							}
 							else if(correctCampInfo.getCommitteeSlots()>0){
 								this.addRegisteredCamp(correctCampInfo);
+								this.setCommitteeOf(correctCampInfo); 
 								this.committeeUser = new CampCommittee(this.getID(), this.getName(), this.getFaculty(), this.getEmail(), correctCampInfo,
 								this.getRegisteredCamps(), this.getWithdrawnCamps(), this.getEnquiriesMade(), this.getAvailableCamps(), 0);
 								correctCampInfo.addCampCom(committeeUser);

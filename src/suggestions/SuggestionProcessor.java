@@ -5,12 +5,15 @@ import src.User;
 import src.Staff;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public interface SuggestionProcessor {
     Scanner sc = new Scanner(System.in);
     public static void processMenu(ArrayList<CampInfo> campList, User activeUser){
-        String[] category = {"Name", "Description", "Venue", "Slots", "Committee Slots"};
+
+        ArrayList<String> fieldNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
+        "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
         ArrayList<CampInfo> inchargeCamps = ((Staff) activeUser).getCampsCreated();
         ArrayList<Suggestion> suggestionList = new ArrayList<Suggestion>();
         // create a list of all suggestions
@@ -31,7 +34,7 @@ public interface SuggestionProcessor {
         }
         int choice = sc.nextInt();
         Suggestion activeSuggestion = suggestionList.get(choice - 1);
-        System.out.println("Changing: " + category[activeSuggestion.getCategory()]);
+        System.out.println("Changing: " + fieldNames.get(activeSuggestion.getCategory()));
         System.out.println("to: " + activeSuggestion.getChange());
         System.out.println("Accept? Y/N, any other input to exit without making a decision.");
         int decision = sc.nextInt();

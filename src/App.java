@@ -32,28 +32,28 @@ public class App {
 
 
 
-        // Example of how to print out data using the Data classes
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("|                                    Student Users                                   |");
-        System.out.println("--------------------------------------------------------------------------------------");
-        for(int i=0;i<totalStudents;i++){
-            System.out.printf("|Name: %-15s|Email: %-20s|UserID: %-10s| Faculty: %-5s|\n", 
-                                StudentData.getStudent(i).getName(), 
-                                StudentData.getStudent(i).getEmail(), 
-                                StudentData.getStudent(i).getID(), 
-                                StudentData.getStudent(i).getFaculty());
-        }
+        // // Example of how to print out data using the Data classes
+        // System.out.println("--------------------------------------------------------------------------------------");
+        // System.out.println("|                                    Student Users                                   |");
+        // System.out.println("--------------------------------------------------------------------------------------");
+        // for(int i=0;i<totalStudents;i++){
+        //     System.out.printf("|Name: %-15s|Email: %-20s|UserID: %-10s| Faculty: %-5s|\n", 
+        //                         StudentData.getStudent(i).getName(), 
+        //                         StudentData.getStudent(i).getEmail(), 
+        //                         StudentData.getStudent(i).getID(), 
+        //                         StudentData.getStudent(i).getFaculty());
+        // }
 
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("|                                     Staff Users                                    |");
-        System.out.println("--------------------------------------------------------------------------------------");
-        for(int i=0;i<totalStaff;i++){
-            System.out.printf("|Name: %-15s|Email: %-20s|UserID: %-10s| Faculty: %-5s|\n", 
-                                StaffData.getStaff(i).getName(), 
-                                StaffData.getStaff(i).getEmail(), 
-                                StaffData.getStaff(i).getID(), 
-                                StaffData.getStaff(i).getFaculty());
-        }
+        // System.out.println("--------------------------------------------------------------------------------------");
+        // System.out.println("|                                     Staff Users                                    |");
+        // System.out.println("--------------------------------------------------------------------------------------");
+        // for(int i=0;i<totalStaff;i++){
+        //     System.out.printf("|Name: %-15s|Email: %-20s|UserID: %-10s| Faculty: %-5s|\n", 
+        //                         StaffData.getStaff(i).getName(), 
+        //                         StaffData.getStaff(i).getEmail(), 
+        //                         StaffData.getStaff(i).getID(), 
+        //                         StaffData.getStaff(i).getFaculty());
+        // }
     
 
         //MAIN
@@ -67,10 +67,33 @@ public class App {
         User user;
 
         do {
-            System.out.println("Choose options: ");
-            System.out.println("(1) Login");
-            System.out.println("(2) Exit");
-            option = sc.nextInt();
+            // Example of how to print out data using the Data classes
+            System.out.println("--------------------------------------------------------------------------------------");
+            System.out.println("|                                    Student Users                                   |");
+            System.out.println("--------------------------------------------------------------------------------------");
+            for(int i=0;i<totalStudents;i++){
+                System.out.printf("|Name: %-15s|Email: %-20s|UserID: %-10s| Faculty: %-5s|\n", 
+                                    StudentData.getStudent(i).getName(), 
+                                    StudentData.getStudent(i).getEmail(), 
+                                    StudentData.getStudent(i).getID(), 
+                                    StudentData.getStudent(i).getFaculty());
+            }
+
+            System.out.println("--------------------------------------------------------------------------------------");
+            System.out.println("|                                     Staff Users                                    |");
+            System.out.println("--------------------------------------------------------------------------------------");
+            for(int i=0;i<totalStaff;i++){
+                System.out.printf("|Name: %-15s|Email: %-20s|UserID: %-10s| Faculty: %-5s|\n", 
+                                    StaffData.getStaff(i).getName(), 
+                                    StaffData.getStaff(i).getEmail(), 
+                                    StaffData.getStaff(i).getID(), 
+                                    StaffData.getStaff(i).getFaculty());
+            }
+        
+                System.out.println("Choose options: ");
+                System.out.println("(1) Login");
+                System.out.println("(2) Exit");
+                option = sc.nextInt();
 
             switch(option) {
                 case 1:
@@ -81,8 +104,10 @@ public class App {
                     }
                     choice = user.menu();
                     while (choice != -1) {
+                        System.out.println("Choice: " + choice);
                         user.menuChoice(choice);
                         choice = user.menu();
+                        user = user.getIfCommittee(); //Convert student to committee member if required
                     }
                     //System.out.println("Choice: " + choice);
                     break;

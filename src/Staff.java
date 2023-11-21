@@ -62,6 +62,8 @@ public class Staff extends User {
             System.out.println("--------------------------------------------------------------------------------------");
             System.out.println("|                                    Camp Menu (Staff)                               |");
             System.out.println("--------------------------------------------------------------------------------------");
+            System.out.println("User ID: " + this.getID());
+            System.out.println("Name: " + this.getName());
             System.out.println("|1. View All Camps                                                                   |");
             System.out.println("|2. View Camps Created By You                                                        |");
             System.out.println("|3. Create New Camp                                                                  |");
@@ -74,7 +76,7 @@ public class Staff extends User {
             System.out.println("|8. View Suggestion Menu For Staff                                                   |");
             // System.out.println("|9. View Suggestions                                                                 |");
             // System.out.println("|10. Reply Suggestions                                                               |");
-            System.out.println("|9. Generate Report Of Created Camp                                                 |");
+            System.out.println("|9. Generate Report Of Created Camp                                                  |");
             System.out.println("|10. Generate Performance Report Of Camp Committee                                   |");
             System.out.println("|-1. Exit Menu                                                                       |");
             System.out.println("--------------------------------------------------------------------------------------");
@@ -90,7 +92,7 @@ public class Staff extends User {
 		switch(i)
         {
 			case 1: //view all camps
-                CampList.viewAllAvailableCamps(this);
+                if (CampList.viewAllAvailableCamps(this) == 0) return;
                 CampList.printCampDetails();
 				break;
 

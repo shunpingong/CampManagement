@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Login{
-    private static User currentUser = StaffData.getStaff(0);
+    private static User currentUser;
     private static int currentUserRole = 0; //0 = staff, 1 = student
     private static String userID;
     private static String password;
@@ -36,6 +36,7 @@ public class Login{
                     System.out.println("Incorrect password. Enter password: ");
                     password = sc.nextLine();
                 }
+                currentUser = StaffData.getStaff(i);
                 return StaffData.getStaff(i);
             }
         }
@@ -49,6 +50,7 @@ public class Login{
                     System.out.println("Incorrect password. Enter password: ");
                     password = sc.nextLine();
                 }
+                currentUser = StudentData.getStudent(i);
                 return StudentData.getStudent(i);
             }
         }

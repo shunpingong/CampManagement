@@ -69,8 +69,9 @@ public class Report {
 		for(int i = 0; i<camp.getSuggestionForCamp().size(); i++) {
 
 			data.add(new String[] {String.valueOf(i), camp.getSuggestionForCamp().get(i).getDescription()});
-			data.add(new String[] {"Student:", camp.getSuggestionForCamp().get(i).getSender().getName(), 
-					"Status: ", camp.getSuggestionForCamp().get(i).getStatus().toString()});
+			data.add(new String[] {"Student:", camp.getSuggestionForCamp().get(i).getSender().getName()});
+			data.add(new String[] {"Change", camp.getSuggestionForCamp().get(i).getChange()});
+			data.add(new String[] {"Status", camp.getSuggestionForCamp().get(i).getStatus().toString()});
 		}
 	}
 	public void export() {

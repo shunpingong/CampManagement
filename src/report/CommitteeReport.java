@@ -23,8 +23,9 @@ public class CommitteeReport extends Report{
 			committeeData.add(new String[] {"","List of Suggestions Made"});
 			for(int k = 0; i<camp.getCampCom().get(i).getSuggestionsMade().size(); k++) {
 				committeeData.add(new String[] {"",String.valueOf(k), 
-						camp.getCampCom().get(i).getSuggestionsMade().get(k).getDescription(),
-						 "Status", camp.getCampCom().get(i).getSuggestionsMade().get(k).getStatus().toString()});
+						camp.getCampCom().get(i).getSuggestionsMade().get(k).getDescription()});
+				committeeData.add(new String[] {"","Change", camp.getCampCom().get(i).getSuggestionsMade().get(k).getChange()});
+				committeeData.add(new String[] {"","Status", camp.getCampCom().get(i).getSuggestionsMade().get(k).getStatus().toString()});
 			}
 			committeeData.add(new String[] {"","List of Enquiries replied"});
 			for(int k = 0; i<camp.getEnquiriesForCamp().size(); k++) {
@@ -37,5 +38,10 @@ public class CommitteeReport extends Report{
 			
 
 		}
+	}
+	public void export() {
+
+		GenerateReport toCSV = new GenerateReport(fileName, committeeData);
+		toCSV.exportCSV();
 	}
 }

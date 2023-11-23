@@ -32,25 +32,24 @@ public class Report {
 		
 		data.add(new String[] {"List of Attendees"});
 		for(int i = 0; i<camp.getStudentAttendees().size(); i++) {
-
 			data.add(new String[] {String.valueOf(i), camp.getStudentAttendees().get(i).getName()});
 		}
 		
+		
 		data.add(new String[] {"List of Camp Committee Members"});
 		for(int i = 0; i<camp.getCampCom().size(); i++) {
-
 			data.add(new String[] {String.valueOf(i), camp.getCampCom().get(i).getName()});
 		}
 		
+		
 		data.add(new String[] {"List of Withdrawn Students"});
 		for(int i = 0; i<camp.getWithdrawStudents().size(); i++) {
-
 			data.add(new String[] {String.valueOf(i), camp.getWithdrawStudents().get(i).getName()});
 		}
 		
+		
 		data.add(new String[] {"List of Enquirees"});
 		for(int i = 0; i<camp.getEnquiriesForCamp().size(); i++) {
-
 			data.add(new String[] {String.valueOf(i)}); 
 			data.add(new String[] {"Asked By;", camp.getEnquiriesForCamp().get(i).getSender().getName()}); 
 			data.add(new String[] {"Desription: ", camp.getEnquiriesForCamp().get(i).getDescription()}); 
@@ -65,9 +64,9 @@ public class Report {
 			}
 		}
 
+		
 		data.add(new String[] {"List of Suggestions"});
 		for(int i = 0; i<camp.getSuggestionForCamp().size(); i++) {
-
 			data.add(new String[] {String.valueOf(i), camp.getSuggestionForCamp().get(i).getDescription()});
 			data.add(new String[] {"Student:", camp.getSuggestionForCamp().get(i).getSender().getName()});
 			data.add(new String[] {"Change", camp.getSuggestionForCamp().get(i).getChange()});

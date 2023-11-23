@@ -1,8 +1,11 @@
 package src;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import src.enquiry.EnquiryReply;
+import src.sorter.CampSorter;
+import src.sorter.SortCamp;
 import src.suggestions.SuggestionProcessor;
 
 public class Staff extends User {
@@ -92,7 +95,9 @@ public class Staff extends User {
 		switch(i)
         {
 			case 1: //view all camps
-                if (CampList.viewAllAvailableCamps(this) == 0) return;
+                CampSorter sorter = CampSorter.createCampSorter(UserInput.sortCampMenu());
+                Collections.sort(CampList.getCampList(), sorter);
+                CampList.viewAllCamps(CampList.getCampList(), "All");
                 CampList.printCampDetails();
 				break;
 
@@ -109,7 +114,10 @@ public class Staff extends User {
             case 4: //edit camp detail
                 Scanner sc = new Scanner(System.in);
                 this.printCampsCreated();
-                if (this.getCampsCreated().size() == 0) return;
+                if (this.getCampsCreated().size() == 0){
+                    System.out.println("No Camps Created");
+                    return;
+                } 
                 int choice = 0;
                 do{
                     System.out.printf("Which Camp To Edit?");
@@ -122,13 +130,34 @@ public class Staff extends User {
                 }
                 
                 break;
-/*
-            case 5:
+
+            case 5: //delete camp
+                sc = new Scanner(System.in);
+                this.printCampsCreated();
+                if (this.getCampsCreated().size() == 0){
+                    System.out.println("No Camps Created");
+                    return;
+                } 
+                int delete = 0;
+                do{
+                    System.out.printf("Which Camp To Delete?");
+                    delete = sc.nextInt();
+                }while(delete<1 || delete>campsCreated.size());
+                for(int k=0;k<CampList.getCampList().size();k++){
+                    if (campsCreated.get(delete-1).getCampName().equals(CampList.getCampList().get(k).getCampName()) == true){
+                        if(CampList.getCampList().get(k).getStudentAttendees().size() == 0 && CampList.getCampList().get(k).getCampCom().size()==0){
+                            CampList.getCampList().remove(k);
+                        }
+                        else{
+                            System.out.println("Unable To Delete, There Are Participants Signed Up");
+                        }
+                        
+                    }
+                }
+                break;
+            case 6: //toggle visibility
                 break;
 
-            case 6:
-                break;
-*/
 
             case 7: //View Enquiry Menu For Staff
                 for (CampInfo c1 : this.getCampsCreated()){
@@ -164,4 +193,5 @@ public class Staff extends User {
     private Object CreateNewCamp() {
         return null;
     }
+
 }

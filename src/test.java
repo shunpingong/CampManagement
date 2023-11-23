@@ -14,17 +14,7 @@ public class test {
         Scanner sc = new Scanner(System.in);
 
         CampList.initCamps();
-        //System.out.println(Login.getCurrentUser().getID());
-
-        //System.out.println(SelectFaculty.chooseFaculty());
-        //StaffData.printstaff();
-        /*
-        System.out.println("Number of camps to create: ");
-        int choice = sc.nextInt();
-        for(int i=0; i<choice;i++){
-            CreateNewCamp.create();
-        }
-        */
+        User user = Login.login();
         String campName = "Orientation";
         LocalDate date2 = LocalDate.of(2023,10,10);
         Faculty userGroup = Faculty.values()[0];
@@ -45,20 +35,15 @@ public class test {
         CampList.createCamp(c3);
         //CampList.viewCamps();
         //int choice = UserInput.selectCamp();
-
+        CampList.viewAllCamps(CampList.getCampList(), "what");
 
         
-        // User user = Login.login();
-
-
-        //User user = StudentData.getStudent(0);
-        
-        User user = new CampCommittee("Teemo","AK47",Faculty.SCSE, "test@gmail.com",null);
+        //User user = new CampCommittee("Teemo","AK47",Faculty.SCSE, "test@gmail.com",null);
 
         // user = new CampCommittee(campDesc, campName, userGroup, campLoc, campDesc, 0);
         // user = StaffData.getStaff(0);
 
-    
+        /*
         int choice = 0;
         while (choice!=-1){
             choice = user.menu();
@@ -66,6 +51,6 @@ public class test {
             user.menuChoice(choice);
             // user = user.getIfCommittee(); //Convert student to committee member if required
         }
-         
+          */
     }
 }    

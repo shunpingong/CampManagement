@@ -9,7 +9,7 @@ public abstract class CampSorter implements Comparator<CampInfo>{
     protected int choice;
 
     /**
-     * Creates a person sorter object based on the criterion provided.
+     * Creates a camp sorter object based on the criterion provided.
      * @param criterion the sorting requirement provided.
      * @return a PersonSorter object which satisfies the criterion.
      */

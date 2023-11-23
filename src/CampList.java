@@ -45,6 +45,7 @@ public class CampList { //element in campList in App
 		return campList.get(index);
 	}
 
+    /*
     public static int viewAllAvailableCamps(User currentUser){
         //Same faculty
         //Visibility is ON
@@ -71,8 +72,9 @@ public class CampList { //element in campList in App
         }
         return count;
     }
-
+      */
 	public static void viewAllCamps(ArrayList<CampInfo> camps, String prefix) {
+        int count = 0;
         System.out.printf("%s Camps: %d\n",prefix,camps.size());
         System.out.println("--------------------------------------------------------------------------------------");
         System.out.println("|                                    Camp List                                       |");
@@ -84,23 +86,15 @@ public class CampList { //element in campList in App
                                 camps.get(i).getStartDate(), 
                                 camps.get(i).getEndDate(), 
                                 camps.get(i).getTotalSlots());
+            count++;
+        }
+        if (count==0){
+            System.out.println("No visible camps.");
         }
     }
 
     //For staff and committee
 	public static void printCampDetails(){ //take in int for filter
-		// System.out.println("------------------------------------------------------------------------------------");
-        // System.out.println("|                                    Camp List                                     |");
-        // System.out.println("------------------------------------------------------------------------------------");
-        // int i;
-        // for(i=0;i<CampList.getSize();i++){
-        //     System.out.printf("|%-3s|Name: %-13s|Date: %-5s to %-15s|Available Slots: %-5s|\n", 
-        //                         i+1,
-        //                         campList.get(i).getCampName(), 
-        //                         campList.get(i).getStartDate(), 
-        //                         campList.get(i).getEndDate(), 
-        //                         campList.get(i).getTotalSlots());
-        // }
 
         Scanner sc = new Scanner(System.in);
         int choice = -1;
@@ -121,7 +115,7 @@ public class CampList { //element in campList in App
         else if (choice == 2){
             return;
         }
-        // sc.close(); //will have error if uncommented
+
 	}
 
 	

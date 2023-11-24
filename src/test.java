@@ -4,6 +4,16 @@ import java.time.LocalDate;
 
 import java.util.Scanner;
 
+import src.camp_management.CampInfo;
+import src.camp_management.CampList;
+import src.login_system.Login;
+import src.user_data.Faculty;
+import src.user_data.GetStaff;
+import src.user_data.Staff;
+import src.user_data.StaffData;
+import src.user_data.StudentData;
+import src.user_data.User;
+
 
 public class test {
     public static void main(String[] args){
@@ -52,5 +62,6 @@ public class test {
             // user = user.getIfCommittee(); //Convert student to committee member if required
         }
           */
+        sc.close();
     }
 }    

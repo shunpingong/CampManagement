@@ -4,8 +4,16 @@ package src;
 // import java.util.Scanner;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
+
+import src.camp_management.CampInfo;
+import src.camp_management.CampList;
+import src.login_system.Login;
+import src.user_data.Faculty;
+import src.user_data.Staff;
+import src.user_data.StaffData;
+import src.user_data.StudentData;
+import src.user_data.User;
 
 // Class
 public class App {
@@ -132,6 +140,6 @@ public class App {
         }
 
         System.out.println("Terminating...");*/
-
+        sc.close();
     }
 }

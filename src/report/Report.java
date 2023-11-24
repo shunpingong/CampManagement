@@ -1,8 +1,9 @@
 package src.report;
 import java.util.ArrayList;
-import java.util.*;
 
-import src.CampInfo;
+import src.camp_management.CampInfo;
+
+import java.util.*;
 
 public class Report {
 	

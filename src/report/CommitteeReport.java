@@ -3,7 +3,7 @@ package src.report;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.CampInfo;
+import src.camp_management.CampInfo;
 
 public class CommitteeReport extends Report{
 	

@@ -67,12 +67,12 @@ public class CampCommittee extends Student {
             }
             super.showStudentMenu();
             if (this.getCommitteeOf() != null){
-                System.out.println("|6. View Details Of Registered Camp                                                  |");
-                System.out.println("|7. View Enquiries Menu For Committee                                                |");
+                System.out.println("|7. View Details Of Registered Camp                                                  |");
+                System.out.println("|8. View Enquiries Menu For Committee                                                |");
                 // System.out.println("|10. View All Unprocessed Enquiries Of Oversee Camp                                  |");
                 // System.out.println("|11. Reply To Unprocessed Enquiries Of Oversee Camp                                  |");
-                System.out.println("|8. View Suggestion Menu For Committee                                               |");
-                System.out.println("|9. Generate Report                                                                  |");
+                System.out.println("|9. View Suggestion Menu For Committee                                               |");
+                System.out.println("|10. Generate Report                                                                 |");
             }
                 System.out.println("|-1. LOGOUT                                                                          |");
             System.out.println("--------------------------------------------------------------------------------------");
@@ -92,25 +92,26 @@ public class CampCommittee extends Student {
             case 3:
             case 4:
             case 5:
+            case 6:
                 super.menuChoice(i);
                 break;
             
-            case 6: //View Details Of Registered Camp 
+            case 7: //View Details Of Registered Camp 
                 if (this.getCommitteeOf()!= null){
                     this.getCommitteeOf().printCamp();
                 }
                 break;
-            case 7: //View Enquiries Menu For Committee 
+            case 8: //View Enquiries Menu For Committee 
                 if (this.getCommitteeOf() != null){
                     EnquiryReply.replyMenu(this.getCommitteeOf(), this, this.getEnquiriesMade());
                 }
                 break;
-            case 8: //View Suggestion Menu For Committee
+            case 9: //View Suggestion Menu For Committee
                 if (this.getCommitteeOf() != null){
                     SuggestionMenu.menuChoice(this, suggestionsMade);
                 }
                 break;
-            case 9: //Generate Report
+            case 10: //Generate Report
                 
                 break;
 

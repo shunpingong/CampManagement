@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Password {
     
-    public static void Change(User user) {
+    public static void change(User user) {
 
         String curPassword, newPassword;
         

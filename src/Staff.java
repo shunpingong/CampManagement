@@ -81,6 +81,7 @@ public class Staff extends User {
             // System.out.println("|10. Reply Suggestions                                                               |");
             System.out.println("|9. Generate Report Of Created Camp                                                  |");
             System.out.println("|10. Generate Performance Report Of Camp Committee                                   |");
+            System.out.println("|11. Change Password                                                                 |");
             System.out.println("|-1. Logout                                                                          |");
             System.out.println("--------------------------------------------------------------------------------------");
             System.out.printf("Menu Option: ");
@@ -179,8 +180,10 @@ public class Staff extends User {
                 break;
 
             case 10: //Generate Performance Report Of Camp Committee
+                break; */
+            case 11:
+                Password.change(this);
                 break;
-*/            
             case -1:
                 // Exit Menu
                 System.out.println("Exiting Camp Menu. Goodbye!");

@@ -90,7 +90,7 @@ public class Student extends User {
 			System.out.println("--------------------------------------------------------------------------------------");
 			System.out.print("Menu Option: ");
         	choice = sc.nextInt();
-        }while(choice>9||choice<-1);
+        }while(choice>10||choice<-1);
         return choice;
 	}
 
@@ -100,6 +100,7 @@ public class Student extends User {
 		System.out.println("|3. View Registered Camps                                                            |");
 		System.out.println("|4. Withdraw From Camp                                                               |");
 		System.out.println("|5. View Enquiries Menu For Student                                                  |");
+		System.out.println("|6. Change Password                                                                  |");
 
 }
 
@@ -199,6 +200,9 @@ public class Student extends User {
 				break;
 			case 5:
 				EnquiryMenu.menuChoice(this, enquiriesMade);
+				break;
+			case 6:
+				Password.change(this);
 				break;
             case -1:
                 // Exit Menu

@@ -9,7 +9,7 @@ import src.feedback.suggestions.Suggestion;
 import src.feedback.suggestions.SuggestionMenu;;
 
 
-public class CampCommittee extends Student {
+public class CampCommittee extends Student implements EnquiryReply, SuggestionMenu {
     // Instances
     private int points;
 

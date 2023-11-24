@@ -1,3 +1,14 @@
+/**
+ * The {@code EnquiryOutput} interface provides methods for viewing and managing student enquiries.
+ * It includes functionality for printing individual enquiries, obtaining lists of required enquiries (processed or not),
+ * displaying lists of enquiries, and selecting a specific enquiry for further actions.
+ * <p>
+ * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ *
+ * @author Shun Ping
+ * @version 1.0
+ * @since 2023-11-24
+ */
 package src.feedback.enquiry;
 
 import java.util.Scanner;
@@ -8,12 +19,23 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public interface EnquiryOutput {
-    //Printing of each enquiry
+
+    /**
+     * Displays the details of a given enquiry.
+     *
+     * @param enquiry The enquiry to be viewed.
+     */
     public static void viewEnquiry(Enquiry enquiry) {
         enquiry.viewDetails();
     }
 
-    //Get list of enquiries process/ not processed
+    /**
+     * Retrieves a list of enquiries based on the processed status for a given student.
+     *
+     * @param student    The student for whom the enquiries are retrieved.
+     * @param processed  A flag indicating whether to retrieve processed or unprocessed enquiries.
+     * @return An ArrayList of enquiries based on the processed status.
+     */
     public static ArrayList<Enquiry> getRequiredEnquiries(Student student, boolean processed){
         ArrayList<Enquiry> requiredEnquiries = new ArrayList<Enquiry>();
         for (Enquiry enquiry : student.getEnquiriesMade()){
@@ -26,7 +48,11 @@ public interface EnquiryOutput {
     }
 
 
-    //Print out every single enquiries of processed/ not processed
+    /**
+     * Displays a list of enquiries with details based on the provided ArrayList.
+     *
+     * @param enquiryList The list of enquiries to be displayed.
+     */
     public static void viewRequiredEnquiries(ArrayList<Enquiry> enquiryList) {
         if(enquiryList.size()==0){
             System.out.println("No enquiries to show.\n");
@@ -45,6 +71,12 @@ public interface EnquiryOutput {
 
     }
 
+    /**
+     * Prompts the user to select an enquiry from a list for further actions.
+     *
+     * @param requiredEnquiries The list of enquiries from which the user can select.
+     * @return The selected enquiry or  null if no enquiries are available.
+     */
     public static Enquiry selectEnquiry(ArrayList<Enquiry> requiredEnquiries) {
         Scanner sc = new Scanner(System.in);
         // ArrayList<Enquiry> relevantEnquiries = requiredEnquiries;

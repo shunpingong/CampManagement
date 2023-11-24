@@ -1,3 +1,14 @@
+/**
+ * The SuggestionEditor interface provides methods for creating, editing, and managing camp suggestions.
+ * It includes functionality for creating suggestions, changing suggestion categories and values,
+ * and managing the suggestions made by camp committee members.
+ * <p>
+ * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ *
+ * @author Shun Ping
+ * @version 1.0
+ * @since 2023-11-24
+ */
 package src.feedback.suggestions;
 
 import src.camp_management.CampInfo;
@@ -10,8 +21,15 @@ import java.util.Scanner;
 
 public interface SuggestionEditor {
     Scanner sc = new Scanner (System.in);
-    static void suggestionMaker(CampInfo selectedCamp, User activeUser, ArrayList<Suggestion> suggestionList) {
 
+    /**
+     * Allows a camp committee member to create a new suggestion for the selected camp.
+     *
+     * @param selectedCamp   The camp for which the suggestion is made.
+     * @param activeUser      The camp committee member making the suggestion.
+     * @param suggestionList  The list to which the new suggestion is added.
+     */
+    static void suggestionMaker(CampInfo selectedCamp, User activeUser, ArrayList<Suggestion> suggestionList) {
         ArrayList<String> fieldNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
         "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
         if (activeUser instanceof CampCommittee) {
@@ -37,6 +55,12 @@ public interface SuggestionEditor {
         }
     }
 
+    /**
+     * Allows a camp committee member to change the category and value of a suggestion.
+     *
+     * @param suggestionList The list of suggestions containing the suggestion to be modified.
+     * @param suggestion      The suggestion to be modified.
+     */
     static void changeCategoryValue(ArrayList<Suggestion> suggestiost, Suggestion suggestion) {
         ArrayList<String> fieldNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
         "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
@@ -58,6 +82,12 @@ public interface SuggestionEditor {
         }
     }
 
+    /**
+     * Displays the edit menu for camp committee members to manage suggestions.
+     *
+     * @param commUser        The camp committee member accessing the edit menu.
+     * @param suggestionList  The list of suggestions to be managed.
+     */
     public static void editMenu(CampCommittee commUser , ArrayList<Suggestion> suggestionList ) {
         while(true) {
             Suggestion selectedSuggestion = null;
@@ -87,6 +117,12 @@ public interface SuggestionEditor {
         }
     }
 
+    /**
+     * Allows a camp committee member to edit a specific suggestion.
+     *
+     * @param suggestion      The suggestion to be edited.
+     * @param suggestionList  The list of suggestions containing the suggestion to be edited.
+     */
     public static void editSuggestion(Suggestion suggestion, ArrayList<Suggestion> SuggestionList) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Would you like to edit the 1. Description or 2. Suggestion Category/Value?");
@@ -109,6 +145,13 @@ public interface SuggestionEditor {
 
     }
 
+    /**
+     * Allows a camp committee member to delete a specific suggestion.
+     *
+     * @param commUser        The camp committee member deleting the suggestion.
+     * @param suggestion      The suggestion to be deleted.
+     * @param suggestionList  The list of suggestions containing the suggestion to be deleted.
+     */
     public static void deleteSuggestion(CampCommittee commUser ,Suggestion suggestion, ArrayList<Suggestion> SuggestionList) {
         commUser.getCommitteeOf().getSuggestionForCamp().remove(suggestion);
         SuggestionList.remove(suggestion);

@@ -8,7 +8,7 @@ import src.feedback.enquiry.Enquiry;
 import src.feedback.enquiry.EnquiryMenu;
 import src.login_system.Password;
 
-public class Student extends User {
+public class Student extends User implements EnquiryMenu{
 	private String email;
 	private ArrayList<CampInfo> availableCamps = new ArrayList<CampInfo>(); //List of Camps available to student
 	private ArrayList<CampInfo> registeredCamps = new ArrayList<CampInfo>(); //List of Camps Student Registered for

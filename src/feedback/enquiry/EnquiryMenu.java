@@ -1,3 +1,14 @@
+/**
+ * The EnquiryMenu interface provides a menu for managing student enquiries.
+ * It includes options for making new enquiries for available camps, viewing, editing, or deleting unprocessed enquiries,
+ * and viewing processed enquiries. The menu is designed for user interaction and requires implementations for each choice.
+ * <p>
+ * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ *
+ * @author Shun Ping
+ * @version 1.0
+ * @since 2023-11-24
+ */
 package src.feedback.enquiry;
 
 import java.util.ArrayList;
@@ -9,6 +20,13 @@ import src.user_data.Student;
 
 
 public interface EnquiryMenu {
+
+    /**
+     * Displays the menu for managing student enquiries and processes user choices.
+     *
+     * @param student      The student for whom the menu is displayed.
+     * @param enquiryList  The list of enquiries to be managed.
+     */
     public static void menuChoice(Student student , ArrayList<Enquiry> enquiryList) {
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -29,10 +47,8 @@ public interface EnquiryMenu {
                         System.out.print("Choose a camp to submit enquiry for (enter the number): ");
                         int chosenCampIndex = sc.nextInt();
 
-                        // Consume the newline character
                         sc.nextLine();
 
-                        // Get the camp Name
                         CampInfo chosenCamp = student.getAvailableCamps().get(chosenCampIndex-1);
 
                         EnquiryEditor.AddEnquiry(student, chosenCamp, enquiryList);

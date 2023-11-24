@@ -165,6 +165,7 @@ public class Staff extends User {
 
 
             case 7: //View Enquiry Menu For Staff
+                //Display enquiry menu for every single camps owned
                 for (CampInfo c1 : this.getCampsCreated()){
                         System.out.println("Camp "+ c1.getCampName());
                         EnquiryReply.replyMenu(c1, this, EnquiryReply.getCampEnquiries(c1));

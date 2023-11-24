@@ -27,14 +27,14 @@ public interface SuggestionProcessor {
             return;
         }
         int i = 0;
-        System.out.print("Select a Suggestion: ");
+        System.out.print("Choose a Suggestion: ");
         for (Suggestion suggestion : suggestionList) {
             i++;
             System.out.println(i+ ": " + suggestion.getDescription());
         }
         int choice = sc.nextInt();
         Suggestion activeSuggestion = suggestionList.get(choice - 1);
-        System.out.println("Changing: " + fieldNames.get(activeSuggestion.getCategory()));
+        System.out.println("Modifying: " + fieldNames.get(activeSuggestion.getCategory()));
         System.out.println("to: " + activeSuggestion.getChange());
         System.out.println("Accept? 1) Yes  2) No  3) Cancel.");
         int decision = sc.nextInt();

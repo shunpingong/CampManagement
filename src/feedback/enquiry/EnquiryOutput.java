@@ -7,7 +7,7 @@ import src.user_data.Student;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class EnquiryOutput {
+public interface EnquiryOutput {
     //Printing of each enquiry
     public static void viewEnquiry(Enquiry enquiry) {
         enquiry.viewDetails();

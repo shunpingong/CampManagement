@@ -7,7 +7,7 @@ import src.user_data.Student;
 
 import java.util.ArrayList;
 
-public class EnquiryEditor {
+public interface EnquiryEditor {
 
     public static void editMenu(Student student, ArrayList<Enquiry> enquiryList ) {
         Scanner sc = new Scanner(System.in);

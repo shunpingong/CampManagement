@@ -7,7 +7,7 @@ import src.user_data.User;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class EnquiryReply {
+public interface EnquiryReply {
 
     public static ArrayList<Enquiry> getCampEnquiries(CampInfo camp){
         ArrayList<Enquiry> notProcessedEnquiries = new ArrayList<Enquiry>();

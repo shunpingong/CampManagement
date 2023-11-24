@@ -166,6 +166,9 @@ public class Student extends User {
 								// this.committeeUser = new CampCommittee(this.getID(), this.getName(), this.getFaculty(), this.getEmail(), correctCampInfo,
 								// this.getRegisteredCamps(), this.getWithdrawnCamps(), this.getEnquiriesMade(), this.getAvailableCamps(), 0);
 								// correctCampInfo.addCampCom(committeeUser);
+								if (this instanceof CampCommittee){
+									correctCampInfo.addCampCom((CampCommittee) this);
+								}
 							}
 							else{
 								System.out.println("No more committee slots availalble");

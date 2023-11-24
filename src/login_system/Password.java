@@ -19,8 +19,13 @@ public class Password {
         }
         System.out.println("Please enter new password: ");
         newPassword = sc.nextLine();
-        while (user.getPWD().equals(newPassword)) {
-            System.out.println("You have entered the same password. Please enter new password again: ");
+        while (newPassword.equals(user.getPWD()) || newPassword.equals("password")) {
+            if (newPassword.equals(user.getPWD())) {
+                System.out.println("You have entered the same password. Please enter new password again: ");
+            }
+            else if (newPassword.equals("password")) {
+                System.out.println("You cannot use the default password. Please enter new password again: ");
+            }
             newPassword = sc.nextLine();
         }
         user.setPWD(newPassword);

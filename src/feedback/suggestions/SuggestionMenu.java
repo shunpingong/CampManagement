@@ -4,7 +4,7 @@
  * <p>
  * Implementing classes should provide concrete implementations for the methods defined in this interface.
  *
- * @author Your Name
+ * @author Shun Ping
  * @version 1.0
  * @since 2023-11-24
  */

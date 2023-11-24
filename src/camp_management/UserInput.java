@@ -25,7 +25,6 @@ public class UserInput {
             System.out.printf("Enter Day (DD): ");
             day = sc.nextInt();
         } while(day>31 || day<1);
-        sc.close();
         return LocalDate.of(year, month, day);
     }
 
@@ -40,7 +39,6 @@ public class UserInput {
             choice = sc.nextInt();
         }while (choice < 1 || choice > 2);
         System.out.println(choice);
-        sc.close();
         if (choice == 1) {
             return true;
         }
@@ -60,7 +58,6 @@ public class UserInput {
             System.out.printf("Enter Choice: ");
             choice = sc.nextInt();
         }while(choice>15 || choice <1);
-        sc.close();
         return Faculty.values()[choice-1];
     }
 
@@ -76,7 +73,6 @@ public class UserInput {
             System.out.println("5. Registration Deadline");
             choice = sc.nextInt();
         }while(choice<1 || choice>5);
-        sc.close();
         return choice;
     }
 
@@ -96,7 +92,6 @@ public class UserInput {
             System.out.println("9. Committee Slots");
             choice = sc.nextInt();
         }while(choice<1 || choice>9);
-        sc.close();
         return choice;
     }
 
@@ -109,7 +104,6 @@ public class UserInput {
             System.out.println("Which Camp To Edit?");
             choice = sc.nextInt();
         }while(choice<1 || choice>length);
-        sc.close();
         return choice;
     }
 }

@@ -113,10 +113,8 @@ public class CampList { //element in campList in App
             campList.get(choice-1).printCamp();
         }
         else if (choice == 2){
-            sc.close();
             return;
         }
-        sc.close();
 	}
 
 	

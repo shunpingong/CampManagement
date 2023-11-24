@@ -36,7 +36,6 @@ public class Login{
                     password = sc.nextLine();
                 }
                 currentUser = StaffData.getStaff(i);
-                sc.close();
                 return StaffData.getStaff(i);
             }
         }
@@ -51,11 +50,9 @@ public class Login{
                     password = sc.nextLine();
                 }
                 currentUser = StudentData.getStudent(i);
-                sc.close();
                 return StudentData.getStudent(i);
             }
         }
-        sc.close();
         return null;
     }
     

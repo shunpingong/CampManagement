@@ -27,7 +27,6 @@ public interface SuggestionMenu {
                     SuggestionEditor.editMenu((CampCommittee) commUser, suggestionList);
                     break;
                 case -1:
-                    sc.close();
                     return;
                 default:
                     System.out.println("Invalid choice.");

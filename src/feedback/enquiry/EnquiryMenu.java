@@ -48,7 +48,6 @@ public interface EnquiryMenu {
                     EnquiryOutput.viewRequiredEnquiries(EnquiryOutput.getRequiredEnquiries(student,true));
                     break;
                 case -1:
-                    sc.close();
                     return;
                 default:
                     System.out.println("Invalid choice.");

@@ -49,7 +49,6 @@ public class EnquiryOutput {
         Scanner sc = new Scanner(System.in);
         // ArrayList<Enquiry> relevantEnquiries = requiredEnquiries;
         if (requiredEnquiries.size() == 0) {
-            sc.close();
             return null;
         }
 
@@ -59,7 +58,6 @@ public class EnquiryOutput {
             if (selection < 1 || selection > requiredEnquiries.size()) {
                 System.out.println("Enquiry not found. Please select again.");
             } else {
-                sc.close();
                 return requiredEnquiries.get(selection - 1);
             }
 

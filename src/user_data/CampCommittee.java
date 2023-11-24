@@ -123,6 +123,5 @@ public class CampCommittee extends Student {
                 System.exit(0);
             break;
         }
-        sc.close();
     }
 }

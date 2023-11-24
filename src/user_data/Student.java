@@ -94,7 +94,6 @@ public class Student extends User {
 			System.out.print("Menu Option: ");
         	choice = sc.nextInt();
         }while(choice>10||choice<-1);
-		sc.close();
         return choice;
 	}
 
@@ -214,7 +213,6 @@ public class Student extends User {
                 System.exit(0);
                 break;
 		}
-		sc.close();
 
 	}
 

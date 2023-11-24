@@ -254,7 +254,6 @@ public class CampInfo {
 				}while(comSlots<1 || comSlots<this.campCom.size());
 				this.committeeSlots = comSlots;
 		}
-		sc.close();
 	}
     
 }

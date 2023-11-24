@@ -46,7 +46,6 @@ public interface SuggestionOutput{
         Scanner sc = new Scanner(System.in);
         ArrayList<Suggestion> requiredSuggestions = SuggestionOutput.getModifiableSuggestions(commUser, status);
         if (requiredSuggestions.size() == 0) {
-            sc.close();
             return null;
         }
 
@@ -56,7 +55,6 @@ public interface SuggestionOutput{
             if (selection < 1 || selection > requiredSuggestions.size()) {
                 System.out.println("Suggestion not found. Please select again.");
             } else {
-                sc.close();
                 return requiredSuggestions.get(selection - 1);
             }
 

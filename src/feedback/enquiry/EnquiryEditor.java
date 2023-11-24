@@ -17,7 +17,6 @@ public class EnquiryEditor {
             EnquiryOutput.viewRequiredEnquiries(requiredEnquiries);
             selectedEnquiry = EnquiryOutput.selectEnquiry(requiredEnquiries);
             if (selectedEnquiry == null) {
-                sc.close();
                 return;
             }
             System.out.println("1. Edit this enquiry, 2. Delete this enquiry, 3. Select a new enquiry or 4. Exit\n");
@@ -26,17 +25,14 @@ public class EnquiryEditor {
             switch (selection) {
                 case 1:
                     EnquiryEditor.editEnquiry(selectedEnquiry);
-                    sc.close();
                     return;
                 case 2:
                     EnquiryEditor.deleteEnquiry(student, selectedEnquiry, enquiryList);
-                    sc.close();
                     return;
                 case 3:
                     break;
                 case 4:
                     System.out.println("Exiting");
-                    sc.close();
                     return;
                 default:
                     break;
@@ -52,7 +48,6 @@ public class EnquiryEditor {
         enquiryList.add(newEnquiry);
         camp.addEnquiriesForCamp(newEnquiry);
         System.out.printf("Enquiry Submitted for camp: %s\n\n", camp.getCampName());
-        sc.close();
     }
 
     public static void editEnquiry(Enquiry e) {
@@ -61,7 +56,6 @@ public class EnquiryEditor {
         String newDescription = sc.nextLine();
         e.setDescription(newDescription + "\n**This enquiry has been edited**");
         System.out.println("Your enquiry has been edited\n");
-        sc.close();
     }
 
     public static void deleteEnquiry(Student student, Enquiry e, ArrayList<Enquiry> enquiryList) {

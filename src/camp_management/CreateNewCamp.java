@@ -65,7 +65,6 @@ public class CreateNewCamp {
 
         
         CampInfo campinfo = new CampInfo(campName, startdate, enddate, deadline, userGroup, campLoc, totalSlots, committeeSlots, campDesc, IC, visibility);
-        sc.close();
         return campinfo;
         
     }

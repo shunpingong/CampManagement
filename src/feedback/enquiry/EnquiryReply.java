@@ -27,7 +27,6 @@ public class EnquiryReply {
             EnquiryOutput.viewRequiredEnquiries(requiredEnquiries);
             selectedEnquiry = EnquiryOutput.selectEnquiry(requiredEnquiries);
             if (selectedEnquiry == null) {
-                sc.close();
                 return;
             }
             System.out.println("1. Reply to this enquiry, 2. Select a new enquiry or 3. Exit");
@@ -41,7 +40,6 @@ public class EnquiryReply {
                     break;
                 case 3:
                     System.out.println("Exiting");
-                    sc.close();
                     return;
                 default:
                     break;
@@ -62,7 +60,6 @@ public class EnquiryReply {
             if(replyAuthor instanceof CampCommittee){
                 ((CampCommittee) replyAuthor).addPoints(1);
             }
-            sc.close();
         }
 
     }

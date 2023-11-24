@@ -23,7 +23,6 @@ public class Password {
             System.out.println("You have entered the same password. Please enter new password again: ");
             newPassword = sc.nextLine();
         }
-        sc.close();
         user.setPWD(newPassword);
         System.out.println("Password changed successfully");
 

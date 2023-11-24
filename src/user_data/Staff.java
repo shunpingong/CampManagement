@@ -91,7 +91,6 @@ public class Staff extends User {
             System.out.printf("Menu Option: ");
             choice = sc.nextInt();
         }while(choice>12||choice<-1);
-        sc.close();
         return choice;
 	}
 

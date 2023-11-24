@@ -1,3 +1,14 @@
+/**
+ * The EnquiryEditor interface provides methods for editing and managing enquiries.
+ * It includes functionality for editing, deleting, and adding enquiries, as well as displaying menus for user interaction.
+ * <p>
+ * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ *
+ * @author Shun Ping
+ * @version 1.0
+ * @since 2023-11-24
+ */
+
 package src.feedback.enquiry;
 
 import java.util.Scanner;
@@ -8,7 +19,13 @@ import src.user_data.Student;
 import java.util.ArrayList;
 
 public interface EnquiryEditor {
-
+    
+    /**
+     * Displays the edit menu for a given student and list of enquiries.
+     *
+     * @param student       The student for whom the menu is displayed.
+     * @param enquiryList   The list of enquiries to be managed.
+     */
     public static void editMenu(Student student, ArrayList<Enquiry> enquiryList ) {
         Scanner sc = new Scanner(System.in);
         while(true) {
@@ -40,6 +57,13 @@ public interface EnquiryEditor {
         }
     }
 
+    /**
+     * Adds a new enquiry for a given student and camp.
+     *
+     * @param student       The student submitting the enquiry.
+     * @param camp          The camp related to the enquiry.
+     * @param enquiryList   The list of enquiries to which the new enquiry is added.
+     */
     public static void AddEnquiry(Student student, CampInfo camp, ArrayList<Enquiry> enquiryList){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your enquiry: ");
@@ -50,6 +74,11 @@ public interface EnquiryEditor {
         System.out.printf("Enquiry Submitted for camp: %s\n\n", camp.getCampName());
     }
 
+    /**
+     * Edits the description of a given enquiry.
+     *
+     * @param e The enquiry to be edited.
+     */
     public static void editEnquiry(Enquiry e) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter new enquiry description: ");
@@ -58,6 +87,13 @@ public interface EnquiryEditor {
         System.out.println("Your enquiry has been edited\n");
     }
 
+   /**
+     * Deletes a given enquiry from the list of enquiries.
+     *
+     * @param student       The student who submitted the enquiry.
+     * @param e             The enquiry to be deleted.
+     * @param enquiryList   The list of enquiries from which the enquiry is deleted.
+     */
     public static void deleteEnquiry(Student student, Enquiry e, ArrayList<Enquiry> enquiryList) {
         e.getCamp().getEnquiriesForCamp().remove(e);
         enquiryList.remove(e);

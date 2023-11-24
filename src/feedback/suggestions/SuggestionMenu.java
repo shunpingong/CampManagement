@@ -1,3 +1,13 @@
+/**
+ * The SuggestionMenu interface provides methods for interacting with the committee suggestions menu.
+ * It includes functionality for making new suggestions for a camp and managing pending suggestions made by camp committee members.
+ * <p>
+ * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ *
+ * @author Your Name
+ * @version 1.0
+ * @since 2023-11-24
+ */
 package src.feedback.suggestions;
 
 import java.util.ArrayList;
@@ -7,6 +17,13 @@ import src.user_data.CampCommittee;
 import src.user_data.User;
 
 public interface SuggestionMenu {
+
+    /**
+     * Displays the menu for camp committee members to interact with suggestions.
+     *
+     * @param commUser       The camp committee member accessing the suggestion menu.
+     * @param suggestionList The list of suggestions to be managed.
+     */
     public static void menuChoice(CampCommittee commUser , ArrayList<Suggestion> suggestionList) {
         Scanner sc = new Scanner(System.in);
         while (true) {

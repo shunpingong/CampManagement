@@ -1,3 +1,13 @@
+/**
+ * The EnquiryReply interface provides methods for handling replies to camp-related enquiries.
+ * It includes functionality for retrieving camp-specific enquiries, displaying reply menus, and replying to individual enquiries.
+ * <p>
+ * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ *
+ * @author Shun Ping
+ * @version 1.0
+ * @since 2023-11-24
+ */
 package src.feedback.enquiry;
 
 import src.camp_management.CampInfo;
@@ -9,6 +19,12 @@ import java.util.ArrayList;
 
 public interface EnquiryReply {
 
+    /**
+     * Retrieves a list of unprocessed enquiries for a specific camp.
+     *
+     * @param camp The camp for which enquiries are retrieved.
+     * @return An ArrayList of unprocessed enquiries for the specified camp.
+     */
     public static ArrayList<Enquiry> getCampEnquiries(CampInfo camp){
         ArrayList<Enquiry> notProcessedEnquiries = new ArrayList<Enquiry>();
         for (Enquiry enquiry : camp.getEnquiriesForCamp()){
@@ -19,6 +35,13 @@ public interface EnquiryReply {
         return notProcessedEnquiries;
     }
 
+    /**
+     * Displays a reply menu for a specific camp, current user, and list of enquiries.
+     *
+     * @param camp          The camp for which the menu is displayed.
+     * @param currentUser   The current user interacting with the menu.
+     * @param enquiryList   The list of enquiries to be managed.
+     */
     public static void replyMenu(CampInfo camp, User currentUser, ArrayList<Enquiry> enquiryList ) {
         Scanner sc = new Scanner(System.in);
         while(true) {
@@ -47,6 +70,13 @@ public interface EnquiryReply {
         }
     }
 
+    /**
+     * Allows a user to reply to a specific enquiry, marking it as processed and updating the reply content.
+     *
+     * @param enquiry       The enquiry to which the reply is made.
+     * @param replyAuthor   The user replying to the enquiry.
+     * @param enquiryList   The list of enquiries to which the updated enquiry is added.
+     */
     public static void replyTo(Enquiry enquiry, User replyAuthor, ArrayList<Enquiry> enquiryList) {
         if (enquiry.isProcessed()) {
             System.out.println("Enquiry already processed.");

@@ -12,7 +12,7 @@ import src.feedback.suggestions.SuggestionProcessor;
 import src.login_system.Password;
 import src.camp_management.sorter.CampSorter;
 
-public class Staff extends User {
+public class Staff extends User implements SuggestionProcessor, EnquiryReply {
     // Instances
 	private String email;
     private ArrayList<CampInfo> campsCreated;

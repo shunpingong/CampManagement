@@ -2,10 +2,9 @@ package src.camp_management;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import src.login_system.Login;
 import src.user_data.Faculty;
+import src.user_data.GetStaff;
 import src.user_data.Staff;
-import src.user_data.User;
 
 public class CreateNewCamp {
     public CreateNewCamp(){}; //constructor
@@ -60,11 +59,7 @@ public class CreateNewCamp {
 
 
 
-        Staff IC = null;
-        User user = Login.getCurrentUser();
-        if(user instanceof Staff){
-            IC = (Staff) user;
-        }
+        Staff IC = GetStaff.getStaff();
 
         boolean visibility = UserInput.setVisibility();
 

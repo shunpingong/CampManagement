@@ -8,7 +8,6 @@ import src.camp_management.CampInfo;
 import src.camp_management.CampList;
 import src.login_system.Login;
 import src.user_data.Faculty;
-import src.user_data.GetStaff;
 import src.user_data.Staff;
 import src.user_data.StaffData;
 import src.user_data.StudentData;
@@ -30,18 +29,21 @@ public class test {
         Faculty userGroup = Faculty.values()[0];
         String campLoc = "here";
         String campDesc = "no";
-        Staff IC = GetStaff.getStaff();
+        Staff IC = null;
+        if(user instanceof Staff){
+            IC = (Staff) user;
+        }
         boolean visibility = true; 
 
-        CampInfo c1 = new CampInfo("hall", date, date, date, Faculty.values()[1], "Here", 100, 1, "hi", GetStaff.getStaff(), true);
+        CampInfo c1 = new CampInfo("hall", date, date, date, Faculty.values()[1], "Here", 100, 1, "hi", IC, true);
         CampInfo campinfo = new CampInfo(campName, date2, date2, date2, userGroup, campLoc, 12, 3, campDesc, IC, visibility);
         CampList.createCamp(campinfo);
         CampList.createCamp(c1);
-        CampInfo c2 = new CampInfo("camp2", LocalDate.of(2023, 1, 2), LocalDate.of(2023, 2, 2), LocalDate.of(2023,1,1), Faculty.values()[1], "There", 100, 1, "hi", GetStaff.getStaff(), true);
+        CampInfo c2 = new CampInfo("camp2", LocalDate.of(2023, 1, 2), LocalDate.of(2023, 2, 2), LocalDate.of(2023,1,1), Faculty.values()[1], "There", 100, 1, "hi", IC, true);
         CampList.createCamp(c2);
-        CampInfo c4 = new CampInfo("camp4", LocalDate.of(2023, 4, 4), LocalDate.of(2023, 5, 5), LocalDate.of(2023,2,2), Faculty.values()[0], "Over here", 100, 1, "hi", GetStaff.getStaff(), true);
+        CampInfo c4 = new CampInfo("camp4", LocalDate.of(2023, 4, 4), LocalDate.of(2023, 5, 5), LocalDate.of(2023,2,2), Faculty.values()[0], "Over here", 100, 1, "hi", IC, true);
         CampList.createCamp(c4);
-        CampInfo c3 = new CampInfo("camp3", LocalDate.of(2023, 3, 3), LocalDate.of(2023, 2, 2), LocalDate.of(2023,1,10), Faculty.values()[1], "Over There", 100, 1, "hi", GetStaff.getStaff(), true);
+        CampInfo c3 = new CampInfo("camp3", LocalDate.of(2023, 3, 3), LocalDate.of(2023, 2, 2), LocalDate.of(2023,1,10), Faculty.values()[1], "Over There", 100, 1, "hi", IC, true);
         CampList.createCamp(c3);
         //CampList.viewCamps();
         //int choice = UserInput.selectCamp();

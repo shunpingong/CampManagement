@@ -9,7 +9,6 @@
  * @version 1.0
  * @since 2023-11-24
  */
-
 package src.feedback.suggestions;
 import java.util.ArrayList;
 import java.util.Comparator;

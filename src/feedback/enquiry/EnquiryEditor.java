@@ -8,7 +8,6 @@
  * @version 1.0
  * @since 2023-11-24
  */
-
 package src.feedback.enquiry;
 
 import java.util.Scanner;

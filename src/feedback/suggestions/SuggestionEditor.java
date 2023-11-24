@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public interface SuggestionEditor {
-    Scanner sc = new Scanner (System.in);
 
     /**
      * Allows a camp committee member to create a new suggestion for the selected camp.
@@ -30,6 +29,7 @@ public interface SuggestionEditor {
      * @param suggestionList  The list to which the new suggestion is added.
      */
     static void suggestionMaker(CampInfo selectedCamp, User activeUser, ArrayList<Suggestion> suggestionList) {
+        Scanner sc = new Scanner (System.in);
         ArrayList<String> fieldNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
         "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
         if (activeUser instanceof CampCommittee) {
@@ -62,6 +62,7 @@ public interface SuggestionEditor {
      * @param suggestion      The suggestion to be modified.
      */
     static void changeCategoryValue(ArrayList<Suggestion> suggestiost, Suggestion suggestion) {
+        Scanner sc = new Scanner (System.in);
         ArrayList<String> fieldNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
         "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
             System.out.println("Which category would your suggestion like to be in?");
@@ -89,6 +90,7 @@ public interface SuggestionEditor {
      * @param suggestionList  The list of suggestions to be managed.
      */
     public static void editMenu(CampCommittee commUser , ArrayList<Suggestion> suggestionList ) {
+        Scanner sc = new Scanner (System.in);
         while(true) {
             Suggestion selectedSuggestion = null;
             SuggestionOutput.viewModifiableSuggestions(commUser, SuggestionStatus.PENDING);

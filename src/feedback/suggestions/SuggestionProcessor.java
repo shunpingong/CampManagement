@@ -33,7 +33,6 @@ public interface SuggestionProcessor {
         "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
         ArrayList<CampInfo> inchargeCamps = ((Staff) activeUser).getCampsCreated();
         ArrayList<Suggestion> suggestionList = new ArrayList<Suggestion>();
-        // create a list of all suggestions
         for (CampInfo camp : inchargeCamps) {
             for (Suggestion suggestion : camp.getSuggestionForCamp()) {
                 suggestionList.add(suggestion);

@@ -47,7 +47,6 @@ public interface EnquiryOutput {
         return requiredEnquiries;
     }
 
-
     /**
      * Displays a list of enquiries with details based on the provided ArrayList.
      *

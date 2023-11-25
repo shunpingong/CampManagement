@@ -2,36 +2,47 @@ package src.user_data;
 
 import java.util.ArrayList;
 
-public class StaffData {
+import src.user_data.interfaces.IUserData;
+
+public class StaffData implements IUserData{
     // Instances
-    public static int staffCount = 0;
-    private static Staff[] staff;
+    private int staffCount;
+    private ArrayList<Staff> staffList;
+    private ExcelManager xl;
 
 
-    // Methods
-    public static void init() {
+    // Constructor
+    public StaffData() {
+        xl = new ExcelManager("data\\staff_list.xlsx");
         ArrayList<String> data = new ArrayList<String>();
-        data = ExcelReader.readExcel("data\\staff_list.xlsx");
+        data = xl.readXL();
         staffCount = data.size()-1;   // -1 because the first row in the excel file is the catergories
-        staff = new Staff[staffCount];
+        staffList = new ArrayList<>();
         for(int i=0;i<staffCount;i++){
             String[] staffInfo = data.get(i+1).split(" ");
             String userID = staffInfo[1].split("@")[0];
             String name = staffInfo[0];
             Faculty faculty = Faculty.valueOf(staffInfo[2]);
+            String password = staffInfo[3];
             String email = staffInfo[1];
+
+            Staff staff = new Staff(userID, name, faculty, email);
+            staff.setPWD(password);
             
-            staff[i] = new Staff(userID, name, faculty, email);
+            staffList.add(staff);
         }
     }
 
-    public static Staff getStaff(int ID){
-        return staff[ID];
+    // Methods
+    public User getUser(int ID){
+        return staffList.get(ID);
     }
-    /*
-    public static void printstaff(){
-        System.out.println("1. "+ staffCount);
-        System.out.println("2. "+ staff.length);
-        
-    } */
+
+    public int getCount(){
+        return this.staffCount;
+    }
+
+    public void setUser(User user){
+
+    }
 }

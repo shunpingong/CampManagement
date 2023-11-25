@@ -13,6 +13,7 @@ package src.feedback.suggestions;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import src.camp_management.CampList;
 import src.user_data.CampCommittee;
 import src.user_data.User;
 
@@ -28,7 +29,7 @@ public interface SuggestionMenu {
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.print("Committee Suggestions Menu.\n" +
-                    "1: Make a new suggestion for the camp: "+ commUser.getCommitteeOf().getCampName() + 
+                    "1: Make a new suggestion for the camp: "+ commUser.getCommitteeOf() + 
                     "\n2: View, edit or delete pending suggestion\n" +
                     "-1: Go back to main menu.\n" +
                     "Enter choice: ");
@@ -36,7 +37,7 @@ public interface SuggestionMenu {
             System.out.println("");
             switch (choice) {
                 case 1:
-                    SuggestionEditor.suggestionMaker(((CampCommittee) commUser).getCommitteeOf(), (User) commUser, suggestionList);
+                    SuggestionEditor.suggestionMaker(CampList.getCampInfo(((CampCommittee) commUser).getCommitteeOf()), (User) commUser, suggestionList);
                     break;
                 case 2:
                     SuggestionEditor.editMenu((CampCommittee) commUser, suggestionList);

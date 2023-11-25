@@ -2,30 +2,51 @@ package src.user_data;
 
 import java.util.ArrayList;
 
-public class StudentData {
+import src.user_data.interfaces.IUserData;
+
+public class StudentData implements IUserData{
     // Instances
-    public static int studentCount = 0;
-    public static CampCommittee[] students;
+    private int studentCount;
+    private ArrayList<Student> students;
+    private ExcelManager xl;
     
-    // Methods
-    public static void init() {
+    // Constructor
+    public StudentData(){
+        xl = new ExcelManager("data\\student_list.xlsx");
         ArrayList<String> data = new ArrayList<String>();
-        data = ExcelReader.readExcel("data\\student_list.xlsx");
+        data = xl.readXL();
         studentCount = data.size()-1;   // -1 because the first row in the excel file is the catergories
-        students = new CampCommittee[studentCount];
+        students = new ArrayList<>();
         for(int i=0;i<studentCount;i++){
             String[] studentInfo = data.get(i+1).split(" ");
             String userID = studentInfo[1].split("@")[0];
             String name = studentInfo[0];
+            String password = studentInfo[3];
+            String role = studentInfo[4];
             Faculty faculty = Faculty.valueOf(studentInfo[2]);
             String email = studentInfo[1];
             
-            students[i] = new CampCommittee(userID, name, faculty, email,null);
+            Student student = null;
+            if(role.equalsIgnoreCase("Student"))
+                student = new Student(userID, name, faculty, email);
+            else if(role.equals("Committee"))
+                student = new CampCommittee(userID, name, faculty, email, null);
+            student.setPWD(password);
+            students.add(student);
         }
     }
 
-    public static CampCommittee getStudent(int ID){
-        return students[ID];
+    //Methods
+    public User getUser(int ID){
+        return students.get(ID);
+    }
+
+    public int getCount(){
+        return studentCount;
+    }
+    
+    public void setUser(User user){
+        
     }
     
 }

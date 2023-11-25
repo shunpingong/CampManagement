@@ -1,6 +1,8 @@
 package src.camp_management;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 import src.user_data.Faculty;
@@ -9,23 +11,15 @@ public class UserInput {
     public UserInput(){};
     
     public static LocalDate getDate(){ //returns date in LocalDate data type
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Scanner sc = new Scanner(System.in);
-        int year=0;
+        String inputDate;
         do{
-            System.out.printf("Enter Year (YYYY): ");
-            year = sc.nextInt();
-        } while(year<2023);
-        int month = 0;
-        do{
-            System.out.printf("Enter Month (MM): ");
-            month = sc.nextInt();
-        } while(month>12 || month<1);
-        int day = 0;
-        do{
-            System.out.printf("Enter Day (DD): ");
-            day = sc.nextInt();
-        } while(day>31 || day<1);
-        return LocalDate.of(year, month, day);
+            System.out.printf("Enter Date (DD/MM/YYYY): ");
+            inputDate = sc.nextLine();
+        } while(!isValidDate(inputDate, formatter));
+
+        return LocalDate.parse(inputDate, formatter);
     }
 
     public static boolean setVisibility(){
@@ -105,5 +99,15 @@ public class UserInput {
             choice = sc.nextInt();
         }while(choice<1 || choice>length);
         return choice;
+    }
+
+    private static boolean isValidDate(String date, DateTimeFormatter formatter){
+        try{
+            LocalDate.parse(date, formatter);
+        }catch(DateTimeParseException e){
+            System.out.println("Error: Invalid Date. Please put a valid date");
+            return false;
+        }
+        return true;
     }
 }

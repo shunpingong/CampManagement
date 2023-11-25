@@ -17,6 +17,8 @@ import java.util.Scanner;
 import src.camp_management.CampInfo;
 import src.camp_management.CampList;
 import src.user_data.Student;
+import src.user_interface.CampViewerST;
+import src.user_interface.interfaces.IMenu;
 
 
 public interface EnquiryMenu {
@@ -41,7 +43,8 @@ public interface EnquiryMenu {
             System.out.println("");
             switch (choice) {
                 case 1:
-                    CampList.viewAllCamps(student.getAvailableCamps(), "Available");
+                    IMenu menu = new CampViewerST(student.getAvailableCamps(),"Available");
+                    menu.printMenu();
                     if (student.getAvailableCamps().size() !=0){
                         System.out.print("Choose a camp to submit enquiry for (enter the number): ");
                         int chosenCampIndex = sc.nextInt();

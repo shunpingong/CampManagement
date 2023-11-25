@@ -12,6 +12,7 @@
 package src.feedback.suggestions;
 
 import src.camp_management.CampInfo;
+import src.camp_management.CampList;
 import src.user_data.CampCommittee;
 import src.user_data.User;
 
@@ -155,7 +156,7 @@ public interface SuggestionEditor {
      * @param suggestionList  The list of suggestions containing the suggestion to be deleted.
      */
     public static void deleteSuggestion(CampCommittee commUser ,Suggestion suggestion, ArrayList<Suggestion> SuggestionList) {
-        commUser.getCommitteeOf().getSuggestionForCamp().remove(suggestion);
+        CampList.getCampInfo(commUser.getCommitteeOf()).getSuggestionForCamp().remove(suggestion);
         SuggestionList.remove(suggestion);
         System.out.println("Suggestion has been deleted");
         commUser.addPoints(-1);

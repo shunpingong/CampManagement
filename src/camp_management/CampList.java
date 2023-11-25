@@ -45,6 +45,14 @@ public class CampList { //element in campList in App
 		return campList.get(index);
 	}
 
+    public static CampInfo getCampInfo(String campName){
+        for(int i=0;i<campList.size();i++){
+            if(campList.get(i).getCampName() == campName)
+                return campList.get(i);
+        }
+        return null;
+    }
+
     /*
     public static int viewAllAvailableCamps(User currentUser){
         //Same faculty
@@ -73,48 +81,21 @@ public class CampList { //element in campList in App
         return count;
     }
       */
-	public static void viewAllCamps(ArrayList<CampInfo> camps, String prefix) {
-        int count = 0;
-        System.out.printf("%s Camps: %d\n",prefix,camps.size());
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("|                                    Camp List                                       |");
-        System.out.println("--------------------------------------------------------------------------------------");
-        for (int i=0;i< camps.size(); i++){
-            System.out.printf("|%-3s|Name: %-13s|Date: %-5s to %-15s|Available Slots: %-5s  |\n", 
-                                i+1,
-                                camps.get(i).getCampName(), 
-                                camps.get(i).getStartDate(), 
-                                camps.get(i).getEndDate(), 
-                                camps.get(i).getTotalSlots());
-            count++;
-        }
-        if (count==0){
-            System.out.println("No visible camps.");
-        }
-    }
 
     //For staff and committee
 	public static void printCampDetails(){ //take in int for filter
-
         Scanner sc = new Scanner(System.in);
         int choice = -1;
         do{
-            System.out.println("Options:");
-            System.out.println("1. View Camp Details");
-            System.out.println("2. Return");
-            System.out.print("Enter Choice: ");
+            System.out.printf("Which Camp To View: ");
             choice = sc.nextInt();
-        }while(choice<1 || choice>2);
-        if (choice == 1) {
-            do{
-                System.out.printf("Which Camp To View: ");
-                choice = sc.nextInt();
-            }while(choice > CampList.getSize() || choice <= 0);
-            campList.get(choice-1).printCamp();
-        }
-        else if (choice == 2){
-            return;
-        }
+        }while(choice > CampList.getSize() || choice <= 0);
+        campList.get(choice-1).printCamp();
+        do{
+            System.out.print("Press '1' to Return: ");
+            choice = sc.nextInt();
+        }while(choice != 1);
+        return;
 	}
 
 	

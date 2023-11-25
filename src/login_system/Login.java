@@ -1,11 +1,15 @@
 //i edited to add current user -yiheng
 package src.login_system;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import src.user_data.ExcelManager;
+import src.user_data.Staff;
 import src.user_data.StaffData;
 import src.user_data.StudentData;
 import src.user_data.User;
+import src.user_data.interfaces.IUserData;
 
 public class Login{
     private static User currentUser;
@@ -20,47 +24,47 @@ public class Login{
         return currentUserRole;
     } 
 
+    public static void setCurrentUser(User user){
+        currentUser = user;
+    }
+
     public static User login(){
         //log in and return Staff or Student object of the current user
-
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter UserID: ");
-        userID = sc.nextLine();
-
-        for (int i=0; i<StaffData.staffCount; i++) {
-            if (StaffData.getStaff(i).getID().equals(userID)) {
-                System.out.println("Enter password: ");
-                password = sc.nextLine();
-                while (!StaffData.getStaff(i).getPWD().equals(password)) {
-                    System.out.println("Incorrect password. Enter password: ");
-                    password = sc.nextLine();
-                }
-                currentUser = StaffData.getStaff(i);
-                if (password.equals("password")) {
-                    System.out.println("Please reset password.");
-                    Password.change(currentUser);
-                }
-                System.out.println("Login successful.");
-                return StaffData.getStaff(i);
-            }
-        }
-
+        User loginUser = null;
+        do{
+            System.out.print("Enter UserID: ");
+            userID = sc.nextLine().toUpperCase();
+            loginUser = passwordCheck(new StaffData(), sc);  
+            if(loginUser != null)
+                return loginUser;
+            loginUser = passwordCheck(new StudentData(), sc);
+        }while(loginUser == null);
         
-        for (int i=0; i<StudentData.studentCount; i++) {
-            if (StudentData.getStudent(i).getID().equals(userID)) {
-                System.out.println("Enter password: ");
+        return loginUser;
+    }
+
+    public static void logout(){
+        currentUser = null;
+    }
+
+    private static User passwordCheck(IUserData userData, Scanner sc){
+        for (int i=0; i<userData.getCount(); i++) {
+            if (userData.getUser(i).getID().equals(userID)) {
+                System.out.print("Enter password: ");
                 password = sc.nextLine();
-                while (!StudentData.getStudent(i).getPWD().equals(password)) {
-                    System.out.println("Incorrect password. Enter password: ");
+                while (!userData.getUser(i).getPWD().equals(password)) {
+                    System.out.print("Incorrect password. Enter password: ");
                     password = sc.nextLine();
                 }
-                currentUser = StudentData.getStudent(i);
+                currentUser = userData.getUser(i);
                 if (password.equals("password")) {
-                    System.out.println("Please reset password.");
+                    System.out.println("You need to reset your password.");
                     Password.change(currentUser);
                 }
+                
                 System.out.println("Login successful.");
-                return StudentData.getStudent(i);
+                return userData.getUser(i);
             }
         }
         return null;

@@ -5,14 +5,18 @@ public abstract class User {
 	private String userID;
 	private String name;
 	private String password;
+	private String email;
+	private String role;
 	private Faculty faculty;
 
 	// Constructors
-	public User(String userID, String name, Faculty faculty){
+	public User(String userID, String name, String email, Faculty faculty){
 		this.userID = userID;
 		this.name = name;
 		this.password = "password";
+		this.email = email;
 		this.faculty = faculty;
+		this.role = "";
 	}
 
 	// Accessors
@@ -28,9 +32,19 @@ public abstract class User {
 		return this.name;
 	}
 
+	public String getEmail(){
+		return this.email;
+	}
+
+	public String getRole(){
+		return this.role;
+	}
+
 	public Faculty getFaculty(){
 		return this.faculty;
 	}
+
+	
 
 	// Mutators
 	public void setID(String userID){
@@ -49,7 +63,7 @@ public abstract class User {
 		this.faculty = faculty;
 	}
 
-	public abstract int menu();
-	public abstract void menuChoice(int i); //to set who made the enquiry/suggestion and differentiate student/camp committee
-
+	public void setRole(String role){
+		this.role = role;
+	}
 }

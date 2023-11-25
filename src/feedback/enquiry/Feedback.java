@@ -33,7 +33,7 @@ public abstract class Feedback {
     private CampInfo camp; 
     
     /**
-     * Constructs a {@code Feedback} with the specified description, sender, and associated camp.
+     * Constructs a Feedback with the specified description, sender, and associated camp.
      *
      * @param text   The description of the feedback.
      * @param sender The sender of the feedback.

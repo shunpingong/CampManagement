@@ -87,7 +87,7 @@ public interface SuggestionOutput{
         while (true) {
             int selection = sc.nextInt();
             if (selection < 1 || selection > requiredSuggestions.size()) {
-                System.out.println("Suggestion not found. Please select again.");
+                System.out.println("Not Found. Please choose a valid suggestion.");
             } else {
                 return requiredSuggestions.get(selection - 1);
             }

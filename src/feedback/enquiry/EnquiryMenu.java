@@ -30,14 +30,13 @@ public interface EnquiryMenu {
     public static void menuChoice(Student student , ArrayList<Enquiry> enquiryList) {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            final String menu = "Welcome to student enquiry menu.\n" +
+            System.out.print("Enquiry menu.\n" +
                     "1: Make a new enquiry for available camps\n" +
                     "2: View, Edit or Delete enquiries that are unprocessed\n" +
                     "3: View processed enquiries.\n" +
                     "-1: Go back to main menu.\n" +
-                    "Enter choice: ";
-                    
-            System.out.print(menu);
+                    "Enter choice: ");
+
             int choice = sc.nextInt();
             System.out.println("");
             switch (choice) {

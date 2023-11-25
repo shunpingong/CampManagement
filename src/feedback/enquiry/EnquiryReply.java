@@ -62,7 +62,7 @@ public interface EnquiryReply {
                 case 2:
                     break;
                 case 3:
-                    System.out.println("Exiting");
+                    System.out.println("Exiting\n");
                     return;
                 default:
                     break;
@@ -82,7 +82,7 @@ public interface EnquiryReply {
             System.out.println("Enquiry already processed.");
         } else {
             Scanner sc = new Scanner(System.in);
-            System.out.println("Enter your reply to this: ");
+            System.out.println("Enter the reply to this enquiry: ");
             String response = sc.nextLine();
             enquiry.setReply(response);
             enquiry.setReplyAuthor(replyAuthor);

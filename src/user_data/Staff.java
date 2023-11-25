@@ -95,7 +95,6 @@ public class Staff extends User implements SuggestionProcessor, EnquiryReply {
 	}
 
     @Override
-    //public void menuChoice(int i)
 	public void menuChoice(int i){
 		switch(i)
         {
@@ -111,43 +110,54 @@ public class Staff extends User implements SuggestionProcessor, EnquiryReply {
                 break;
 
             case 3: //create new camp
-                CampInfo camp = CreateNewCamp.create();
-                CampList.createCamp(camp);
-                this.campsCreated.add(camp);
+                Scanner sc = new Scanner(System.in);
+                System.out.println("1. Confirm choice. 2. Exit camp creation.");
+                System.out.print("Choice: ");
+                int choice = sc.nextInt();
+                if (choice == 1){
+                    CampInfo camp = CreateNewCamp.create();
+                    CampList.createCamp(camp);
+                    this.campsCreated.add(camp);
+                }
+                else if (choice == 2) return;
+                else System.out.println("Invalid choice");
                 break;
 
             case 4: //edit camp detail
-                Scanner sc = new Scanner(System.in);
-                this.printCampsCreated();
+                sc = new Scanner(System.in);
                 if (this.getCampsCreated().size() == 0){
                     System.out.println("No Camps Created");
                     return;
-                } 
-                int choice = 0;
+                }
+                this.printCampsCreated(); 
+                choice = 0;
                 do{
-                    System.out.printf("Which Camp To Edit?");
+                    System.out.printf("Which Camp To Edit? (Enter index, 0 to exit) ");
                     choice = sc.nextInt();
-                }while(choice<1 || choice>campsCreated.size());
-                for(int k=0;k<CampList.getCampList().size();k++){
-                    if (campsCreated.get(choice-1).getCampName().equals(CampList.getCampList().get(k).getCampName()) == true){
-                        CampList.getCampList().get(k).editCampInfo();
+                }while(choice<0 || choice>campsCreated.size());
+                if (choice ==0) return;
+                else{
+                    for(int k=0;k<CampList.getCampList().size();k++){
+                        if (campsCreated.get(choice-1).getCampName().equals(CampList.getCampList().get(k).getCampName()) == true){
+                            CampList.getCampList().get(k).editCampInfo();
+                        }
                     }
                 }
-                
                 break;
 
             case 5: //delete camp
                 sc = new Scanner(System.in);
-                this.printCampsCreated();
                 if (this.getCampsCreated().size() == 0){
                     System.out.println("No Camps Created");
                     return;
                 } 
+                this.printCampsCreated();
                 int delete = 0;
                 do{
-                    System.out.printf("Which Camp To Delete?");
+                    System.out.printf("Which Camp To Edit? (Enter index, 0 to exit) ");
                     delete = sc.nextInt();
-                }while(delete<1 || delete>campsCreated.size());
+                }while(delete<0 || delete>campsCreated.size());
+                if (delete ==0) return;
                 for(int k=0;k<CampList.getCampList().size();k++){
                     if (campsCreated.get(delete-1).getCampName().equals(CampList.getCampList().get(k).getCampName()) == true){
                         if(CampList.getCampList().get(k).getStudentAttendees().size() == 0 && CampList.getCampList().get(k).getCampCom().size()==0){
@@ -166,6 +176,10 @@ public class Staff extends User implements SuggestionProcessor, EnquiryReply {
 
             case 7: //View Enquiry Menu For Staff
                 //Display enquiry menu for every single camps owned
+                if (this.getCampsCreated().size() == 0){
+                    System.out.println("No Camps Created");
+                    return;
+                } 
                 for (CampInfo c1 : this.getCampsCreated()){
                         System.out.println("Camp "+ c1.getCampName());
                         EnquiryReply.replyMenu(c1, this, EnquiryReply.getCampEnquiries(c1));

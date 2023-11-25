@@ -29,41 +29,42 @@ public interface SuggestionProcessor {
      */
     public static void processMenu(ArrayList<CampInfo> campList, User activeUser){
         Scanner sc = new Scanner(System.in);
-        ArrayList<String> fieldNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
+        ArrayList<String> categoryNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
         "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
-        ArrayList<CampInfo> inchargeCamps = ((Staff) activeUser).getCampsCreated();
-        ArrayList<Suggestion> suggestionList = new ArrayList<Suggestion>();
-        for (CampInfo camp : inchargeCamps) {
+        ArrayList<CampInfo> requiredCamps = ((Staff) activeUser).getCampsCreated();
+        ArrayList<Suggestion> requiredSuggestionList = new ArrayList<Suggestion>();
+        for (CampInfo camp : requiredCamps) {
             for (Suggestion suggestion : camp.getSuggestionForCamp()) {
-                suggestionList.add(suggestion);
+                requiredSuggestionList.add(suggestion);
             }
         }
-        if (suggestionList.size() ==0){
-            System.out.println("No suggestions");
+        if (requiredSuggestionList.size() ==0){
+            System.out.println("No suggestions to show.");
             return;
         }
         int i = 0;
         System.out.print("Choose a Suggestion: ");
-        for (Suggestion suggestion : suggestionList) {
+        for (Suggestion suggestion : requiredSuggestionList) {
             i++;
             System.out.println(i+ ": " + suggestion.getDescription());
         }
         int choice = sc.nextInt();
-        Suggestion activeSuggestion = suggestionList.get(choice - 1);
-        System.out.println("Modifying: " + fieldNames.get(activeSuggestion.getCategory()));
-        System.out.println("to: " + activeSuggestion.getChange());
+        Suggestion requiredSuggestion = requiredSuggestionList.get(choice - 1);
+        System.out.println("Modifying: " + categoryNames.get(requiredSuggestion.getCategory()));
+        System.out.println("to: " + requiredSuggestion.getChange());
         System.out.println("Accept? 1) Yes  2) No  3) Cancel.");
-        int decision = sc.nextInt();
-        if (decision == 1){
+        System.out.print("Enter choice: ");
+        choice = sc.nextInt();
+        if (choice == 1){
             System.out.println("Suggestion accepted");
-            activeSuggestion.accept();
+            requiredSuggestion.accept();
         }
-        else if(decision == 2){
+        else if(choice == 2){
             System.out.println("Suggestion rejected");
-            activeSuggestion.reject();
+            requiredSuggestion.reject();
         }
         else{
-            System.out.println("Suggestion status did not change.");
+            System.out.println("Suggestion pending.");
             }
 
     }

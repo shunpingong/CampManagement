@@ -80,7 +80,6 @@ public class CampCommittee extends Student implements EnquiryReply, SuggestionMe
 			System.out.print("Menu Option: ");
             choice = sc.nextInt();
         }while(choice>16||choice<-1);
-        sc.close();
         return choice;
 	}
 

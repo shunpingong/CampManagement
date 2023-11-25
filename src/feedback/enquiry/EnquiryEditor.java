@@ -35,7 +35,8 @@ public interface EnquiryEditor {
             if (selectedEnquiry == null) {
                 return;
             }
-            System.out.println("1. Edit this enquiry, 2. Delete this enquiry, 3. Select a new enquiry or 4. Exit\n");
+            System.out.print("1. Edit this enquiry\n2. Delete this enquiry\n3. Select a new enquiry\n4. Exit\n");
+            System.out.print("Enter Choice: ");
             int selection = sc.nextInt();
             String newLine = sc.nextLine();
             switch (selection) {
@@ -82,8 +83,8 @@ public interface EnquiryEditor {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter new enquiry description: ");
         String newDescription = sc.nextLine();
-        e.setDescription(newDescription + "\n**This enquiry has been edited**");
-        System.out.println("Your enquiry has been edited\n");
+        e.setDescription(newDescription + "\n**Enquiry has been edited**");
+        System.out.println("Enquiry has been edited\n");
     }
 
    /**
@@ -96,6 +97,6 @@ public interface EnquiryEditor {
     public static void deleteEnquiry(Student student, Enquiry e, ArrayList<Enquiry> enquiryList) {
         e.getCamp().getEnquiriesForCamp().remove(e);
         enquiryList.remove(e);
-        System.out.println("Your enquiry has been deleted\n");
+        System.out.println("Enquiry has been deleted\n");
     }
 }

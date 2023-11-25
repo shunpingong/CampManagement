@@ -104,7 +104,6 @@ public class Student extends User implements EnquiryMenu{
 		System.out.println("|4. Withdraw From Camp                                                               |");
 		System.out.println("|5. View Enquiries Menu For Student                                                  |");
 		System.out.println("|6. Change Password                                                                  |");
-
 }
 
 	public ArrayList<CampInfo> generateAvailableCamps(){

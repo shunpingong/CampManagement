@@ -30,24 +30,18 @@ public interface SuggestionEditor {
      */
     static void suggestionMaker(CampInfo selectedCamp, User activeUser, ArrayList<Suggestion> suggestionList) {
         Scanner sc = new Scanner (System.in);
-        ArrayList<String> fieldNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
+        ArrayList<String> categoryNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
         "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
         if (activeUser instanceof CampCommittee) {
-            System.out.println("Please enter a short description of your suggestion");
+            System.out.println("Please enter a short description of the suggestion");
             String suggestionDesc = sc.nextLine();
-            System.out.println("Which category would your suggestion like to be in?");
-            System.out.println("[1] Camp Name");
-            System.out.println("[2] Camp Description");
-            System.out.println("[3] Camp Location");
-            System.out.println("[4] Camp Total Slots");
-            System.out.println("[5] Camp Committee Slots");
-            System.out.println("[6] Faculty opened to");
+            showSuggestionMenu();
             int choice = sc.nextInt();
             String newline = sc.nextLine();
             if (choice >= 1 && choice <= 6) {
-                System.out.println("Please enter the new " + fieldNames.get(choice - 1));
+                System.out.println("Please enter the new " + categoryNames.get(choice - 1));
                 String change = sc.nextLine();
-                System.out.println("Your suggestion has been posted!");
+                System.out.println("Suggestion is uploaded!");
                 suggestionList.add((new Suggestion(suggestionDesc, (CampCommittee) activeUser, selectedCamp,
                 change, choice, SuggestionStatus.PENDING)));
             }
@@ -63,25 +57,29 @@ public interface SuggestionEditor {
      */
     static void changeCategoryValue(ArrayList<Suggestion> suggestiost, Suggestion suggestion) {
         Scanner sc = new Scanner (System.in);
-        ArrayList<String> fieldNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
+        ArrayList<String> categoryNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
         "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
-            System.out.println("Which category would your suggestion like to be in?");
-            System.out.println("[1] Camp Name");
-            System.out.println("[2] Camp Description");
-            System.out.println("[3] Camp Location");
-            System.out.println("[4] Camp Total Slots");
-            System.out.println("[5] Camp Committee Slots");
-            System.out.println("[6] Faculty opened to");
+        showSuggestionMenu();
         int choice = sc.nextInt();
         String newline = sc.nextLine();
         if (choice >= 1 && choice <= 6) {
-            System.out.println("Please enter the new " + fieldNames.get(choice - 1));
+            System.out.println("Please enter the new " + categoryNames.get(choice - 1));
             String change = sc.nextLine();
-            System.out.println("Your suggestion has been edited!");
+            System.out.println("Suggestion has been modified");
             suggestion.setCategory(choice);
             suggestion.setChange(change);
         }
     }
+
+	 static void showSuggestionMenu() {
+        System.out.println("Which category would your suggestion like to be in?");
+        System.out.println("[1] Camp Name");
+        System.out.println("[2] Camp Description");
+        System.out.println("[3] Camp Location");
+        System.out.println("[4] Camp Total Slots");
+        System.out.println("[5] Camp Committee Slots");
+        System.out.println("[6] Faculty opened to");
+}
 
     /**
      * Displays the edit menu for camp committee members to manage suggestions.
@@ -98,7 +96,8 @@ public interface SuggestionEditor {
             if (selectedSuggestion == null) {
                 return;
             }
-            System.out.println("1. Edit this Suggestion, 2. Delete this Suggestion, 3. Select a new Suggestion or 4. Exit");
+            System.out.print("1. Edit this Suggestion\n2. Delete this Suggestion\n3. Select a new Suggestion\n4. Exit");
+            System.out.print("Enter Choice: ");
             int selection = sc.nextInt();
             String newLine = sc.nextLine();
             switch (selection) {
@@ -127,22 +126,23 @@ public interface SuggestionEditor {
      */
     public static void editSuggestion(Suggestion suggestion, ArrayList<Suggestion> SuggestionList) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Would you like to edit the 1. Description or 2. Suggestion Category/Value?");
+        System.out.println("Edit the 1. Description or 2. Suggestion Category/Value?");
+        System.out.print("Enter Choice: ");
         int selection = sc.nextInt();
         String newline = sc.nextLine();
         sc.close();
         if(selection == 1){
-            System.out.println("Enter new description for your suggestion: ");
-            String newDescription = sc.nextLine() + "\n**This suggestion has been edited**";
+            System.out.println("Enter the new description for suggestion: ");
+            String newDescription = sc.nextLine() + "\n**Suggestion has been modified**";
             suggestion.setDescription(newDescription);
-            System.out.println("Your suggestion has been edited.\n");
+            System.out.println("Suggestion has been modified.\n");
 
         }
         else if(selection == 2 ){
             SuggestionEditor.changeCategoryValue(SuggestionList,suggestion);
         }
         else{
-            System.out.println("Unrecognised response, aborting...");
+            System.out.println("Wrong selection.");
         }
 
     }
@@ -157,7 +157,7 @@ public interface SuggestionEditor {
     public static void deleteSuggestion(CampCommittee commUser ,Suggestion suggestion, ArrayList<Suggestion> SuggestionList) {
         commUser.getCommitteeOf().getSuggestionForCamp().remove(suggestion);
         SuggestionList.remove(suggestion);
-        System.out.println("Your Suggestion has been deleted");
+        System.out.println("Suggestion has been deleted");
         commUser.addPoints(-1);
     }
 

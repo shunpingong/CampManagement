@@ -29,8 +29,9 @@ public class StudentData implements IUserData{
             Student student = null;
             if(role.equalsIgnoreCase("Student"))
                 student = new Student(userID, name, faculty, email);
-            else if(role.equals("Committee"))
-                student = new CampCommittee(userID, name, faculty, email, null);
+            else if(role.equalsIgnoreCase("Committee"))
+                student = new CampCommittee(userID, name, faculty, email, studentInfo[5]);
+                
             student.setPWD(password);
             students.add(student);
         }

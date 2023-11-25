@@ -23,10 +23,7 @@ public class CampViewerST implements ICampViewer{
     public void printMenu() {
         printMenuTitle();
         printCampType();
-        if(camps.size() > 0){
-            printMenuOptions();
-        }
-        selectOptions();
+        printMenuOptions();
     }
 
     @Override
@@ -50,14 +47,6 @@ public class CampViewerST implements ICampViewer{
 
     @Override
     public void selectOptions() {
-        switch(choice){
-            case 1:
-                break;
-            case 2:
-                break;
-            case -1:
-                break;
-        }
     }
 
     @Override

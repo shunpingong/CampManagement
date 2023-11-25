@@ -31,12 +31,12 @@ public class LoginMenu implements IMenu{
         Scanner sc = new Scanner(System.in);
         System.out.println("--------------------------------------------------------------------------------------");
         System.out.println("|1. Login to the system                                                              |");
-        System.out.println("|-1. Quit                                                                            |");
+        System.out.println("|2. Quit                                                                            |");
         System.out.println("--------------------------------------------------------------------------------------");
         do{		
 			System.out.print("Menu Option: ");
         	choice = sc.nextInt();
-        }while(choice > 1 || choice < -1 || choice == 0);
+        }while(!(choice == 1 || choice == 2));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class LoginMenu implements IMenu{
 			case 1: //view all camps
                 Login.login();
 				break;
-            case -1:
+            case 2:
                 // Exit Menu
                 System.out.println("Exiting Login Menu. Goodbye!");
                 System.exit(0);

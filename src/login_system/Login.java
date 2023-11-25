@@ -36,6 +36,11 @@ public class Login{
                     password = sc.nextLine();
                 }
                 currentUser = StaffData.getStaff(i);
+                if (password.equals("password")) {
+                    System.out.println("Please reset password.");
+                    Password.change(currentUser);
+                }
+                System.out.println("Login successful.");
                 return StaffData.getStaff(i);
             }
         }
@@ -50,6 +55,11 @@ public class Login{
                     password = sc.nextLine();
                 }
                 currentUser = StudentData.getStudent(i);
+                if (password.equals("password")) {
+                    System.out.println("Please reset password.");
+                    Password.change(currentUser);
+                }
+                System.out.println("Login successful.");
                 return StudentData.getStudent(i);
             }
         }

@@ -8,7 +8,7 @@ import src.camp_management.CampInfo;
  * <p>
  * This class is part of the camp management module in the application.
  *
- * @author Cai yong
+ * @author Yi heng
  * @version 1.0
  * @since 2023-11-26
  */

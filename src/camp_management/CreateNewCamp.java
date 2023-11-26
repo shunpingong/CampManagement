@@ -40,7 +40,7 @@ public class CreateNewCamp {
 
         System.out.println("Please Enter Camp Start Date");
         LocalDate startdate = UserInput.getDate(); //start date
-        while(startdate.isBefore(LocalDate.now())){
+        while(!startdate.isAfter(LocalDate.now())){
             System.out.println("Error: Please Input Start Date After Today's Date: " + LocalDate.now());
             startdate = UserInput.getDate();
         }

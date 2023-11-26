@@ -80,70 +80,92 @@ public class StudentMenu implements IUserMenu{
 				menu = new CampViewerST(this.student.getAvailableCamps(), "Available");
 				menu.printMenu();
 				System.out.println("--------------------------------------------------------------------------------------");
-				System.out.println("|1. Register for Camps                                                               |");
-				System.out.println("|2. Return                                                                           |");
+				System.out.println("|1. View Camp Details                                                                           |");
+				System.out.println("|2. Register for Camps                                                               |");
+				System.out.println("|3. Return                                                                           |");
 				System.out.println("--------------------------------------------------------------------------------------");
 				do{
 					System.out.printf("Menu Option: ");
 					choice = sc.nextInt();
-				}while(!(choice == 1 || choice == 2));
-				if(choice == 2)
-					break;
-				System.out.print("Choose a camp to sign up for (enter the number): ");
-				chosenCampIndex = sc.nextInt();
-				if (this.student.getWithdrawnCamps().contains(this.student.getAvailableCamps().get(chosenCampIndex-1)) ||
-				this.student.getRegisteredCamps().contains(this.student.getAvailableCamps().get(chosenCampIndex-1))) {
-					System.out.println("Cannot register. "+ this.student.getName() + " has already registered/withdrawn from this camp: " + this.student.getAvailableCamps().get(chosenCampIndex-1).getCampName());
-					do{
-						System.out.print("Press '1' to Confirm: ");
-						choice = sc.nextInt();
-					}while(choice != 1);
-				}
-				else{
-					System.out.println("1. Sign up as member");
-					System.out.println("2. Sign up as committee");
-					System.out.print("Enter your choice:");
-					int signup = sc.nextInt();
-
-					// Find the correct CampInfo
-					CampInfo correctCampInfo = this.student.getAvailableCamps().get(chosenCampIndex-1);
-
-					if (signup ==1){
-						// Adjust the student attendees for that camp
-						correctCampInfo.addStudentAttendees(this.student);
-						this.student.addRegisteredCamp(this.student.getAvailableCamps().get(chosenCampIndex-1));
-						StudentData.setUser(this.student);
-					}
-
-					if (signup == 2){
-						//if user is already a committee for a camp -> cannot register as committee
-						if (this.student.getRole().equalsIgnoreCase("Committee")) {
-							System.out.println("You are already a committee member for the camp: " + (correctCampInfo.getCampName()));
+				}while((choice <1 || choice >3));
+				switch(choice){
+					case 1:
+						int availableCampSize = this.student.getAvailableCamps().size();
+						int campChosen = 0;
+						do{
+							System.out.printf("Which Camp To View Detail? ");
+							campChosen = sc.nextInt();
+						}while (campChosen<0||campChosen>availableCampSize);
+						
+						
+						for(int k=0; k<CampList.getSize();k++){
+							if(this.student.getAvailableCamps().get(campChosen-1) == CampList.getCampInfo(k)){
+								CampList.getCampInfo(k).printCamp();
+							}
+						}
+						break;
+					case 2:
+						System.out.print("Choose a camp to sign up for (enter the number): ");
+						chosenCampIndex = sc.nextInt();
+						if (this.student.getWithdrawnCamps().contains(this.student.getAvailableCamps().get(chosenCampIndex-1)) ||
+						this.student.getRegisteredCamps().contains(this.student.getAvailableCamps().get(chosenCampIndex-1))) {
+							System.out.println("Cannot register. "+ this.student.getName() + " has already registered/withdrawn from this camp: " + this.student.getAvailableCamps().get(chosenCampIndex-1).getCampName());
 							do{
 								System.out.print("Press '1' to Confirm: ");
 								choice = sc.nextInt();
 							}while(choice != 1);
-							break;
-						}
-						else if(correctCampInfo.getCommitteeSlots()>0){
-							CampCommittee comm = new CampCommittee(student.getID(), student.getName(), student.getFaculty(), student.getEmail(), correctCampInfo);
-							comm.addRegisteredCamp(correctCampInfo);
-							comm.setCommitteeOf(correctCampInfo);
-							correctCampInfo.addCampCom(comm);
-							CampList.setCampInfo(correctCampInfo);
-							StudentData.setUser(comm);
-							Login.setCurrentUser(comm);
 						}
 						else{
-							System.out.println("No more committee slots availalble");
-							do{
-								System.out.print("Press '1' to Confirm: ");
-								choice = sc.nextInt();
-							}while(choice != 1);
-							break;
+							System.out.println("1. Sign up as member");
+							System.out.println("2. Sign up as committee");
+							System.out.print("Enter your choice:");
+							int signup = sc.nextInt();
+
+							// Find the correct CampInfo
+							CampInfo correctCampInfo = this.student.getAvailableCamps().get(chosenCampIndex-1);
+
+							if (signup ==1){
+								// Adjust the student attendees for that camp
+								correctCampInfo.addStudentAttendees(this.student);
+								this.student.addRegisteredCamp(this.student.getAvailableCamps().get(chosenCampIndex-1));
+								StudentData.setUser(this.student);
+							}
+
+							if (signup == 2){
+								//if user is already a committee for a camp -> cannot register as committee
+								if (this.student.getRole().equalsIgnoreCase("Committee")) {
+									System.out.println("You are already a committee member for the camp: " + (correctCampInfo.getCampName()));
+									do{
+										System.out.print("Press '1' to Confirm: ");
+										choice = sc.nextInt();
+									}while(choice != 1);
+									break;
+								}
+								else if(correctCampInfo.getCommitteeSlots()>0){
+									CampCommittee comm = new CampCommittee(student.getID(), student.getName(), student.getFaculty(), student.getEmail(), correctCampInfo);
+									comm.addRegisteredCamp(correctCampInfo);
+									comm.setCommitteeOf(correctCampInfo);
+									correctCampInfo.addCampCom(comm);
+									CampList.setCampInfo(correctCampInfo);
+									StudentData.setUser(comm);
+									Login.setCurrentUser(comm);
+								}
+								else{
+									System.out.println("No more committee slots availalble");
+									do{
+										System.out.print("Press '1' to Confirm: ");
+										choice = sc.nextInt();
+									}while(choice != 1);
+									break;
+								}
+							}
 						}
-					}
-				}	
+						break;
+					
+					case 3:
+						break;
+				}
+					
 				break;
 
 			case 2:

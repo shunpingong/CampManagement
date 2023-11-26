@@ -5,9 +5,9 @@ import src.user_data.Student;
 import src.user_data.User;
 
 /**
- * The Enquiry class represents an enquiry regarding a camp. It extends the Feedback class
- * and includes additional attributes specific to enquiries, such as whether the enquiry has been processed, who replied
- * to the enquiry, and the reply content.
+ * The Enquiry class represents an enquiry regarding a camp.
+ * It extends the {@code Feedback} class and includes additional attributes specific to enquiries
+ * such as whether the enquiry has been processed, who replied to the enquiry, and the reply content.
  * <p>
  * An instance of this class can be created with the necessary information, and various methods are provided to interact
  * with and retrieve details about the enquiry.

@@ -13,17 +13,35 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import src.user_data.interfaces.IExcelManager;
 
-
+/**
+ * The {@code ExcelManager} class provides an implementation of the {@code IExcelManager}
+ * interface for managing Excel-related operations.
+ *
+ * @author Kenneth
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class ExcelManager implements IExcelManager{
-    //Instances
+
+    /**
+     * The directory or path to the Excel file.
+     */
     private String dir;
 
-    // Constructor
+    /**
+     * Constructs an {@code ExcelManager} instance with the specified Excel file path.
+     *
+     * @param dir The path to the Excel file.
+     */
     public ExcelManager(String dir){
         this.dir = dir;
     }
 
-    // Methods
+    /**
+     * Reads the content from the Excel file and returns it as a list of strings.
+     *
+     * @return An ArrayList<String> containing the content read from the Excel file.
+     */
     public ArrayList<String> readXL(){
         ArrayList<String> content = new ArrayList<String>();
         try{
@@ -70,6 +88,11 @@ public class ExcelManager implements IExcelManager{
         return content;
     }
 
+    /**
+     * Updates the Excel file with the provided user data.
+     *
+     * @param userData An ArrayList<String> containing user data to be updated in the Excel file.
+     */
     public void updateXL(ArrayList<String> userData){
         try{
             File file = new File(dir);

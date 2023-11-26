@@ -10,9 +10,9 @@ import src.camp_management.CampInfo;
  * <p>
  * This class is part of the camp management module in the application.
  *
+ * @author Cai yong
  * @version 1.0
  * @since 2023-11-26
- * @author Cai Yong
  */
 public class CampRegDeadlineSorter extends CampSorter{
 

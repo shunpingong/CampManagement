@@ -9,7 +9,7 @@ import src.user_data.CampCommittee;
 
 /**
  * The {@code Suggestion} class represents a feedback object specifically for suggestions made by the camp committee.
- * It extends the Feedback class and includes additional properties such as the suggested change, category,
+ * It extends the {@code Feedback} class and includes additional properties such as the suggested change, category,
  * and status of the suggestion.
  * <p>
  * This class is part of the feedback and suggestion module in the application.

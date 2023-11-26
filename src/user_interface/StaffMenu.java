@@ -14,10 +14,12 @@ import src.user_data.StaffData;
 import src.user_interface.interfaces.IMenu;
 import src.user_interface.interfaces.IUserMenu;
 
+
 /**
- * The {@code StaffMenu} class implements the {@link IUserMenu} interface
- * It provides options for users to login to the system or quit.
- *
+ * The {@code StaffMenu} class represents a menu for staff members.
+ * It implements the {@link IUserMenu} interface, providing
+ * functionality for managing staff-related actions and operations.
+ * 
  * @author Kenneth
  * @version 1.0
  * @since 2023-11-26

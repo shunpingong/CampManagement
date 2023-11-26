@@ -40,6 +40,11 @@ public interface SuggestionProcessor {
         }
         if (requiredSuggestionList.size() ==0){
             System.out.println("No suggestions to show.");
+            int confirm = 0;
+            do{
+                System.out.print("Press '1' to Confirm: ");
+                confirm = sc.nextInt();
+            }while(confirm != 1);
             return;
         }
         int i = 0;
@@ -65,7 +70,11 @@ public interface SuggestionProcessor {
         }
         else{
             System.out.println("Suggestion pending.");
-            }
-
+        }
+        int confirm = 0;
+        do{
+            System.out.print("Press '1' to Confirm: ");
+            confirm = sc.nextInt();
+        }while(confirm != 1);
     }
 }

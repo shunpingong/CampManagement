@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import src.camp_management.CampInfo;
-import src.camp_management.CampList;
 import src.user_data.Student;
 import src.user_interface.CampViewerST;
 import src.user_interface.interfaces.IMenu;
@@ -57,6 +56,12 @@ public interface EnquiryMenu {
                     }
                     else{
                         System.out.println("No available camps to submit enquiry");
+                        int confirm = 0;
+                        do{
+                            System.out.print("Press '1' to Confirm: ");
+                            confirm = sc.nextInt();
+                        }while(confirm != 1);
+                        break;
                     }
                     break;
                 case 2:

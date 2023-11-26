@@ -54,7 +54,13 @@ public interface EnquiryOutput {
      */
     public static void viewRequiredEnquiries(ArrayList<Enquiry> enquiryList) {
         if(enquiryList.size()==0){
-            System.out.println("No enquiries to show.\n");
+            Scanner sc = new Scanner(System.in);
+            System.out.println("No enquiries were processed yet.\n");
+            int confirm = 0;
+            do{
+                System.out.print("Press '1' to Confirm: ");
+                confirm = sc.nextInt();
+            }while(confirm != 1);
             return;
         }
         else{

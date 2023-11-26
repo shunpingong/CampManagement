@@ -78,18 +78,30 @@ public interface EnquiryReply {
      * @param enquiryList   The list of enquiries to which the updated enquiry is added.
      */
     public static void replyTo(Enquiry enquiry, User replyAuthor, ArrayList<Enquiry> enquiryList) {
+        Scanner sc = new Scanner(System.in);
         if (enquiry.isProcessed()) {
             System.out.println("Enquiry already processed.");
+            int confirm = 0;
+            do{
+                System.out.print("Press '1' to Confirm: ");
+                confirm = sc.nextInt();
+            }while(confirm != 1);
         } else {
-            Scanner sc = new Scanner(System.in);
             System.out.println("Enter the reply to this enquiry: ");
             String response = sc.nextLine();
             enquiry.setReply(response);
             enquiry.setReplyAuthor(replyAuthor);
             enquiry.markProcessed();
+            System.out.println("Enquiry replied.");
             if(replyAuthor instanceof CampCommittee){
                 ((CampCommittee) replyAuthor).addPoints(1);
+                System.out.println("You earned 1 point!");
             }
+            int confirm = 0;
+            do{
+                System.out.print("Press '1' to Confirm: ");
+                confirm = sc.nextInt();
+            }while(confirm != 1);
         }
 
     }

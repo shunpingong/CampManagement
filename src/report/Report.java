@@ -13,7 +13,7 @@ public class Report {
 	protected String fileName;
 	private List<String[]> data = new ArrayList<String[]>();
 	
-	Report(CampInfo camp, String fileName){
+	public Report(CampInfo camp, String fileName){
 		this.camp = camp;
 		this.fileName = fileName;
 		setData();

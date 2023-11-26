@@ -3,8 +3,12 @@ package src.login_system;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import src.user_data.CampCommittee;
 import src.user_data.ExcelManager;
 import src.user_data.Staff;
+import src.user_data.StaffData;
+import src.user_data.Student;
+import src.user_data.StudentData;
 import src.user_data.User;
 
 public class Password {
@@ -39,13 +43,19 @@ public class Password {
         updateData.add(user.getPWD());
         updateData.add(user.getRole());
         ExcelManager xl = null;
-        if(user instanceof Staff)
+        if(user instanceof Staff){
             xl = new ExcelManager("data\\staff_list.xlsx");
-        else
+            StaffData.setUser((Staff)user);
+        }
+        else{
             xl = new ExcelManager("data\\student_list.xlsx");
+            if(user instanceof CampCommittee)
+                StudentData.setUser((CampCommittee)user);
+            else
+                StudentData.setUser((Student)user);
+        }
         xl.updateXL(updateData);
         System.out.println("Password changed successfully");
-
     }
 
 }

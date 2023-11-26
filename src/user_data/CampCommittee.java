@@ -12,12 +12,12 @@ import src.feedback.suggestions.SuggestionMenu;;
 public class CampCommittee extends Student implements EnquiryReply, SuggestionMenu {
     // Instances
     private int points;
-    private String committeeOf; //Camp the student is a committee of
+    private CampInfo committeeOf; //Camp the student is a committee of
 	private ArrayList<Suggestion> suggestionsMade  = new ArrayList<Suggestion>(); //List of Suggestions Camp Committee made
 
     // Constructors
     //ADD CONSTRUCTORS
-    public CampCommittee(String userId, String name, Faculty faculty, String email, String committeeOf){
+    public CampCommittee(String userId, String name, Faculty faculty, String email, CampInfo committeeOf){
         super(userId, name, faculty, email);
         super.setRole("Committee");
         this.suggestionsMade = new ArrayList<Suggestion>();
@@ -33,7 +33,7 @@ public class CampCommittee extends Student implements EnquiryReply, SuggestionMe
 		return this.suggestionsMade;
     }
 
-    public String getCommitteeOf(){
+    public CampInfo getCommitteeOf(){
 		return this.committeeOf;
 	}
 
@@ -48,7 +48,7 @@ public class CampCommittee extends Student implements EnquiryReply, SuggestionMe
   
     }
 
-    public void setCommitteeOf(String camp){
+    public void setCommitteeOf(CampInfo camp){
 		this.committeeOf = camp;
 	}
 

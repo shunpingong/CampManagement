@@ -19,7 +19,7 @@ public class GenerateReport {
 	private String fileName;
 	
 	public void exportCSV() {
-		String location = "E:\\CampManagement\\reports\\" + fileName + ".csv";
+		String location = "reports\\" + fileName + ".csv";
 		File file = new File(location);
 		try {
 			FileWriter outputfile = new FileWriter(file);

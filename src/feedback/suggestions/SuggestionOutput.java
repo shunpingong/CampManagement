@@ -54,7 +54,13 @@ public interface SuggestionOutput{
     public static void viewModifiableSuggestions(CampCommittee commUser, SuggestionStatus status) {
         ArrayList<Suggestion> suggestionList = SuggestionOutput.getModifiableSuggestions(commUser,status);
         if(suggestionList.size()==0){
+            Scanner sc = new Scanner(System.in);
             System.out.println("No suggestions to show.\n");
+            int confirm = 0;
+            do{
+                System.out.print("Press '1' to Confirm: ");
+                confirm = sc.nextInt();
+            }while(confirm != 1);
             return;
         }
         else{
@@ -88,6 +94,11 @@ public interface SuggestionOutput{
             int selection = sc.nextInt();
             if (selection < 1 || selection > requiredSuggestions.size()) {
                 System.out.println("Not Found. Please choose a valid suggestion.");
+                int confirm = 0;
+                do{
+                    System.out.print("Press '1' to Confirm: ");
+                    confirm = sc.nextInt();
+                }while(confirm != 1);
             } else {
                 return requiredSuggestions.get(selection - 1);
             }

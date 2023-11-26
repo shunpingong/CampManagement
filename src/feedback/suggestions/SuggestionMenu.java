@@ -37,7 +37,7 @@ public interface SuggestionMenu {
             System.out.println("");
             switch (choice) {
                 case 1:
-                    SuggestionEditor.suggestionMaker(CampList.getCampInfo(((CampCommittee) commUser).getCommitteeOf()), (User) commUser, suggestionList);
+                    SuggestionEditor.suggestionMaker(CampList.getCampInfo(((CampCommittee) commUser).getCommitteeOf().getCampName()), (User) commUser, suggestionList);
                     break;
                 case 2:
                     SuggestionEditor.editMenu((CampCommittee) commUser, suggestionList);

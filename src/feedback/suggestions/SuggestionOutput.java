@@ -55,7 +55,7 @@ public interface SuggestionOutput{
         ArrayList<Suggestion> suggestionList = SuggestionOutput.getModifiableSuggestions(commUser,status);
         if(suggestionList.size()==0){
             Scanner sc = new Scanner(System.in);
-            System.out.println("No suggestions to show.\n");
+            System.out.println("No suggestions to show");
             int confirm = 0;
             do{
                 System.out.print("Press '1' to Confirm: ");

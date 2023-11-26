@@ -52,7 +52,7 @@ public interface EnquiryReply {
             if (selectedEnquiry == null) {
                 return;
             }
-            System.out.println("1. Reply to this enquiry, 2. Select a new enquiry or 3. Exit");
+            System.out.println("1. Reply to this enquiry\n2. Select a new enquiry\n3. Exit");
             int selection = sc.nextInt();
             String newLine = sc.nextLine();
             switch (selection) {

@@ -48,7 +48,7 @@ public interface SuggestionProcessor {
             return;
         }
         int i = 0;
-        System.out.print("Choose a Suggestion: ");
+        System.out.print("Choose a Suggestion: \n");
         for (Suggestion suggestion : requiredSuggestionList) {
             i++;
             System.out.println(i+ ": " + suggestion.getDescription());

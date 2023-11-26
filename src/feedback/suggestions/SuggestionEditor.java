@@ -43,7 +43,7 @@ public interface SuggestionEditor {
                 System.out.println("Please enter the new " + categoryNames.get(choice - 1));
                 String change = sc.nextLine();
                 suggestionList.add((new Suggestion(suggestionDesc, (CampCommittee) activeUser, selectedCamp,
-                change, choice-1, SuggestionStatus.PENDING)));
+                change, choice, SuggestionStatus.PENDING)));
                 System.out.println("Suggestion is uploaded!");
                 int confirm = 0;
                 do{
@@ -90,6 +90,7 @@ public interface SuggestionEditor {
         System.out.println("[4] Camp Total Slots");
         System.out.println("[5] Camp Committee Slots");
         System.out.println("[6] Faculty opened to");
+        System.out.print("Enter choice: ");
 }
 
     /**
@@ -119,6 +120,7 @@ public interface SuggestionEditor {
                     SuggestionEditor.deleteSuggestion(commUser, selectedSuggestion, suggestionList);
                     return;
                 case 3:
+                    System.out.println("");
                     break;
                 case 4:
                     System.out.println("Exiting");
@@ -141,12 +143,11 @@ public interface SuggestionEditor {
         System.out.print("Enter Choice: ");
         int selection = sc.nextInt();
         String newline = sc.nextLine();
-        sc.close();
         if(selection == 1){
             System.out.println("Enter the new description for suggestion: ");
             String newDescription = sc.nextLine() + "\n**Suggestion has been modified**";
             suggestion.setDescription(newDescription);
-            System.out.println("Suggestion has been modified.\n");
+            System.out.println("Suggestion has been modified");
             int confirm = 0;
             do{
                 System.out.print("Press '1' to Confirm: ");

@@ -28,8 +28,8 @@ public interface SuggestionMenu {
     public static void menuChoice(CampCommittee commUser , ArrayList<Suggestion> suggestionList) {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.out.print("Committee Suggestions Menu.\n" +
-                    "1: Make a new suggestion for the camp: "+ commUser.getCommitteeOf() + 
+            System.out.print("\nCommittee Suggestions Menu.\n" +
+                    "1: Make a new suggestion for the camp: "+ commUser.getCommitteeOf().getCampName() + 
                     "\n2: View, edit or delete pending suggestion\n" +
                     "-1: Go back to main menu.\n" +
                     "Enter choice: ");

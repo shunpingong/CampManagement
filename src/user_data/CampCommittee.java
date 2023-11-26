@@ -44,7 +44,7 @@ public class CampCommittee extends Student implements EnquiryReply, SuggestionMe
 
     public void addPoints(int point){
         this.points += point;
-        System.out.println(point + " point for student: " + this.getName() + "\n");
+        System.out.println(point + " point for student: " + this.getName());
   
     }
 

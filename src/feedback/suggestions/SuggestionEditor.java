@@ -61,7 +61,7 @@ public class SuggestionEditor {
      * @param suggestionList The list of suggestions containing the suggestion to be modified.
      * @param suggestion      The suggestion to be modified.
      */
-    public static void changeCategoryValue(ArrayList<Suggestion> suggestiost, Suggestion suggestion) {
+    public static void changeCategoryValue(ArrayList<Suggestion> suggestionList, Suggestion suggestion) {
         Scanner sc = new Scanner (System.in);
         ArrayList<String> categoryNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
         "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));

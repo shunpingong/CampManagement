@@ -2,22 +2,52 @@ package src.user_data;
 
 import java.util.ArrayList;
 
-
+/**
+ * The {@code StaffData} class provides methods to manage staff user data.
+ *
+ * @author Kenneth
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class StaffData {
-    // Instances
+
+    /**
+     * The count of staff members in the system.
+     */
     private static int staffCount = 0;
+
+    /**
+     * The list of staff members.
+     */
     private static ArrayList<Staff> staffList = new ArrayList<>();;
+
+    /**
+     * The Excel manager for reading staff data from a file.
+     */
     private static ExcelManager xl;
 
-    // Methods
+    /**
+     * Gets a staff member based on their ID.
+     *
+     * @param ID The ID of the staff member.
+     * @return The staff member with the specified ID.
+     */
     public static Staff getUser(int ID){
         return staffList.get(ID);
     }
 
+    /**
+     * Gets the count of staff members in the system.
+     *
+     * @return The count of staff members.
+     */
     public static int getCount(){
         return staffCount;
     }
 
+    /**
+     * Initializes the staff data by reading from an Excel file.
+     */
     public static void init() {
         xl = new ExcelManager("data\\staff_list.xlsx");
         ArrayList<String> data = new ArrayList<String>();
@@ -38,6 +68,11 @@ public class StaffData {
         }
     }
 
+    /**
+     * Sets the information of a staff member in the system.
+     *
+     * @param user The staff member with updated information.
+     */
     public static void setUser(Staff user) {
         for(int i=0;i<staffList.size();i++){
             Staff currentStaff = staffList.get(i);

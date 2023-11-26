@@ -220,8 +220,8 @@ public class CommitteeMenu extends StudentMenu {
                 CampList.getCampInfo(this.committee.getCommitteeOf().getCampName()).printCamp();
                 break;
             case 6: //View Enquiries Menu For Committee 
-                EnquiryReply.replyMenu(CampList.getCampInfo(this.committee.getCommitteeOf().getCampName()), this.committee, this.committee.getEnquiriesMade());
-                break;
+				EnquiryReply.replyMenu(CampList.getCampInfo(this.committee.getCommitteeOf().getCampName()), this.committee,EnquiryReply.getCampEnquiries(CampList.getCampInfo(this.committee.getCommitteeOf().getCampName())));
+				break;
             case 7: //View Suggestion Menu For Committee
                 SuggestionMenu.menuChoice(this.committee, this.committee.getSuggestionsMade());
                 break;

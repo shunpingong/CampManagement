@@ -1,9 +1,8 @@
 /**
- * The SuggestionProcessor interface provides methods for processing suggestions made by camp committee members.
- * It includes functionality for displaying a list of suggestions, selecting a suggestion for processing, and modifying
- * the status of the selected suggestion (accept, reject, or cancel).
+ * The {@code SuggestionProcessor} class provides methods for processing and managing suggestions made by camp committee members.
+ * It allows staff members to view and modify suggestions related to the camps they created, accepting or rejecting proposed changes.
  * <p>
- * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ * This class is part of the feedback and suggestion module in the application.
  *
  * @author Shun Ping
  * @version 1.0
@@ -22,10 +21,11 @@ import java.util.Scanner;
 public class SuggestionProcessor {
 
     /**
-     * Displays the menu for processing suggestions made for camps in charge.
+     * Displays a menu for processing suggestions related to camps created by the active staff member.
+     * The user can choose a suggestion, view the proposed change, and decide to accept, reject, or cancel the modification.
      *
-     * @param campList    The list of camps for which the user is in charge.
-     * @param activeUser  The user processing the suggestions.
+     * @param campList   The list of camps available in the application.
+     * @param activeUser The staff member processing the suggestions.
      */
     public static void processMenu(ArrayList<CampInfo> campList, User activeUser){
         Scanner sc = new Scanner(System.in);

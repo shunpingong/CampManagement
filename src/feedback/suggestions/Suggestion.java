@@ -1,10 +1,9 @@
 /**
- * The Suggestion class represents a suggestion made by a camp committee member
- * to modify certain details of a camp. It extends the Feedback class and includes
- * specific attributes such as the category of the suggestion, the proposed change, and its status.
+ * The {@code Suggestion} class represents a feedback object specifically for suggestions made by the camp committee.
+ * It extends the Feedback class and includes additional properties such as the suggested change, category,
+ * and status of the suggestion.
  * <p>
- * An instance of this class can be created with the necessary information, and various methods
- * are provided to interact with and retrieve details about the suggestion.
+ * This class is part of the feedback and suggestion module in the application.
  *
  * @author Shun Ping
  * @version 1.0
@@ -44,14 +43,14 @@ public class Suggestion extends Feedback{
     private SuggestionStatus status;
 
     /**
-     * Constructs a Suggestion with the specified description, sender, camp,
-     * change, category, and status. The suggestion is associated with the camp.
-     * Points are added to the sender based on the status.
+     * Constructs a new Suggestion object with the specified description, sender, camp, change, category, and status.
+     * The suggestion is added to the associated camp's list of suggestions, and points are awarded to the sender
+     * based on the status.
      *
-     * @param description The description of the suggestion.
+     * @param description The textual description of the suggestion.
      * @param sender      The camp committee member who made the suggestion.
      * @param camp        The camp associated with the suggestion.
-     * @param change      The proposed change for the camp detail.
+     * @param change      The suggested change.
      * @param category    The category of the suggestion.
      * @param status      The status of the suggestion.
      */

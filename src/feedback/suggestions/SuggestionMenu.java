@@ -1,8 +1,9 @@
 /**
- * The SuggestionMenu interface provides methods for interacting with the committee suggestions menu.
- * It includes functionality for making new suggestions for a camp and managing pending suggestions made by camp committee members.
+ * The {@code SuggestionMenu} class provides a menu for camp committee members to interact with suggestions.
+ * It allows committee members to create new suggestions for their assigned camp, as well as view, edit, or delete
+ * pending suggestions.
  * <p>
- * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ * This class is part of the feedback and suggestion module in the application.
  *
  * @author Shun Ping
  * @version 1.0
@@ -19,10 +20,11 @@ import src.user_data.User;
 
 public class SuggestionMenu {
 
-    /**
-     * Displays the menu for camp committee members to interact with suggestions.
+     /**
+     * Displays a menu for camp committee members to make new suggestions for their assigned camp, view, edit, or delete
+     * pending suggestions, or return to the main menu.
      *
-     * @param commUser       The camp committee member accessing the suggestion menu.
+     * @param commUser       The camp committee member interacting with the menu.
      * @param suggestionList The list of suggestions to be managed.
      */
     public static void menuChoice(CampCommittee commUser , ArrayList<Suggestion> suggestionList) {

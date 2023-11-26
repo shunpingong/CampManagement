@@ -1,9 +1,9 @@
 /**
- * The {@code EnquiryOutput} interface provides methods for viewing and managing student enquiries.
- * It includes functionality for printing individual enquiries, obtaining lists of required enquiries (processed or not),
- * displaying lists of enquiries, and selecting a specific enquiry for further actions.
+ * The {@code EnquiryOutput} class provides methods for viewing and managing enquiries made by a specific student.
+ * It includes functionalities such as viewing individual enquiries, obtaining a list of required enquiries based on
+ * their processing status, and displaying relevant enquiries in a sorted manner.
  * <p>
- * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ * This class is part of the feedback and enquiry module in the application.
  *
  * @author Shun Ping
  * @version 1.0
@@ -21,7 +21,7 @@ import java.util.Comparator;
 public class EnquiryOutput {
 
     /**
-     * Displays the details of a given enquiry.
+     * Displays the details of a specific enquiry.
      *
      * @param enquiry The enquiry to be viewed.
      */
@@ -30,11 +30,11 @@ public class EnquiryOutput {
     }
 
     /**
-     * Retrieves a list of enquiries based on the processed status for a given student.
+     * Retrieves a list of enquiries made by a specific student based on their processing status.
      *
-     * @param student    The student for whom the enquiries are retrieved.
-     * @param processed  A flag indicating whether to retrieve processed or unprocessed enquiries.
-     * @return An ArrayList of enquiries based on the processed status.
+     * @param student   The student associated with the enquiries.
+     * @param processed A boolean indicating whether to retrieve processed or unprocessed enquiries.
+     * @return An ArrayList of enquiries based on the specified processing status.
      */
     public static ArrayList<Enquiry> getRequiredEnquiries(Student student, boolean processed){
         ArrayList<Enquiry> requiredEnquiries = new ArrayList<Enquiry>();
@@ -48,7 +48,8 @@ public class EnquiryOutput {
     }
 
     /**
-     * Displays a list of enquiries with details based on the provided ArrayList.
+     * Displays a list of relevant enquiries in a sorted manner. If the list is empty, prompts the user
+     * and awaits confirmation to continue.
      *
      * @param enquiryList The list of enquiries to be displayed.
      */

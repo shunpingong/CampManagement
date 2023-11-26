@@ -1,8 +1,9 @@
 /**
- * The EnquiryEditor interface provides methods for editing and managing enquiries.
- * It includes functionality for editing, deleting, and adding enquiries, as well as displaying menus for user interaction.
+ * The {@code EnquiryEditor} class provides methods for editing and managing
+ * enquiries related to camp information for a specific student.
  * <p>
- * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ * This class includes functionalities such as editing, deleting, and adding
+ * enquiries. It is part of the feedback and enquiry module in the application.
  *
  * @author Shun Ping
  * @version 1.0
@@ -20,9 +21,10 @@ import java.util.ArrayList;
 public class EnquiryEditor {
     
     /**
-     * Displays the edit menu for a given student and list of enquiries.
+     * Displays the edit menu for a selected enquiry, allowing the user to edit,
+     * delete, or select a new enquiry.
      *
-     * @param student       The student for whom the menu is displayed.
+     * @param student       The student associated with the enquiries.
      * @param enquiryList   The list of enquiries to be managed.
      */
     public static void editMenu(Student student, ArrayList<Enquiry> enquiryList ) {
@@ -59,11 +61,11 @@ public class EnquiryEditor {
     }
 
     /**
-     * Adds a new enquiry for a given student and camp.
+     * Adds a new enquiry for a specific student and camp.
      *
      * @param student       The student submitting the enquiry.
-     * @param camp          The camp related to the enquiry.
-     * @param enquiryList   The list of enquiries to which the new enquiry is added.
+     * @param camp          The camp associated with the enquiry.
+     * @param enquiryList   The list of enquiries to which the new enquiry will be added.
      */
     public static void addEnquiry(Student student, CampInfo camp, ArrayList<Enquiry> enquiryList){
         Scanner sc = new Scanner(System.in);
@@ -98,12 +100,12 @@ public class EnquiryEditor {
         }while(confirm != 1);
     }
 
-   /**
-     * Deletes a given enquiry from the list of enquiries.
+    /**
+     * Deletes a specified enquiry for a given student.
      *
-     * @param student       The student who submitted the enquiry.
+     * @param student       The student associated with the enquiry.
      * @param e             The enquiry to be deleted.
-     * @param enquiryList   The list of enquiries from which the enquiry is deleted.
+     * @param enquiryList   The list of enquiries from which the enquiry will be removed.
      */
     public static void deleteEnquiry(Student student, Enquiry e, ArrayList<Enquiry> enquiryList) {
         Scanner sc = new Scanner(System.in);

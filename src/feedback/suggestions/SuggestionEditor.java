@@ -1,9 +1,8 @@
 /**
- * The SuggestionEditor interface provides methods for creating, editing, and managing camp suggestions.
- * It includes functionality for creating suggestions, changing suggestion categories and values,
- * and managing the suggestions made by camp committee members.
+ * The {@code SuggestionEditor} class provides methods for managing and editing suggestions made by the camp committee.
+ * It includes functionalities such as creating new suggestions, editing existing suggestions, and deleting suggestions.
  * <p>
- * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ * This class is part of the feedback and suggestion module in the application.
  *
  * @author Shun Ping
  * @version 1.0
@@ -23,11 +22,13 @@ import java.util.Scanner;
 public class SuggestionEditor {
 
     /**
-     * Allows a camp committee member to create a new suggestion for the selected camp.
+     * Allows a camp committee member to create a new suggestion for a selected camp. The user provides a short
+     * description of the suggestion and selects a category for the suggested change. The suggestion is then added to
+     * the list of suggestions for the camp.
      *
-     * @param selectedCamp   The camp for which the suggestion is made.
-     * @param activeUser      The camp committee member making the suggestion.
-     * @param suggestionList  The list to which the new suggestion is added.
+     * @param selectedCamp   The camp for which the suggestion is being made.
+     * @param activeUser     The camp committee member making the suggestion.
+     * @param suggestionList The list of suggestions to which the new suggestion is added.
      */
     public static void suggestionMaker(CampInfo selectedCamp, User activeUser, ArrayList<Suggestion> suggestionList) {
         Scanner sc = new Scanner (System.in);
@@ -56,7 +57,8 @@ public class SuggestionEditor {
     }
 
     /**
-     * Allows a camp committee member to change the category and value of a suggestion.
+     * Allows the user to change the category and value of a suggestion. The user selects a new category for the
+     * suggested change, enters the new value, and the suggestion is updated accordingly.
      *
      * @param suggestionList The list of suggestions containing the suggestion to be modified.
      * @param suggestion      The suggestion to be modified.
@@ -82,6 +84,9 @@ public class SuggestionEditor {
         }
     }
 
+    /**
+     * Displays the menu of available suggestion categories for the user to choose from.
+     */
 	 public static void showSuggestionEditorMenu() {
         System.out.println("Which category would your suggestion like to be in?");
         System.out.println("[1] Camp Name");
@@ -94,10 +99,11 @@ public class SuggestionEditor {
 }
 
     /**
-     * Displays the edit menu for camp committee members to manage suggestions.
+     * Displays the menu for editing suggestions for a camp committee member. The user can choose to edit the selected
+     * suggestion, delete it, select a new suggestion, or exit the menu.
      *
-     * @param commUser        The camp committee member accessing the edit menu.
-     * @param suggestionList  The list of suggestions to be managed.
+     * @param commUser       The camp committee member performing the edit.
+     * @param suggestionList The list of suggestions to be managed.
      */
     public static void editMenu(CampCommittee commUser , ArrayList<Suggestion> suggestionList ) {
         Scanner sc = new Scanner (System.in);
@@ -132,10 +138,11 @@ public class SuggestionEditor {
     }
 
     /**
-     * Allows a camp committee member to edit a specific suggestion.
+     * Edits a suggestion based on the user's choice. The user can choose to edit the description or the suggestion
+     * category/value.
      *
-     * @param suggestion      The suggestion to be edited.
-     * @param suggestionList  The list of suggestions containing the suggestion to be edited.
+     * @param suggestion    The suggestion to be edited.
+     * @param suggestionList The list of suggestions containing the suggestion to be edited.
      */
     public static void editSuggestion(Suggestion suggestion, ArrayList<Suggestion> SuggestionList) {
         Scanner sc = new Scanner(System.in);
@@ -169,11 +176,12 @@ public class SuggestionEditor {
     }
 
     /**
-     * Allows a camp committee member to delete a specific suggestion.
+     * Deletes a suggestion. The user is prompted to confirm the deletion, and if confirmed, the suggestion is removed
+     * from the list of suggestions, and the user's points are decreased.
      *
-     * @param commUser        The camp committee member deleting the suggestion.
-     * @param suggestion      The suggestion to be deleted.
-     * @param suggestionList  The list of suggestions containing the suggestion to be deleted.
+     * @param commUser       The camp committee member performing the deletion.
+     * @param suggestion     The suggestion to be deleted.
+     * @param suggestionList The list of suggestions containing the suggestion to be deleted.
      */
     public static void deleteSuggestion(CampCommittee commUser ,Suggestion suggestion, ArrayList<Suggestion> SuggestionList) {
         Scanner sc = new Scanner(System.in);

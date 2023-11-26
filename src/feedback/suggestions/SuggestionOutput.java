@@ -1,9 +1,9 @@
 /**
- * The SuggestionOutput interface provides methods for viewing and selecting modifiable suggestions
- * made by camp committee members. It includes functionality for displaying suggestions, obtaining a list
- * of modifiable suggestions based on their status, and selecting a specific suggestion for further action.
+ * The {@code SuggestionOutput} class provides methods for displaying and selecting modifiable suggestions for camp committee members.
+ * It includes functionalities such as viewing suggestions, getting modifiable suggestions based on status, and selecting a suggestion
+ * for further actions.
  * <p>
- * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ * This class is part of the feedback and suggestion module in the application.
  *
  * @author Shun Ping
  * @version 1.0
@@ -29,11 +29,11 @@ public class SuggestionOutput{
     }
 
     /**
-     * Retrieves a list of modifiable suggestions based on their status.
+     * Gets a list of modifiable suggestions for a camp committee member based on the specified status.
      *
      * @param commUser The camp committee member for whom suggestions are retrieved.
      * @param status   The status of the suggestions to be retrieved.
-     * @return An ArrayList of modifiable suggestions.
+     * @return An {@code ArrayList} of modifiable suggestions.
      */
     public static ArrayList<Suggestion> getModifiableSuggestions(CampCommittee commUser, SuggestionStatus status){
         ArrayList<Suggestion> requiredSuggestions = new ArrayList<Suggestion>();
@@ -45,8 +45,9 @@ public class SuggestionOutput{
         return  requiredSuggestions;
     }
 
-    /**
-     * Displays all modifiable suggestions made by a camp committee member.
+   /**
+     * Displays modifiable suggestions for a camp committee member based on the specified status.
+     * If no suggestions are available, prompts the user to confirm.
      *
      * @param commUser The camp committee member for whom suggestions are displayed.
      * @param status   The status of the suggestions to be displayed.
@@ -76,11 +77,12 @@ public class SuggestionOutput{
     }
 
     /**
-     * Allows the camp committee member to select a modifiable suggestion for further action.
+     * Selects a modifiable suggestion for further actions. The user is prompted to enter the number of the
+     * suggestion to view the edit menu.
      *
      * @param commUser The camp committee member making the selection.
-     * @param status   The status of the suggestions to be considered for selection.
-     * @return The selected suggestion or null if no suggestion is selected.
+     * @param status   The status of the suggestions from which to select.
+     * @return The selected suggestion.
      */
     public static Suggestion selectSuggestion(CampCommittee commUser, SuggestionStatus status) {
         Scanner sc = new Scanner(System.in);

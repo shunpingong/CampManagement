@@ -1,9 +1,9 @@
 /**
- * The EnquiryMenu interface provides a menu for managing student enquiries.
- * It includes options for making new enquiries for available camps, viewing, editing, or deleting unprocessed enquiries,
- * and viewing processed enquiries. The menu is designed for user interaction and requires implementations for each choice.
+ * The {@code EnquiryMenu} class provides a menu for managing enquiries related to camp information
+ * for a specific student. It allows the user to make new enquiries, view, edit, or delete unprocessed enquiries,
+ * and view processed enquiries.
  * <p>
- * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ * This class is part of the feedback and enquiry module in the application.
  *
  * @author Shun Ping
  * @version 1.0
@@ -23,10 +23,11 @@ import src.user_interface.interfaces.IMenu;
 public class EnquiryMenu {
 
     /**
-     * Displays the menu for managing student enquiries and processes user choices.
+     * Displays the main menu for managing enquiries. The user can choose to make a new enquiry for available camps,
+     * view, edit, or delete unprocessed enquiries, view processed enquiries, or go back to the main menu.
      *
-     * @param student      The student for whom the menu is displayed.
-     * @param enquiryList  The list of enquiries to be managed.
+     * @param student       The student associated with the enquiries.
+     * @param enquiryList   The list of enquiries to be managed.
      */
     public static void menuChoice(Student student , ArrayList<Enquiry> enquiryList) {
         Scanner sc = new Scanner(System.in);

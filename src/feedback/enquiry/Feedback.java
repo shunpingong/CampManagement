@@ -1,11 +1,10 @@
 /**
- * The Feedback abstract class represents a generic feedback entity associated with a camp.
- * It includes attributes such as description, sender (student or committee member), and a reference to the associated camp.
+ * The {@code Feedback} class is an abstract base class for feedback-related objects, such as enquiries and replies.
+ * It encapsulates common properties and behaviors for feedback instances, including the description, sender information,
+ * and associated camp details.
  * <p>
- * Subclasses are expected to provide concrete implementations for abstract methods, such as updating the description
- * and viewing details of the feedback.
- * Extended by concrete feedback types like Enquiry, Suggestion etc.
- *
+ * This class is part of the feedback and enquiry module in the application.
+ * 
  * @author Shun Ping
  * @version 1.0
  * @since 2023-11-24
@@ -33,10 +32,10 @@ public abstract class Feedback {
     private CampInfo camp; 
     
     /**
-     * Constructs a Feedback with the specified description, sender, and associated camp.
+     * Constructs a new Feedback object with the specified text, sender, and camp.
      *
-     * @param text   The description of the feedback.
-     * @param sender The sender of the feedback.
+     * @param text   The textual description of the feedback.
+     * @param sender The student who submitted the feedback.
      * @param camp   The camp associated with the feedback.
      */
     public Feedback(String text, Student sender, CampInfo camp) {
@@ -45,7 +44,7 @@ public abstract class Feedback {
         this.camp = camp;
     }
 
-    /**
+   /**
      * Gets the description of the feedback.
      *
      * @return The description of the feedback.

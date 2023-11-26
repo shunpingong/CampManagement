@@ -1,8 +1,6 @@
 /**
- * The SuggestionStatus enum represents the possible statuses of a suggestion.
- * It includes the following states: PENDING, REJECTED, and ACCEPTED.
- * <p>
- * Implementing classes can use this enum to indicate the status of a suggestion.
+ * The {@code SuggestionStatus} enum represents the possible statuses of a suggestion.
+ * It includes three states: PENDING, REJECTED, and ACCEPTED.
  *
  * @author Shun Ping
  * @version 1.0

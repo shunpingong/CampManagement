@@ -1,8 +1,9 @@
 /**
- * The EnquiryReply interface provides methods for handling replies to camp-related enquiries.
- * It includes functionality for retrieving camp-specific enquiries, displaying reply menus, and replying to individual enquiries.
+ * The {@code EnquiryReply} class provides methods for managing replies to enquiries related to a specific camp.
+ * It includes functionalities such as retrieving unprocessed enquiries for a camp, displaying a menu for replying to
+ * enquiries, and handling the process of replying to an enquiry.
  * <p>
- * Implementing classes should provide concrete implementations for the methods defined in this interface.
+ * This class is part of the feedback and enquiry module in the application.
  *
  * @author Shun Ping
  * @version 1.0
@@ -22,7 +23,7 @@ public class EnquiryReply {
     /**
      * Retrieves a list of unprocessed enquiries for a specific camp.
      *
-     * @param camp The camp for which enquiries are retrieved.
+     * @param camp The camp for which enquiries are to be retrieved.
      * @return An ArrayList of unprocessed enquiries for the specified camp.
      */
     public static ArrayList<Enquiry> getCampEnquiries(CampInfo camp){
@@ -36,11 +37,12 @@ public class EnquiryReply {
     }
 
     /**
-     * Displays a reply menu for a specific camp, current user, and list of enquiries.
+     * Displays a menu for replying to enquiries for a specific camp. Allows the user to select an enquiry,
+     * reply to it, and exit the menu.
      *
-     * @param camp          The camp for which the menu is displayed.
-     * @param currentUser   The current user interacting with the menu.
-     * @param enquiryList   The list of enquiries to be managed.
+     * @param camp          The camp for which enquiries are being managed.
+     * @param currentUser   The user initiating the replies.
+     * @param enquiryList   The list of enquiries related to the camp.
      */
     public static void replyMenu(CampInfo camp, User currentUser, ArrayList<Enquiry> enquiryList ) {
         Scanner sc = new Scanner(System.in);
@@ -71,11 +73,12 @@ public class EnquiryReply {
     }
 
     /**
-     * Allows a user to reply to a specific enquiry, marking it as processed and updating the reply content.
+     * Handles the process of replying to a specific enquiry. If the enquiry is already processed, a message is displayed.
+     * Otherwise, the user is prompted to enter a reply, and the necessary updates are made to the enquiry.
      *
-     * @param enquiry       The enquiry to which the reply is made.
-     * @param replyAuthor   The user replying to the enquiry.
-     * @param enquiryList   The list of enquiries to which the updated enquiry is added.
+     * @param enquiry       The enquiry to which the reply is being made.
+     * @param replyAuthor   The user initiating the reply.
+     * @param enquiryList   The list of enquiries related to the camp.
      */
     public static void replyTo(Enquiry enquiry, User replyAuthor, ArrayList<Enquiry> enquiryList) {
         Scanner sc = new Scanner(System.in);

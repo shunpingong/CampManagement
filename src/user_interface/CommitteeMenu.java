@@ -165,7 +165,7 @@ public class CommitteeMenu extends StudentMenu {
 					comm = (CampCommittee) this.committee;
 
 				if (comm != null && comm.getCommitteeOf().getCampName().equals(this.committee.getRegisteredCamps().get(chosenCampIndex-1).getCampName())) {
-					System.out.println("Cannot withdraw. Student is a committee for camp: "+ comm.getCommitteeOf());
+					System.out.println("Cannot withdraw. Student is a committee for camp: "+ comm.getCommitteeOf().getCampName());
 					do{
 						System.out.print("Press '1' to Confirm: ");
 						choice = sc.nextInt();

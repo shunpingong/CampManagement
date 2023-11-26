@@ -10,6 +10,7 @@ import src.camp_management.sorter.CampStartDateSorter;
 public abstract class UserSorter implements Comparator<User>{
 
     protected int choice;
+    
 	public static UserSorter createUserSorter(int choice) {
 		switch (choice) {
         case 1:

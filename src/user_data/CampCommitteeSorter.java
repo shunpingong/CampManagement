@@ -4,12 +4,12 @@ import java.util.Comparator;
 public abstract class CampCommitteeSorter implements Comparator<CampCommittee>{
 
 	protected int choice;
-	public static UserSorter createUserSorter(int choice) {
+	public static CampCommitteeSorter createCampCommitteeSorter(int choice) {
 		switch (choice) {
-        case 1:
-            return new NameAscendingOrder();
-        case 2:
-            return new NameDescendingOrder();
+        case 5:
+            return new CommitteePointsAscendingOrder();
+        case 6:
+            return new CommitteePointsDescendingOrder();
         default:
             return null;
         }

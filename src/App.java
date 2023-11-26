@@ -14,10 +14,25 @@ import src.user_interface.StaffMenu;
 import src.user_interface.StudentMenu;
 import src.user_interface.interfaces.IMenu;
 
-// Class
+
+/**
+ * The {@code App} class represents the main application for the CAMs.
+ * It initializes necessary components, loads user data, and manages user interactions through menus.
+ * The main method continuously prompts users with appropriate menus based on their roles.
+ *
+ * @author Kenneth
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class App {
     
-    // Main
+    /**
+     * The main method serves as the entry point for the CAMs.
+     * It initializes necessary components, loads user data, and continuously prompts users
+     * with appropriate menus based on their roles.
+     *
+     * @param args The command line arguments (not used in this application).
+     */
     public static void main(String[] args){
         // Init
         CampList.initCamps();
@@ -32,6 +47,12 @@ public class App {
         }
     }
 
+  /**
+     * Chooses the appropriate menu based on the currently logged-in user's role.
+     * It checks the role of the user and returns an instance of the corresponding menu.
+     *
+     * @return An instance of the {@link IMenu} interface representing the user's menu.
+     */
     private static IMenu chooseUserMenu(){
         // Deciding which menu
             User loginUser = Login.getCurrentUser();
@@ -48,6 +69,10 @@ public class App {
             return menu;
     }
 
+    /**
+     * Loads initial user data, including staff and student information, into the system.
+     * It initializes the staff and student data sets for use within the application.
+     */
     private static void loadUsers(){
         StaffData.init();
         StudentData.init();

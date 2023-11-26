@@ -12,17 +12,42 @@ import src.user_data.Staff;
 import src.user_data.UserSorter;
 import src.user_interface.interfaces.IMenu;
 
+/**
+ * The {@code CampManagerMenu} class represents the menu interface for managing camps by a staff member.
+ * It allows staff to view, edit, delete, toggle visibility, and generate reports for the camps they created.
+ * The class implements the {@code IMenu} interface for consistent menu structures.
+ *
+ * @author Kenneth
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class CampManagerMenu implements IMenu{
-    //Instances
+
+    /**
+     * The ic field represents the staff member associated with the camp management menu.
+     * It stores information about the staff member who has access to manage camps.
+     */
     private Staff ic;
+
+    /**
+     * The choice field represents the user's selected menu option in the camp management menu.
+     * It stores the numerical choice made by the user to perform specific actions within the menu.
+     */
     private int choice;
 
-    // Constructor
+    /**
+     * Constructs a new {@code CampManagerMenu} instance.
+     *
+     * @param staff The staff member associated with the menu.
+     */
     public CampManagerMenu(Staff staff){
         this.choice = 0;
         this.ic = staff;
     }
 
+    /**
+     * Prints the camp management menu to the console, allowing staff to interact with camp-related actions.
+     */
     @Override
     public void printMenu() {
         if(ic.getCampsCreated().size() == 0){
@@ -40,6 +65,9 @@ public class CampManagerMenu implements IMenu{
         selectOptions();
     }
 
+   /**
+     * Prints the title of the camp management menu.
+     */
     @Override
     public void printMenuTitle() {
         System.out.println("--------------------------------------------------------------------------------------");
@@ -48,6 +76,9 @@ public class CampManagerMenu implements IMenu{
         
     }
 
+    /**
+     * Prints the available options in the camp management menu.
+     */
     @Override
     public void printMenuOptions() {
         Scanner sc = new Scanner(System.in);
@@ -73,6 +104,9 @@ public class CampManagerMenu implements IMenu{
         }while(choice != -1 && (choice > 5 || choice < 1));
     }
 
+    /**
+     * Handles the user's selection of options in the camp management menu.
+     */
     @Override
     public void selectOptions() {
         Scanner sc = new Scanner(System.in);

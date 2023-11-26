@@ -63,19 +63,19 @@ public class Report {
 		
 		data.add(new String[] {"List of Attendees"});
 		for(int i = 0; i<camp.getStudentAttendees().size(); i++) {
-			data.add(new String[] {String.valueOf(i), camp.getStudentAttendees().get(i).getName()});
+			data.add(new String[] {String.valueOf(i), camp.getStudentAttendees().get(i).getName(), camp.getStudentAttendees().get(i).getFaculty().toString()});
 		}
 		
 		
 		data.add(new String[] {"List of Camp Committee Members"});
 		for(int i = 0; i<camp.getCampCom().size(); i++) {
-			data.add(new String[] {String.valueOf(i), camp.getCampCom().get(i).getName()});
+			data.add(new String[] {String.valueOf(i), camp.getCampCom().get(i).getName(), camp.getCampCom().get(i).getFaculty().toString()});
 		}
 		
 		
 		data.add(new String[] {"List of Withdrawn Students"});
 		for(int i = 0; i<camp.getWithdrawStudents().size(); i++) {
-			data.add(new String[] {String.valueOf(i), camp.getWithdrawStudents().get(i).getName()});
+			data.add(new String[] {String.valueOf(i), camp.getWithdrawStudents().get(i).getName(), camp.getWithdrawStudents().get(i).getFaculty().toString()});
 		}
 		
 		

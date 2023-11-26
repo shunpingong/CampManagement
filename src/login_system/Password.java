@@ -41,7 +41,6 @@ public class Password {
         updateData.add(user.getEmail());
         updateData.add(user.getFaculty().toString());
         updateData.add(user.getPWD());
-        updateData.add(user.getRole());
         ExcelManager xl = null;
         if(user instanceof Staff){
             xl = new ExcelManager("data\\staff_list.xlsx");

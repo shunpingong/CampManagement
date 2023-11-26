@@ -1,3 +1,12 @@
+package src.feedback.enquiry;
+
+import java.util.Scanner;
+import java.util.ArrayList;
+
+import src.camp_management.CampInfo;
+import src.user_data.Student;
+
+
 /**
  * The {@code EnquiryEditor} class provides methods for editing and managing
  * enquiries related to camp information for a specific student.
@@ -9,15 +18,6 @@
  * @version 1.0
  * @since 2023-11-24
  */
-package src.feedback.enquiry;
-
-import java.util.Scanner;
-
-import src.camp_management.CampInfo;
-import src.user_data.Student;
-
-import java.util.ArrayList;
-
 public class EnquiryEditor {
     
     /**

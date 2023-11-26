@@ -1,3 +1,11 @@
+package src.feedback.suggestions;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Scanner;
+
+import src.user_data.CampCommittee;
+
 /**
  * The {@code SuggestionOutput} class provides methods for displaying and selecting modifiable suggestions for camp committee members.
  * It includes functionalities such as viewing suggestions, getting modifiable suggestions based on status, and selecting a suggestion
@@ -9,14 +17,6 @@
  * @version 1.0
  * @since 2023-11-24
  */
-package src.feedback.suggestions;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Scanner;
-
-import src.user_data.CampCommittee;
-
-
 public class SuggestionOutput{
     
     /**

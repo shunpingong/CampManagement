@@ -1,13 +1,3 @@
-/**
- * The {@code SuggestionProcessor} class provides methods for processing and managing suggestions made by camp committee members.
- * It allows staff members to view and modify suggestions related to the camps they created, accepting or rejecting proposed changes.
- * <p>
- * This class is part of the feedback and suggestion module in the application.
- *
- * @author Shun Ping
- * @version 1.0
- * @since 2023-11-24
- */
 package src.feedback.suggestions;
 
 import src.camp_management.CampInfo;
@@ -18,6 +8,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * The {@code SuggestionProcessor} class provides methods for processing and managing suggestions made by camp committee members.
+ * It allows staff members to view and modify suggestions related to the camps they created, accepting or rejecting proposed changes.
+ * <p>
+ * This class is part of the feedback and suggestion module in the application.
+ *
+ * @author Shun Ping
+ * @version 1.0
+ * @since 2023-11-24
+ */
 public class SuggestionProcessor {
 
     /**

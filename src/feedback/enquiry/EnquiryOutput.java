@@ -1,3 +1,11 @@
+package src.feedback.enquiry;
+
+import src.user_data.Student;
+
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Comparator;
+
 /**
  * The {@code EnquiryOutput} class provides methods for viewing and managing enquiries made by a specific student.
  * It includes functionalities such as viewing individual enquiries, obtaining a list of required enquiries based on
@@ -9,15 +17,6 @@
  * @version 1.0
  * @since 2023-11-24
  */
-package src.feedback.enquiry;
-
-import java.util.Scanner;
-
-import src.user_data.Student;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-
 public class EnquiryOutput {
 
     /**

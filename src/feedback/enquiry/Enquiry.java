@@ -1,3 +1,8 @@
+package src.feedback.enquiry;
+import src.camp_management.CampInfo;
+import src.user_data.Student;
+import src.user_data.User;
+
 /**
  * The Enquiry class represents an enquiry regarding a camp. It extends the Feedback class
  * and includes additional attributes specific to enquiries, such as whether the enquiry has been processed, who replied
@@ -10,12 +15,6 @@
  * @version 1.0
  * @since 2023-11-24
  */
-package src.feedback.enquiry;
-
-import src.camp_management.CampInfo;
-import src.user_data.Student;
-import src.user_data.User;
-
 public class Enquiry extends Feedback {
 
     /**

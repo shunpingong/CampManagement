@@ -1,3 +1,8 @@
+package src.feedback.enquiry;
+
+import src.camp_management.CampInfo;
+import src.user_data.Student;
+
 /**
  * The {@code Feedback} class is an abstract base class for feedback-related objects, such as enquiries and replies.
  * It encapsulates common properties and behaviors for feedback instances, including the description, sender information,
@@ -9,11 +14,6 @@
  * @version 1.0
  * @since 2023-11-24
  */
-package src.feedback.enquiry;
-
-import src.camp_management.CampInfo;
-import src.user_data.Student;
-
 public abstract class Feedback {
 
     /**

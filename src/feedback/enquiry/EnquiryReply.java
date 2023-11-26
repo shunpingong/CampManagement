@@ -1,3 +1,12 @@
+
+package src.feedback.enquiry;
+
+import src.camp_management.CampInfo;
+import src.user_data.CampCommittee;
+import src.user_data.User;
+import java.util.Scanner;
+import java.util.ArrayList;
+
 /**
  * The {@code EnquiryReply} class provides methods for managing replies to enquiries related to a specific camp.
  * It includes functionalities such as retrieving unprocessed enquiries for a camp, displaying a menu for replying to
@@ -9,15 +18,6 @@
  * @version 1.0
  * @since 2023-11-24
  */
-package src.feedback.enquiry;
-
-import src.camp_management.CampInfo;
-import src.user_data.CampCommittee;
-import src.user_data.User;
-
-import java.util.Scanner;
-import java.util.ArrayList;
-
 public class EnquiryReply {
 
     /**

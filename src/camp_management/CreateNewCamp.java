@@ -6,10 +6,28 @@ import src.login_system.Login;
 import src.user_data.Faculty;
 import src.user_data.Staff;
 
+/**
+ * The {@code CreateNewCamp} class is responsible for facilitating the creation of new camps.
+ * It prompts the user for necessary information such as camp name, description, dates,
+ * location, and other details, and then constructs a CampInfo object with the provided data.
+ *
+ * @version 1.0
+ * @since 2023-11-26
+ * @author Yi heng
+ */
 public class CreateNewCamp {
-    public CreateNewCamp(){}; //constructor
 
-    public static CampInfo create(){ //String campName, LocalDate startdate, LocalDate enddate, LocalDate registerDeadline, Faculty userGroup, String location, int totalSlots, int committeeSlots, String description, Staff inCharge
+    /**
+     * Default constructor for the CreateNewCamp class.
+     */
+    public CreateNewCamp(){};
+
+    /**
+     * Facilitates the creation of a new camp by prompting the user for necessary information.
+     *
+     * @return The CampInfo object representing the newly created camp.
+     */
+    public static CampInfo create(){
         Scanner sc = new Scanner(System.in);
         System.out.printf("Enter Camp Name: ");
         String campName = sc.nextLine();  //camp name
@@ -50,14 +68,11 @@ public class CreateNewCamp {
             totalSlots = sc.nextInt();  //attendeeSlots
         } while (totalSlots<1);
         
-        
         int committeeSlots = -1;  //committeeSlots
         do{
             System.out.printf("Enter Total Number of Committee Slots: ");
             committeeSlots = sc.nextInt();  //committeeSlots
         } while (committeeSlots<0);
-
-
 
         Staff IC = null;
         if(Login.getCurrentUser() instanceof Staff){
@@ -66,9 +81,7 @@ public class CreateNewCamp {
 
         boolean visibility = UserInput.setVisibility();
 
-        
         CampInfo campinfo = new CampInfo(campName, startdate, enddate, deadline, userGroup, campLoc, totalSlots, committeeSlots, campDesc, IC, visibility);
         return campinfo;
-        
     }
 }

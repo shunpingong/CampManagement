@@ -1,3 +1,12 @@
+package src.feedback.suggestions;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import src.camp_management.CampInfo;
+import src.feedback.enquiry.Feedback;
+import src.user_data.CampCommittee;
+
 /**
  * The {@code Suggestion} class represents a feedback object specifically for suggestions made by the camp committee.
  * It extends the Feedback class and includes additional properties such as the suggested change, category,
@@ -9,15 +18,6 @@
  * @version 1.0
  * @since 2023-11-24
  */
-package src.feedback.suggestions;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import src.camp_management.CampInfo;
-import src.feedback.enquiry.Feedback;
-import src.user_data.CampCommittee;
-
 public class Suggestion extends Feedback{
 
     /**

@@ -1,3 +1,12 @@
+package src.feedback.suggestions;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import src.camp_management.CampList;
+import src.user_data.CampCommittee;
+import src.user_data.User;
+
 /**
  * The {@code SuggestionMenu} class provides a menu for camp committee members to interact with suggestions.
  * It allows committee members to create new suggestions for their assigned camp, as well as view, edit, or delete
@@ -9,15 +18,6 @@
  * @version 1.0
  * @since 2023-11-24
  */
-package src.feedback.suggestions;
-
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import src.camp_management.CampList;
-import src.user_data.CampCommittee;
-import src.user_data.User;
-
 public class SuggestionMenu {
 
      /**

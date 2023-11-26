@@ -1,13 +1,3 @@
-/**
- * The {@code SuggestionEditor} class provides methods for managing and editing suggestions made by the camp committee.
- * It includes functionalities such as creating new suggestions, editing existing suggestions, and deleting suggestions.
- * <p>
- * This class is part of the feedback and suggestion module in the application.
- *
- * @author Shun Ping
- * @version 1.0
- * @since 2023-11-24
- */
 package src.feedback.suggestions;
 
 import src.camp_management.CampInfo;
@@ -19,6 +9,16 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The {@code SuggestionEditor} class provides methods for managing and editing suggestions made by the camp committee.
+ * It includes functionalities such as creating new suggestions, editing existing suggestions, and deleting suggestions.
+ * <p>
+ * This class is part of the feedback and suggestion module in the application.
+ *
+ * @author Shun Ping
+ * @version 1.0
+ * @since 2023-11-24
+ */
 public class SuggestionEditor {
 
     /**

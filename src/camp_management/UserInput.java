@@ -7,10 +7,26 @@ import java.util.Scanner;
 
 import src.user_data.Faculty;
 
+/**
+ * The {@code UserInput} class provides methods for handling user input related to camp management.
+ * 
+ * @version 1.0
+ * @since 2023-11-26
+ * @author Yi heng
+ */
 public class UserInput {
+
+    /**
+     * Default constructor for the UserInput class.
+     */
     public UserInput(){};
     
-    public static LocalDate getDate(){ //returns date in LocalDate data type
+    /**
+     * Prompts the user to enter a valid date in the format DD/MM/YYYY.
+     *
+     * @return The entered date as a LocalDate object.
+     */
+    public static LocalDate getDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Scanner sc = new Scanner(System.in);
         String inputDate;
@@ -22,6 +38,11 @@ public class UserInput {
         return LocalDate.parse(inputDate, formatter);
     }
 
+    /**
+     * Prompts the user to set the visibility status and returns the choice.
+     *
+     * @return True if the user chooses to set visibility to true, false otherwise.
+     */
     public static boolean setVisibility(){
         Scanner sc = new Scanner(System.in);
         System.out.println("1. Set To Visible");
@@ -39,6 +60,11 @@ public class UserInput {
         return false;
     }
 
+    /**
+     * Prompts the user to choose a faculty from the available options.
+     *
+     * @return The selected Faculty.
+     */
     public static Faculty chooseFaculty(){
         int i=1;
         Scanner sc = new Scanner(System.in);
@@ -55,6 +81,11 @@ public class UserInput {
         return Faculty.values()[choice-1];
     }
 
+    /**
+     * Prompts the user to choose a sorting option for camps.
+     *
+     * @return The user's choice for camp sorting.
+     */
     public static int sortCampMenu(){
         Scanner sc = new Scanner(System.in);
         int choice=0;
@@ -70,6 +101,11 @@ public class UserInput {
         return choice;
     }
 
+    /**
+     * Prompts the user to choose an attribute to edit for a camp.
+     *
+     * @return The user's choice for editing a camp attribute.
+     */
     public static int editCampMenu(){
         Scanner sc = new Scanner(System.in);
         int choice=0;
@@ -89,6 +125,11 @@ public class UserInput {
         return choice;
     }
 
+    /**
+     * Prompts the user to select a camp for editing.
+     *
+     * @return The user's choice of the camp to edit.
+     */
     public static int selectCamp(){
         Scanner sc = new Scanner(System.in);
         int choice=0;
@@ -101,6 +142,13 @@ public class UserInput {
         return choice;
     }
 
+    /**
+     * Checks if the provided date string is a valid date according to the specified formatter.
+     *
+     * @param date      The date string to validate.
+     * @param formatter The DateTimeFormatter to use for parsing.
+     * @return True if the date is valid, false otherwise.
+     */
     private static boolean isValidDate(String date, DateTimeFormatter formatter){
         try{
             LocalDate.parse(date, formatter);

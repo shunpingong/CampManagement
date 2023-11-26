@@ -1,3 +1,5 @@
+package src.feedback.suggestions;
+
 /**
  * The {@code SuggestionStatus} enum represents the possible statuses of a suggestion.
  * It includes three states: PENDING, REJECTED, and ACCEPTED.
@@ -6,8 +8,6 @@
  * @version 1.0
  * @since 2023-11-24
  */
-package src.feedback.suggestions;
-
 public enum SuggestionStatus {
 
     /**

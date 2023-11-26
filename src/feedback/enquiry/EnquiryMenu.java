@@ -1,3 +1,13 @@
+package src.feedback.enquiry;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import src.camp_management.CampInfo;
+import src.user_data.Student;
+import src.user_interface.CampViewerST;
+import src.user_interface.interfaces.IMenu;
+
 /**
  * The {@code EnquiryMenu} class provides a menu for managing enquiries related to camp information
  * for a specific student. It allows the user to make new enquiries, view, edit, or delete unprocessed enquiries,
@@ -9,17 +19,6 @@
  * @version 1.0
  * @since 2023-11-24
  */
-package src.feedback.enquiry;
-
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import src.camp_management.CampInfo;
-import src.user_data.Student;
-import src.user_interface.CampViewerST;
-import src.user_interface.interfaces.IMenu;
-
-
 public class EnquiryMenu {
 
     /**

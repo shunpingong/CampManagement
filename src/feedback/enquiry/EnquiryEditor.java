@@ -47,6 +47,7 @@ public interface EnquiryEditor {
                     EnquiryEditor.deleteEnquiry(student, selectedEnquiry, enquiryList);
                     return;
                 case 3:
+                    System.out.println("");
                     break;
                 case 4:
                     System.out.println("Exiting");
@@ -64,7 +65,7 @@ public interface EnquiryEditor {
      * @param camp          The camp related to the enquiry.
      * @param enquiryList   The list of enquiries to which the new enquiry is added.
      */
-    public static void AddEnquiry(Student student, CampInfo camp, ArrayList<Enquiry> enquiryList){
+    public static void addEnquiry(Student student, CampInfo camp, ArrayList<Enquiry> enquiryList){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your enquiry: ");
         String response = sc.nextLine();
@@ -89,7 +90,7 @@ public interface EnquiryEditor {
         System.out.print("Enter new enquiry description: ");
         String newDescription = sc.nextLine();
         e.setDescription(newDescription + "\n**Enquiry has been edited**");
-        System.out.println("Enquiry has been edited\n");
+        System.out.println("Enquiry has been edited");
         int confirm = 0;
         do{
             System.out.print("Press '1' to Confirm: ");
@@ -108,7 +109,7 @@ public interface EnquiryEditor {
         Scanner sc = new Scanner(System.in);
         e.getCamp().getEnquiriesForCamp().remove(e);
         enquiryList.remove(e);
-        System.out.println("Enquiry has been deleted\n");
+        System.out.println("Enquiry has been deleted");
         int confirm = 0;
         do{
             System.out.print("Press '1' to Confirm: ");

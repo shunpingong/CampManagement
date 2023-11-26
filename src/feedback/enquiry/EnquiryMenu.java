@@ -31,7 +31,7 @@ public interface EnquiryMenu {
     public static void menuChoice(Student student , ArrayList<Enquiry> enquiryList) {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.out.print("Enquiry menu.\n" +
+            System.out.print("\nEnquiry menu\n" +
                     "1: Make a new enquiry for available camps\n" +
                     "2: View, Edit or Delete enquiries that are unprocessed\n" +
                     "3: View processed enquiries.\n" +
@@ -52,7 +52,7 @@ public interface EnquiryMenu {
 
                         CampInfo chosenCamp = student.getAvailableCamps().get(chosenCampIndex-1);
 
-                        EnquiryEditor.AddEnquiry(student, chosenCamp, enquiryList);
+                        EnquiryEditor.addEnquiry(student, chosenCamp, enquiryList);
                     }
                     else{
                         System.out.println("No available camps to submit enquiry");

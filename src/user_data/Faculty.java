@@ -6,6 +6,7 @@ package src.user_data;
  * @author Yi heng
  * @version 1.0
  * @since 2023-11-26
+ * 
  */
 public enum Faculty {
 

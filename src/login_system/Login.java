@@ -17,7 +17,7 @@ import src.user_data.User;
  *
  * @author Aaron
  * @version 1.0
- * @since 2023-11-24
+ * @since 2023-11-26
  */
 public class Login{
 

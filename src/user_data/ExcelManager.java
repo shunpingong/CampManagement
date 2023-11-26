@@ -14,11 +14,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import src.user_data.interfaces.IExcelManager;
 
 /**
- *  The {@code ExcelManager} class provides methods to read data from and update an Excel file.
- * Implementing the {@link IExcelManager} interface, this class defines two key operations:
- * reading data from an Excel file using {@link #readXL()} and updating the Excel file
- * with provided user data using {@link #updateXL(ArrayList)}.
- * 
+ * The {@code ExcelManager} class provides an implementation of the {@code IExcelManager}
+ * interface for managing Excel-related operations.
+ *
  * @author Kenneth
  * @version 1.0
  * @since 2023-11-26

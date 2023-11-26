@@ -1,14 +1,8 @@
 package src.user_data;
 
 /**
- * The {@code CommitteePointsDescendingOrder} class is a concrete implementation of {@code CampCommitteeSorter}.
- * It provides sorting logic for {@code CampCommittee} objects based on descending order of committee points.
- * <p>
- * Sorting is achieved by utilizing the logic of {@code CommitteePointsAscendingOrder} in reverse order.
- * This class overrides the {@code compare} method to define the specific sorting logic for descending order.
- * <p>
- * Implementing classes should ensure proper initialization of the sorting choice, and this class
- * provides a reverse order comparison using {@code CommitteePointsAscendingOrder}.
+ * The {@code CommitteePointsDescendingOrder} class represents a comparator for sorting
+ * camp committee members in descending order based on their points.
  *
  * @author Cai yong
  * @version 1.0

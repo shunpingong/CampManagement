@@ -52,27 +52,9 @@ public class LoginMenu implements IMenu{
 				break;
             case 2:
                 // Exit Menu
-                resetRole();
                 System.out.println("Exiting Login Menu. Goodbye!");
                 System.exit(0);
 		}
-    }
-
-    private void resetRole(){
-        ExcelManager xl = new ExcelManager("data\\student_list.xlsx");
-        for(int i=0;i<StudentData.getCount();i++){
-            Student user = StudentData.getUser(i);
-            if(user.getRole().equalsIgnoreCase("Student"))
-                continue;
-            ArrayList<String> updateData = new ArrayList<>();
-            updateData.add(user.getName());
-            updateData.add(user.getEmail());
-            updateData.add(user.getFaculty().toString());
-            updateData.add(user.getPWD());
-            updateData.add("Student");
-            updateData.add("N/A");
-            xl.updateXL(updateData);
-        }
     }
     
 }

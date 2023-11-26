@@ -31,15 +31,10 @@ public class StudentData {
             String userID = studentInfo[1].split("@")[0];
             String name = studentInfo[0];
             String password = studentInfo[3];
-            String role = studentInfo[4];
             Faculty faculty = Faculty.valueOf(studentInfo[2]);
             String email = studentInfo[1];
             Student student = null;
-            if(role.equalsIgnoreCase("Student"))
-                student = new Student(userID, name, faculty, email);
-            else if(role.equalsIgnoreCase("Committee"))
-                student = new CampCommittee(userID, name, faculty, email, CampList.getCampInfo(studentInfo[5]));
-                
+            student = new Student(userID, name, faculty, email);
             student.setPWD(password);
             students.add(student);
         }

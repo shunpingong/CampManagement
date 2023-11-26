@@ -1,6 +1,5 @@
 package src.user_interface;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import src.camp_management.CampInfo;
@@ -9,7 +8,6 @@ import src.feedback.enquiry.EnquiryMenu;
 import src.login_system.Login;
 import src.login_system.Password;
 import src.user_data.CampCommittee;
-import src.user_data.ExcelManager;
 import src.user_data.Student;
 import src.user_data.StudentData;
 import src.user_interface.interfaces.IMenu;
@@ -128,7 +126,7 @@ public class StudentMenu implements IUserMenu{
 							break;
 						}
 						else if(correctCampInfo.getCommitteeSlots()>0){
-							CampCommittee comm = convertToCommittee(this.student, correctCampInfo);
+							CampCommittee comm = new CampCommittee(student.getID(), student.getName(), student.getFaculty(), student.getEmail(), correctCampInfo);
 							comm.addRegisteredCamp(correctCampInfo);
 							comm.setCommitteeOf(correctCampInfo);
 							correctCampInfo.addCampCom(comm);
@@ -210,19 +208,4 @@ public class StudentMenu implements IUserMenu{
                 break;
 		}
     }
-
-	private CampCommittee convertToCommittee(Student student, CampInfo camp){
-		CampCommittee comm = new CampCommittee(student.getID(), student.getName(), student.getFaculty(), student.getEmail(), camp);
-		comm.setPWD(student.getPWD());
-		ArrayList<String> commData = new ArrayList<>();
-		commData.add(comm.getName());
-		commData.add(comm.getEmail());
-		commData.add(comm.getFaculty().toString());
-		commData.add(comm.getPWD());
-		commData.add(comm.getRole());
-		commData.add(comm.getCommitteeOf().getCampName());
-		ExcelManager xl = new ExcelManager("data\\student_list.xlsx");
-		xl.updateXL(commData);
-		return comm;
-	}
 }

@@ -9,20 +9,40 @@ import src.user_data.Student;
 import src.user_data.StudentData;
 import src.user_interface.interfaces.IMenu;
 
+/**
+ * The {@code LoginMenu} class implements the {@link IMenu} interface
+ * It provides options for users to login to the system or quit.
+ *
+ * @author Kenneth
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class LoginMenu implements IMenu{
-    //Instances
+
+    /**
+     * The menu choice selected by the user.
+     */
     private int choice;
 
-    // Constructor
+    /**
+     * Constructs a new {@code LoginMenu} object.
+     */
     public LoginMenu(){
         this.choice = 0;
     }
+
+    /**
+     * Prints the menu options for user login.
+     */
     public void printMenu(){
         printMenuTitle();
         printMenuOptions();
         selectOptions();
     }
 
+    /**
+     * Prints the title of the menu.
+     */
     @Override
     public void printMenuTitle() {
         System.out.println("======================================================================================");
@@ -30,6 +50,9 @@ public class LoginMenu implements IMenu{
 		System.out.println("======================================================================================");
     }
 
+    /**
+     * Selects and executes the chosen menu option.
+     */
     @Override
     public void printMenuOptions() {
         Scanner sc = new Scanner(System.in);

@@ -14,22 +14,47 @@ import src.user_data.StaffData;
 import src.user_interface.interfaces.IMenu;
 import src.user_interface.interfaces.IUserMenu;
 
+/**
+ * The {@code StaffMenu} class implements the {@link IUserMenu} interface
+ * It provides options for users to login to the system or quit.
+ *
+ * @author Kenneth
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class StaffMenu implements IUserMenu{
-    // Instances
+
+    /**
+     * The menu choice selected by the staff member.
+     */
     private int choice;
+
+    /**
+     * The staff member associated with the menu.
+     */
     private Staff staff;
 
-    // Constructor 
+    /**
+     * Constructs a new {@code StaffMenu} object for the given staff member.
+     *
+     * @param staff The staff member for whom the menu is created.
+     */
     public StaffMenu(Staff staff){
         this.staff = staff;
     }
 
+    /**
+     * Prints the menu options for user login.
+     */
     public void printMenu(){
         printMenuTitle();
         printMenuOptions();
         selectOptions();
     }
     
+    /**
+     * Prints the status of the staff member, including user ID and name.
+     */
     public void printUserStatus(){
         System.out.println("--------------------------------------------------------------------------------------");
         System.out.println("User ID: " + this.staff.getID());
@@ -37,6 +62,9 @@ public class StaffMenu implements IUserMenu{
         System.out.println("--------------------------------------------------------------------------------------");
     }
 
+    /**
+     * Prints the title of the menu.
+     */
     public void printMenuTitle(){
         System.out.println("======================================================================================");
         System.out.println("|                                    Camp Menu (Staff)                               |");
@@ -44,6 +72,9 @@ public class StaffMenu implements IUserMenu{
         
     }
 
+    /**
+     * Prints the menu options for the staff member.
+     */
     public void printMenuOptions(){
         Scanner sc = new Scanner(System.in);
         do{
@@ -61,6 +92,9 @@ public class StaffMenu implements IUserMenu{
         }while(choice != -1 && (choice < 1 || choice > 8));
     }
 
+    /**
+     * Selects and executes the chosen menu option.
+     */
     public void selectOptions(){
         IMenu menu = null;
         switch(choice)

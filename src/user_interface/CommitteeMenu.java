@@ -14,16 +14,35 @@ import src.user_data.CampCommittee;
 import src.user_data.StudentData;
 import src.user_interface.interfaces.IMenu;
 
+/**
+ * The {@code CommitteeMenu} class represents the menu for a committee member and extends the {@link StudentMenu}.
+ * It provides options such as viewing available camps, registering for camps, viewing registered camps,
+ * withdrawing from camps, viewing enquiries, changing password, and committee-exclusive options.
+ * 
+ * @author Kenneth
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class CommitteeMenu extends StudentMenu {
-    //Instances
+
+    /**
+     * The committee member associated with the menu.
+     */
     private CampCommittee committee;
 
-    //Constructor
+    /**
+     * Constructs a new {@code CommitteeMenu} object with the specified committee member.
+     *
+     * @param committee The committee member for the menu.
+     */
     public CommitteeMenu(CampCommittee committee){
         super(committee);
         this.committee = committee;
     }
 
+    /**
+     * Prints the user's status, including user ID, name, committee affiliation, and points.
+     */
     public void printUserStatus(){
         System.out.println("--------------------------------------------------------------------------------------");
         System.out.println("User ID: " + this.committee.getID());
@@ -33,6 +52,9 @@ public class CommitteeMenu extends StudentMenu {
         System.out.println("--------------------------------------------------------------------------------------");
     }
 
+    /**
+     * Prints the title of the menu.
+     */
     public void printMenuTitle(){
         System.out.println("======================================================================================");
         System.out.println("|                                    Camp Menu (Committee)                           |");
@@ -40,6 +62,9 @@ public class CommitteeMenu extends StudentMenu {
         
     }
 
+    /**
+     * Prints the menu options, including committee-exclusive options.
+     */
     @Override
     public void printMenuOptions() {
         Scanner sc = new Scanner(System.in);
@@ -63,6 +88,9 @@ public class CommitteeMenu extends StudentMenu {
         }while(!(choice == -1 || (choice >= 1 && choice <=8)));
     }
 
+    /**
+     * Selects and executes the chosen menu option.
+     */
     @Override
     public void selectOptions() {
         Scanner sc = new Scanner(System.in);

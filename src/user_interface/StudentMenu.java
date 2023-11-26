@@ -8,22 +8,46 @@ import src.feedback.enquiry.EnquiryMenu;
 import src.login_system.Login;
 import src.login_system.Password;
 import src.user_data.CampCommittee;
+import src.user_data.Staff;
 import src.user_data.Student;
 import src.user_data.StudentData;
 import src.user_interface.interfaces.IMenu;
 import src.user_interface.interfaces.IUserMenu;
 
+/**
+ * The {@code StudentMenu} class represents a menu for student users in a camp management system.
+ * It implements the {@link IUserMenu} interface, providing functionality for managing
+ * student-specific actions and operations.
+ * 
+ * @author Kenneth
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class StudentMenu implements IUserMenu{
-    // Instances 
+
+    /**
+     * The student associated with the menu.
+     */
     private Student student;
+
+    /**
+     * The menu choice selected by the student member.
+     */
     protected int choice;
 
-    // Constructor
+    /**
+     * Constructs a new {@code StudentMenu} object for a specific student.
+     *
+     * @param student The student for whom the menu is created.
+     */
     public StudentMenu(Student student){
         this.student = student;
 		this.choice = 0;
     }
 	
+    /**
+     * Prints the main menu for the student, including user status and available options.
+     */
 	public void printMenu(){
 		printMenuTitle();
 		printUserStatus();
@@ -31,6 +55,9 @@ public class StudentMenu implements IUserMenu{
 		selectOptions();
 	}
 
+    /**
+     * Prints the user status, including user ID and name.
+     */
 	public void printUserStatus(){
 		System.out.println("--------------------------------------------------------------------------------------");
 		System.out.println("User ID: " + this.student.getID());
@@ -38,6 +65,9 @@ public class StudentMenu implements IUserMenu{
 		System.out.println("--------------------------------------------------------------------------------------");
 	}
 
+    /**
+     * Prints the title of the student menu.
+     */
 	public void printMenuTitle(){
 		System.out.println("======================================================================================");
 		System.out.println("|                                    Camp Menu (Student)                             |");
@@ -45,6 +75,9 @@ public class StudentMenu implements IUserMenu{
 		
 	}
 
+    /**
+     * Prints the available menu options for the student.
+     */
     public void printMenuOptions(){
         Scanner sc = new Scanner(System.in);
         do{		
@@ -60,6 +93,9 @@ public class StudentMenu implements IUserMenu{
         }while(!(choice == -1 || (choice >= 1 && choice <=4)));
     }
 
+    /**
+     * Handles the selection of menu options based on the user's choice.
+     */
     public void selectOptions(){
         Scanner sc = new Scanner(System.in);
 		this.student.setAvailableCamp(this.student.generateAvailableCamps());

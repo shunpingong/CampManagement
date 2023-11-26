@@ -1,12 +1,15 @@
 package src.user_interface;
 
+import java.util.Collections;
 import java.util.Scanner;
 
 import src.camp_management.CampInfo;
 import src.camp_management.CampList;
 import src.report.CommitteeReport;
 import src.report.Report;
+import src.user_data.CampCommitteeSorter;
 import src.user_data.Staff;
+import src.user_data.UserSorter;
 import src.user_interface.interfaces.IMenu;
 
 public class CampManagerMenu implements IMenu{
@@ -135,7 +138,7 @@ public class CampManagerMenu implements IMenu{
                 }while(confirm != 1);
                 break;
 
-            case 4:
+            case 4: //Camp Report
                 do{
                     System.out.printf("Which Camp? (Enter index, 0 to exit) ");
                     choice = sc.nextInt();
@@ -149,6 +152,21 @@ public class CampManagerMenu implements IMenu{
                             break;
                         }
                     }
+                    while(true) {
+                    	System.out.println("How do you want to sort the Attendees & Committee?");
+                        System.out.println("1. Name (Ascending)");
+                        System.out.println("2. Name (Descending)");
+                        System.out.println("3. Faculty (Ascending)");
+                        System.out.println("4. Faculty (Descending)");
+                        System.out.println("0. exit");
+                        int sortChoice = sc.nextInt();
+                        if ((sortChoice <= 0) || (sortChoice > 4)) {break;}
+                        else {
+                        	UserSorter usersort = UserSorter.createUserSorter(sortChoice);
+                        	Collections.sort(c.getStudentAttendees(), usersort);
+                        	Collections.sort(c.getCampCom(), usersort);
+                        }
+                    }
                     Report report = new Report(c, "CampReport_" + c.getCampName());
                     report.export();
                     confirm = 0;
@@ -159,7 +177,7 @@ public class CampManagerMenu implements IMenu{
                     }while(confirm != 1);
                 }
                 break;
-            case 5:
+            case 5: //Committee Report
                 do{
                     System.out.printf("Which Camp? (Enter index, 0 to exit) ");
                     choice = sc.nextInt();
@@ -171,6 +189,25 @@ public class CampManagerMenu implements IMenu{
                         if (ic.getCampsCreated().get(choice-1).getCampName().equalsIgnoreCase(CampList.getCampList().get(k).getCampName())){
                             c = CampList.getCampList().get(k);
                             break;
+                        }
+                    }while(true) {
+                    	System.out.println("How do you want to sort the Committee?");
+                        System.out.println("1. Name (Ascending)");
+                        System.out.println("2. Name (Descending)");
+                        System.out.println("3. Faculty (Ascending)");
+                        System.out.println("4. Faculty (Descending)");
+                        System.out.println("5. Points (Ascending)");
+                        System.out.println("6. Points (Descending)");
+                        System.out.println("0. exit");
+                        int sortChoice = sc.nextInt();
+                        if ((sortChoice <= 0) || (sortChoice > 6)) {break;}
+                        else if(sortChoice >=1 && sortChoice < 5){
+                        	UserSorter usersort = UserSorter.createUserSorter(sortChoice);
+                        	Collections.sort(c.getCampCom(), usersort);
+                        }
+                        else {
+                        	CampCommitteeSorter committeeSort = CampCommitteeSorter.createCampCommitteeSorter(sortChoice);
+                        	Collections.sort(c.getCampCom(),committeeSort);
                         }
                     }
                     CommitteeReport cReport = new CommitteeReport(c, "PerformanceReport_" + c.getCampName());

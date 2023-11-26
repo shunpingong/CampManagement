@@ -1,5 +1,6 @@
 package src.user_interface;
 
+import java.util.Collections;
 import java.util.Scanner;
 
 import src.camp_management.CampInfo;
@@ -12,6 +13,7 @@ import src.login_system.Password;
 import src.report.Report;
 import src.user_data.CampCommittee;
 import src.user_data.StudentData;
+import src.user_data.UserSorter;
 import src.user_interface.interfaces.IMenu;
 
 public class CommitteeMenu extends StudentMenu {
@@ -196,6 +198,21 @@ public class CommitteeMenu extends StudentMenu {
                 SuggestionMenu.menuChoice(this.committee, this.committee.getSuggestionsMade());
                 break;
             case 8: //Generate Report
+            	while(true) {
+                	System.out.println("How do you want to sort the Attendees & Committee?");
+                    System.out.println("1. Name (Ascending)");
+                    System.out.println("2. Name (Descending)");
+                    System.out.println("3. Faculty (Ascending)");
+                    System.out.println("4. Faculty (Descending)");
+                    System.out.println("0. exit");
+                    int sortChoice = sc.nextInt();
+                    if ((sortChoice <= 0) || (sortChoice > 4)) {break;}
+                    else {
+                    	UserSorter usersort = UserSorter.createUserSorter(sortChoice);
+                    	Collections.sort(this.committee.getCommitteeOf().getStudentAttendees(), usersort);
+                    	Collections.sort(this.committee.getCommitteeOf().getCampCom(), usersort);
+                    }
+                }
                 Report report = new Report(this.committee.getCommitteeOf(), "Report For " + this.committee.getID());
 				report.export();
 				int confirm = 0;

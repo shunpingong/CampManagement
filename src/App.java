@@ -38,10 +38,11 @@ public class App {
             IMenu menu = null;
             if(loginUser instanceof Staff)
                 menu = new StaffMenu((Staff) loginUser);
-            else if(loginUser instanceof Student)
-                menu = new StudentMenu((Student) loginUser);
             else if(loginUser instanceof CampCommittee)
                 menu = new CommitteeMenu((CampCommittee) loginUser);
+            else if(loginUser instanceof Student)
+                menu = new StudentMenu((Student) loginUser);
+
             else
                 menu = new LoginMenu();
             return menu;

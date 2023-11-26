@@ -1,18 +1,16 @@
 package src.user_interface;
 
-import java.util.Collections;
 import java.util.Scanner;
 
 import src.camp_management.CampInfo;
 import src.camp_management.CampList;
 import src.camp_management.CreateNewCamp;
-import src.camp_management.UserInput;
-import src.camp_management.sorter.CampSorter;
 import src.feedback.enquiry.EnquiryReply;
 import src.feedback.suggestions.SuggestionProcessor;
 import src.login_system.Login;
 import src.login_system.Password;
 import src.user_data.Staff;
+import src.user_data.StaffData;
 import src.user_interface.interfaces.IMenu;
 import src.user_interface.interfaces.IUserMenu;
 
@@ -55,9 +53,7 @@ public class StaffMenu implements IUserMenu{
             System.out.println("|3. Create New Camp                                                                  |");
             System.out.println("|4. View Enquiries Menu For Staff                                                    |");
             System.out.println("|5. View Suggestion Menu For Staff                                                   |");
-            System.out.println("|6. Generate Report Of Created Camp                                                  |");
-            System.out.println("|7. Generate Performance Report Of Camp Committee                                    |");
-            System.out.println("|8. Change Password                                                                  |");
+            System.out.println("|6. Change Password                                                                  |");
             System.out.println("|-1. Logout                                                                          |");
             System.out.println("--------------------------------------------------------------------------------------");
             System.out.printf("Menu Option: ");
@@ -74,7 +70,7 @@ public class StaffMenu implements IUserMenu{
                 menu.printMenu();
 				break;
             case 2: //view created camps
-                menu = new CampMangerMenu(this.staff);
+                menu = new CampManagerMenu(this.staff);
                 menu.printMenu();
                 break;
 
@@ -87,6 +83,7 @@ public class StaffMenu implements IUserMenu{
                     CampInfo camp = CreateNewCamp.create();
                     CampList.createCamp(camp);
                     this.staff.getCampsCreated().add(camp);
+                    StaffData.setUser(this.staff);
                 }
                 else if (choice == 2) return;
                 else System.out.println("Invalid choice");
@@ -107,12 +104,8 @@ public class StaffMenu implements IUserMenu{
             case 5: //View Suggestion Menu For Staff
                 SuggestionProcessor.processMenu(this.staff.getCampsCreated(), this.staff);
                 break;
-            case 6: //Generate Report Of Created Camp
-                break;
 
-            case 7: //Generate Performance Report Of Camp Committee
-                break; 
-            case 8:
+            case 6:
                 Password.change(this.staff);
                 break;
             case -1:

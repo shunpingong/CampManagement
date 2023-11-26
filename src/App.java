@@ -1,13 +1,12 @@
 package src;
 
-
-import java.util.Scanner;
-
 import src.camp_management.CampList;
 import src.login_system.Login;
 import src.user_data.CampCommittee;
 import src.user_data.Staff;
+import src.user_data.StaffData;
 import src.user_data.Student;
+import src.user_data.StudentData;
 import src.user_data.User;
 import src.user_interface.CommitteeMenu;
 import src.user_interface.LoginMenu;
@@ -22,6 +21,7 @@ public class App {
     public static void main(String[] args){
         // Init
         CampList.initCamps();
+        loadUsers();
         IMenu menu = null;
         while(true){
             // Set the menu
@@ -45,5 +45,10 @@ public class App {
             else
                 menu = new LoginMenu();
             return menu;
+    }
+
+    private static void loadUsers(){
+        StaffData.init();
+        StudentData.init();
     }
 }

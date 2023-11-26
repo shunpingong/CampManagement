@@ -11,7 +11,7 @@ import src.login_system.Password;
 import src.user_data.CampCommittee;
 import src.user_data.ExcelManager;
 import src.user_data.Student;
-import src.user_data.User;
+import src.user_data.StudentData;
 import src.user_interface.interfaces.IMenu;
 import src.user_interface.interfaces.IUserMenu;
 
@@ -114,11 +114,12 @@ public class StudentMenu implements IUserMenu{
 						// Adjust the student attendees for that camp
 						correctCampInfo.addStudentAttendees(this.student);
 						this.student.addRegisteredCamp(this.student.getAvailableCamps().get(chosenCampIndex-1));
+						StudentData.setUser(this.student);
 					}
 
 					if (signup == 2){
 						//if user is already a committee for a camp -> cannot register as committee
-						if (this.student.getRole() == "Committee") {
+						if (this.student.getRole().equalsIgnoreCase("Committee")) {
 							System.out.println("You are already a committee member for the camp: " + (correctCampInfo.getCampName()));
 							do{
 								System.out.print("Press '1' to Confirm: ");
@@ -127,10 +128,12 @@ public class StudentMenu implements IUserMenu{
 							break;
 						}
 						else if(correctCampInfo.getCommitteeSlots()>0){
-							CampCommittee comm = convertToCommittee(this.student, correctCampInfo.getCampName());
+							CampCommittee comm = convertToCommittee(this.student, correctCampInfo);
 							comm.addRegisteredCamp(correctCampInfo);
-							comm.setCommitteeOf(correctCampInfo.getCampName());
+							comm.setCommitteeOf(correctCampInfo);
 							correctCampInfo.addCampCom(comm);
+							CampList.setCampInfo(correctCampInfo);
+							StudentData.setUser(comm);
 							Login.setCurrentUser(comm);
 						}
 						else{
@@ -178,7 +181,7 @@ public class StudentMenu implements IUserMenu{
 				if(this.student.getRole().equalsIgnoreCase("Committee"))
 					comm = (CampCommittee) this.student;
 
-				if (comm != null && comm.getCommitteeOf().equals(this.student.getRegisteredCamps().get(chosenCampIndex-1).getCampName())) {
+				if (comm != null && comm.getCommitteeOf().equals(this.student.getRegisteredCamps().get(chosenCampIndex-1))) {
 					System.out.println("Cannot withdraw. Student is a committee for camp: "+ comm.getCommitteeOf());
 					do{
 						System.out.print("Press '1' to Confirm: ");
@@ -191,6 +194,7 @@ public class StudentMenu implements IUserMenu{
 					correctCampInfo.addWithdrawnStudents(this.student); 
 					//For student class to keep track of camp withdrawn
 					this.student.addWithdrawnCamp(this.student.getRegisteredCamps().get(chosenCampIndex-1)); 
+					StudentData.setUser(this.student);
 				}
 				break;
 			case 3:
@@ -207,7 +211,7 @@ public class StudentMenu implements IUserMenu{
 		}
     }
 
-	private CampCommittee convertToCommittee(Student student, String camp){
+	private CampCommittee convertToCommittee(Student student, CampInfo camp){
 		CampCommittee comm = new CampCommittee(student.getID(), student.getName(), student.getFaculty(), student.getEmail(), camp);
 		comm.setPWD(student.getPWD());
 		ArrayList<String> commData = new ArrayList<>();
@@ -216,7 +220,7 @@ public class StudentMenu implements IUserMenu{
 		commData.add(comm.getFaculty().toString());
 		commData.add(comm.getPWD());
 		commData.add(comm.getRole());
-		commData.add(comm.getCommitteeOf());
+		commData.add(comm.getCommitteeOf().getCampName());
 		ExcelManager xl = new ExcelManager("data\\student_list.xlsx");
 		xl.updateXL(commData);
 		return comm;

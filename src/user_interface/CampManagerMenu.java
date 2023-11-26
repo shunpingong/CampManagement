@@ -4,17 +4,18 @@ import java.util.Scanner;
 
 import src.camp_management.CampInfo;
 import src.camp_management.CampList;
+import src.report.CommitteeReport;
+import src.report.Report;
 import src.user_data.Staff;
 import src.user_interface.interfaces.IMenu;
-import src.user_interface.interfaces.IUserMenu;
 
-public class CampMangerMenu implements IMenu{
+public class CampManagerMenu implements IMenu{
     //Instances
     private Staff ic;
     private int choice;
 
     // Constructor
-    public CampMangerMenu(Staff staff){
+    public CampManagerMenu(Staff staff){
         this.choice = 0;
         this.ic = staff;
     }
@@ -60,11 +61,13 @@ public class CampMangerMenu implements IMenu{
             System.out.println("|1. Edit Camp Detail                                                                 |");
             System.out.println("|2. Delete Camp                                                                      |");
             System.out.println("|3. Toggle Visibility Of Camp                                                        |");
+            System.out.println("|4. Generate Camp Report                                                             |");
+            System.out.println("|5. Generate Performance Report                                                      |");
             System.out.println("|-1. Return                                                                          |");
             System.out.println("--------------------------------------------------------------------------------------");
             System.out.printf("Menu Option: ");
             choice = sc.nextInt();
-        }while(choice != -1 && (choice > 4 || choice < 1));
+        }while(choice != -1 && (choice > 5 || choice < 1));
     }
 
     @Override
@@ -80,7 +83,7 @@ public class CampMangerMenu implements IMenu{
                 if (choice ==0) return;
                 else{
                     for(int k=0;k<CampList.getCampList().size();k++){
-                        if (ic.getCampsCreated().get(choice-1).getCampName().equals(CampList.getCampList().get(k).getCampName()) == true){
+                        if (ic.getCampsCreated().get(choice-1).getCampName().equalsIgnoreCase(CampList.getCampList().get(k).getCampName())){
                             CampList.getCampList().get(k).editCampInfo();
                         }
                     }
@@ -95,12 +98,18 @@ public class CampMangerMenu implements IMenu{
                 }while(delete<0 || delete>ic.getCampsCreated().size());
                 if (delete ==0) return;
                 for(int k=0;k<CampList.getCampList().size();k++){
-                    if (ic.getCampsCreated().get(delete-1).getCampName().equals(CampList.getCampList().get(k).getCampName()) == true){
+                    if (ic.getCampsCreated().get(delete-1).getCampName().equalsIgnoreCase(CampList.getCampList().get(k).getCampName())){
                         if(CampList.getCampList().get(k).getStudentAttendees().size() == 0 && CampList.getCampList().get(k).getCampCom().size()==0){
                             CampList.getCampList().remove(k);
                         }
                         else{
                             System.out.println("Unable To Delete, There Are Participants Signed Up");
+                            int confirm = 0;
+                            do{
+                                System.out.print("Press '1' to Confirm: ");
+                                confirm = sc.nextInt();
+                            }while(confirm != 1);
+                            return;
                         }
                     }
                 }
@@ -113,13 +122,67 @@ public class CampMangerMenu implements IMenu{
                 }while(vis<0 || vis>ic.getCampsCreated().size());
                 if (vis ==0) return;
                 for(int k=0;k<CampList.getCampList().size();k++){
-                    if (ic.getCampsCreated().get(vis-1).getCampName().equals(CampList.getCampList().get(k).getCampName()) == true){
+                    if (ic.getCampsCreated().get(vis-1).getCampName().equalsIgnoreCase(CampList.getCampList().get(k).getCampName())){
                         CampInfo camp = CampList.getCampList().get(k);
                         CampList.getCampList().get(k).setVisibility(!camp.getVisibility());
                     }
                 }
+                int confirm = 0;
+                System.out.println("Visibility toggled.");
+                do{
+                    System.out.print("Press '1' to Confirm: ");
+                    confirm = sc.nextInt();
+                }while(confirm != 1);
                 break;
 
+            case 4:
+                do{
+                    System.out.printf("Which Camp? (Enter index, 0 to exit) ");
+                    choice = sc.nextInt();
+                }while(choice<0 || choice>ic.getCampsCreated().size());
+                if (choice ==0) return;
+                else{
+                    CampInfo c = null;
+                    for(int k=0;k<CampList.getCampList().size();k++){
+                        if (ic.getCampsCreated().get(choice-1).getCampName().equalsIgnoreCase(CampList.getCampList().get(k).getCampName())){
+                            c = CampList.getCampList().get(k);
+                            break;
+                        }
+                    }
+                    Report report = new Report(c, "CampReport_" + c.getCampName());
+                    report.export();
+                    confirm = 0;
+                    System.out.println("Report Generated.");
+                    do{
+                        System.out.print("Press '1' to Confirm: ");
+                        confirm = sc.nextInt();
+                    }while(confirm != 1);
+                }
+                break;
+            case 5:
+                do{
+                    System.out.printf("Which Camp? (Enter index, 0 to exit) ");
+                    choice = sc.nextInt();
+                }while(choice<0 || choice>ic.getCampsCreated().size());
+                if (choice ==0) return;
+                else{
+                    CampInfo c = null;
+                    for(int k=0;k<CampList.getCampList().size();k++){
+                        if (ic.getCampsCreated().get(choice-1).getCampName().equalsIgnoreCase(CampList.getCampList().get(k).getCampName())){
+                            c = CampList.getCampList().get(k);
+                            break;
+                        }
+                    }
+                    CommitteeReport cReport = new CommitteeReport(c, "PerformanceReport_" + c.getCampName());
+                    cReport.export();
+                    confirm = 0;
+                    System.out.println("Report Generated.");
+                    do{
+                        System.out.print("Press '1' to Confirm: ");
+                        confirm = sc.nextInt();
+                    }while(confirm != 1);
+                }
+                break;
             case -1:
                 break;
         }

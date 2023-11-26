@@ -7,14 +7,14 @@ import src.camp_management.CampInfo;
 
 public class CommitteeReport extends Report{
 	
-	CommitteeReport(CampInfo camp, String fileName){
+	public CommitteeReport(CampInfo camp, String fileName){
 		super(camp, fileName);
+		setCommitteeData();
 	}
 
 
 	private List<String[]> committeeData = new ArrayList<String[]>();
 	public void setCommitteeData() {
-
 		committeeData.add(new String[] {"List of Camp Committee Members for " + camp.getCampName()});
 		for(int i = 0; i<camp.getCampCom().size(); i++) {
 			committeeData.add(new String[] {String.valueOf(i), camp.getCampCom().get(i).getName(), "points", 
@@ -44,7 +44,6 @@ public class CommitteeReport extends Report{
 		}
 	}
 	public void export() {
-
 		GenerateReport toCSV = new GenerateReport(fileName, committeeData);
 		toCSV.exportCSV();
 	}

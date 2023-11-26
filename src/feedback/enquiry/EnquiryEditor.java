@@ -71,7 +71,12 @@ public interface EnquiryEditor {
         Enquiry newEnquiry = new Enquiry(response, student, camp, null);
         enquiryList.add(newEnquiry);
         camp.addEnquiriesForCamp(newEnquiry);
-        System.out.printf("Enquiry Submitted for camp: %s\n\n", camp.getCampName());
+        System.out.printf("Enquiry Submitted for camp: %s\n", camp.getCampName());
+        int confirm = 0;
+        do{
+            System.out.print("Press '1' to Confirm: ");
+            confirm = sc.nextInt();
+        }while(confirm != 1);
     }
 
     /**
@@ -85,6 +90,11 @@ public interface EnquiryEditor {
         String newDescription = sc.nextLine();
         e.setDescription(newDescription + "\n**Enquiry has been edited**");
         System.out.println("Enquiry has been edited\n");
+        int confirm = 0;
+        do{
+            System.out.print("Press '1' to Confirm: ");
+            confirm = sc.nextInt();
+        }while(confirm != 1);
     }
 
    /**
@@ -95,8 +105,14 @@ public interface EnquiryEditor {
      * @param enquiryList   The list of enquiries from which the enquiry is deleted.
      */
     public static void deleteEnquiry(Student student, Enquiry e, ArrayList<Enquiry> enquiryList) {
+        Scanner sc = new Scanner(System.in);
         e.getCamp().getEnquiriesForCamp().remove(e);
         enquiryList.remove(e);
         System.out.println("Enquiry has been deleted\n");
+        int confirm = 0;
+        do{
+            System.out.print("Press '1' to Confirm: ");
+            confirm = sc.nextInt();
+        }while(confirm != 1);
     }
 }

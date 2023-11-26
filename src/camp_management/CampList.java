@@ -68,5 +68,14 @@ public class CampList { //element in campList in App
         }while(choice != 1);
         return;
 	}
+
+    public static void setCampInfo(CampInfo campInfo){
+        for(int i=0;i<campList.size();i++){
+            if(campList.get(i).getCampName() != campInfo.getCampName())
+                continue;
+            campList.remove(i);
+            campList.add(i, campInfo);
+        }
+    }
 	
 }

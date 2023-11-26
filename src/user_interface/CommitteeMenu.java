@@ -9,7 +9,9 @@ import src.feedback.enquiry.EnquiryReply;
 import src.feedback.suggestions.SuggestionMenu;
 import src.login_system.Login;
 import src.login_system.Password;
+import src.report.Report;
 import src.user_data.CampCommittee;
+import src.user_data.StudentData;
 import src.user_interface.interfaces.IMenu;
 
 public class CommitteeMenu extends StudentMenu {
@@ -26,7 +28,7 @@ public class CommitteeMenu extends StudentMenu {
         System.out.println("--------------------------------------------------------------------------------------");
         System.out.println("User ID: " + this.committee.getID());
         System.out.println("Name: " + this.committee.getName());
-        System.out.printf("Committee of : %s\n", this.committee.getCommitteeOf());
+        System.out.printf("Committee of : %s\n", this.committee.getCommitteeOf().getCampName());
         System.out.printf("Points       : %d\n", this.committee.getPoints());
         System.out.println("--------------------------------------------------------------------------------------");
     }
@@ -114,6 +116,7 @@ public class CommitteeMenu extends StudentMenu {
 						// Adjust the student attendees for that camp
 						correctCampInfo.addStudentAttendees(this.committee);
 						this.committee.addRegisteredCamp(this.committee.getAvailableCamps().get(chosenCampIndex-1));
+						StudentData.setUser(this.committee);
 					}
 
 					if (signup == 2){
@@ -161,7 +164,7 @@ public class CommitteeMenu extends StudentMenu {
 				if(this.committee.getRole().equalsIgnoreCase("Committee"))
 					comm = (CampCommittee) this.committee;
 
-				if (comm != null && comm.getCommitteeOf().equals(this.committee.getRegisteredCamps().get(chosenCampIndex-1).getCampName())) {
+				if (comm != null && comm.getCommitteeOf().getCampName().equals(this.committee.getRegisteredCamps().get(chosenCampIndex-1).getCampName())) {
 					System.out.println("Cannot withdraw. Student is a committee for camp: "+ comm.getCommitteeOf());
 					do{
 						System.out.print("Press '1' to Confirm: ");
@@ -174,6 +177,7 @@ public class CommitteeMenu extends StudentMenu {
 					correctCampInfo.addWithdrawnStudents(this.committee); 
 					//For student class to keep track of camp withdrawn
 					this.committee.addWithdrawnCamp(this.committee.getRegisteredCamps().get(chosenCampIndex-1)); 
+					StudentData.setUser(this.committee);
 				}
 				break;
 			case 3:
@@ -183,16 +187,23 @@ public class CommitteeMenu extends StudentMenu {
 				Password.change(this.committee);
 				break;
             case 5: //View Details Of Registered Camp 
-                CampList.getCampInfo(this.committee.getCommitteeOf()).printCamp();
+                CampList.getCampInfo(this.committee.getCommitteeOf().getCampName()).printCamp();
                 break;
             case 6: //View Enquiries Menu For Committee 
-                EnquiryReply.replyMenu(CampList.getCampInfo(this.committee.getCommitteeOf()), this.committee, this.committee.getEnquiriesMade());
+                EnquiryReply.replyMenu(CampList.getCampInfo(this.committee.getCommitteeOf().getCampName()), this.committee, this.committee.getEnquiriesMade());
                 break;
             case 7: //View Suggestion Menu For Committee
                 SuggestionMenu.menuChoice(this.committee, this.committee.getSuggestionsMade());
                 break;
             case 8: //Generate Report
-                
+                Report report = new Report(this.committee.getCommitteeOf(), "Report For " + this.committee.getID());
+				report.export();
+				int confirm = 0;
+				System.out.println("Report Generated.");
+				do{
+					System.out.print("Press '1' to Confirm: ");
+					confirm = sc.nextInt();
+				}while(confirm != 1);
                 break;
             case -1:
                 // Exit Menu

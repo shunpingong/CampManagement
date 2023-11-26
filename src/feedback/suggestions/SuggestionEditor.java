@@ -42,9 +42,14 @@ public interface SuggestionEditor {
             if (choice >= 1 && choice <= 6) {
                 System.out.println("Please enter the new " + categoryNames.get(choice - 1));
                 String change = sc.nextLine();
-                System.out.println("Suggestion is uploaded!");
                 suggestionList.add((new Suggestion(suggestionDesc, (CampCommittee) activeUser, selectedCamp,
-                change, choice, SuggestionStatus.PENDING)));
+                change, choice-1, SuggestionStatus.PENDING)));
+                System.out.println("Suggestion is uploaded!");
+                int confirm = 0;
+                do{
+                    System.out.print("Press '1' to Confirm: ");
+                    confirm = sc.nextInt();
+                }while(confirm != 1);
             }
 
         }
@@ -66,9 +71,14 @@ public interface SuggestionEditor {
         if (choice >= 1 && choice <= 6) {
             System.out.println("Please enter the new " + categoryNames.get(choice - 1));
             String change = sc.nextLine();
-            System.out.println("Suggestion has been modified");
             suggestion.setCategory(choice);
             suggestion.setChange(change);
+            System.out.println("Suggestion has been modified");
+            int confirm = 0;
+            do{
+                System.out.print("Press '1' to Confirm: ");
+                confirm = sc.nextInt();
+            }while(confirm != 1);
         }
     }
 
@@ -97,7 +107,7 @@ public interface SuggestionEditor {
             if (selectedSuggestion == null) {
                 return;
             }
-            System.out.print("1. Edit this Suggestion\n2. Delete this Suggestion\n3. Select a new Suggestion\n4. Exit");
+            System.out.print("1. Edit this Suggestion\n2. Delete this Suggestion\n3. Select a new Suggestion\n4. Exit\n");
             System.out.print("Enter Choice: ");
             int selection = sc.nextInt();
             String newLine = sc.nextLine();
@@ -137,13 +147,22 @@ public interface SuggestionEditor {
             String newDescription = sc.nextLine() + "\n**Suggestion has been modified**";
             suggestion.setDescription(newDescription);
             System.out.println("Suggestion has been modified.\n");
-
+            int confirm = 0;
+            do{
+                System.out.print("Press '1' to Confirm: ");
+                confirm = sc.nextInt();
+            }while(confirm != 1);
         }
         else if(selection == 2 ){
             SuggestionEditor.changeCategoryValue(SuggestionList,suggestion);
         }
         else{
             System.out.println("Wrong selection.");
+            int confirm = 0;
+            do{
+                System.out.print("Press '1' to Confirm: ");
+                confirm = sc.nextInt();
+            }while(confirm != 1);
         }
 
     }
@@ -156,9 +175,15 @@ public interface SuggestionEditor {
      * @param suggestionList  The list of suggestions containing the suggestion to be deleted.
      */
     public static void deleteSuggestion(CampCommittee commUser ,Suggestion suggestion, ArrayList<Suggestion> SuggestionList) {
-        CampList.getCampInfo(commUser.getCommitteeOf()).getSuggestionForCamp().remove(suggestion);
+        Scanner sc = new Scanner(System.in);
+        CampList.getCampInfo(commUser.getCommitteeOf().getCampName()).getSuggestionForCamp().remove(suggestion);
         SuggestionList.remove(suggestion);
         System.out.println("Suggestion has been deleted");
+        int confirm = 0;
+        do{
+            System.out.print("Press '1' to Confirm: ");
+            confirm = sc.nextInt();
+        }while(confirm != 1);
         commUser.addPoints(-1);
     }
 

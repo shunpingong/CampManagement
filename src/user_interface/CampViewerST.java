@@ -1,8 +1,6 @@
 package src.user_interface;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import src.camp_management.CampInfo;
 import src.user_interface.interfaces.ICampViewer;
 

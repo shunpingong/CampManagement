@@ -27,4 +27,5 @@ public class Staff extends User implements SuggestionProcessor, EnquiryReply {
         this.campsCreated.add(camp);
     }
 
+
 }

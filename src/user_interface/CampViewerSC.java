@@ -8,7 +8,6 @@ import src.camp_management.CampInfo;
 import src.camp_management.CampList;
 import src.camp_management.UserInput;
 import src.camp_management.sorter.CampSorter;
-import src.login_system.Login;
 import src.user_interface.interfaces.ICampViewer;
 
 public class CampViewerSC implements ICampViewer{

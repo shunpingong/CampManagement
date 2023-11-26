@@ -18,7 +18,7 @@ import src.user_data.Student;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public interface EnquiryOutput {
+public class EnquiryOutput {
 
     /**
      * Displays the details of a given enquiry.

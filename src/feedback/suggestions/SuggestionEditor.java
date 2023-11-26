@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public interface SuggestionEditor {
+public class SuggestionEditor {
 
     /**
      * Allows a camp committee member to create a new suggestion for the selected camp.
@@ -29,14 +29,14 @@ public interface SuggestionEditor {
      * @param activeUser      The camp committee member making the suggestion.
      * @param suggestionList  The list to which the new suggestion is added.
      */
-    static void suggestionMaker(CampInfo selectedCamp, User activeUser, ArrayList<Suggestion> suggestionList) {
+    public static void suggestionMaker(CampInfo selectedCamp, User activeUser, ArrayList<Suggestion> suggestionList) {
         Scanner sc = new Scanner (System.in);
         ArrayList<String> categoryNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
         "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
         if (activeUser instanceof CampCommittee) {
             System.out.println("Please enter a short description of the suggestion");
             String suggestionDesc = sc.nextLine();
-            showSuggestionMenu();
+            showSuggestionEditorMenu();
             int choice = sc.nextInt();
             String newline = sc.nextLine();
             if (choice >= 1 && choice <= 6) {
@@ -61,11 +61,11 @@ public interface SuggestionEditor {
      * @param suggestionList The list of suggestions containing the suggestion to be modified.
      * @param suggestion      The suggestion to be modified.
      */
-    static void changeCategoryValue(ArrayList<Suggestion> suggestiost, Suggestion suggestion) {
+    public static void changeCategoryValue(ArrayList<Suggestion> suggestiost, Suggestion suggestion) {
         Scanner sc = new Scanner (System.in);
         ArrayList<String> categoryNames = new ArrayList<String>(Arrays.asList("Camp Name", "Camp Description", 
         "Camp Location", "Camp Total Slots", "Camp Committee Slots", "Faculty opened to"));
-        showSuggestionMenu();
+        showSuggestionEditorMenu();
         int choice = sc.nextInt();
         String newline = sc.nextLine();
         if (choice >= 1 && choice <= 6) {
@@ -82,7 +82,7 @@ public interface SuggestionEditor {
         }
     }
 
-	 static void showSuggestionMenu() {
+	 public static void showSuggestionEditorMenu() {
         System.out.println("Which category would your suggestion like to be in?");
         System.out.println("[1] Camp Name");
         System.out.println("[2] Camp Description");

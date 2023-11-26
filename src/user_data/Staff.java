@@ -5,7 +5,7 @@ import src.camp_management.CampInfo;
 import src.feedback.enquiry.EnquiryReply;
 import src.feedback.suggestions.SuggestionProcessor;
 
-public class Staff extends User implements SuggestionProcessor, EnquiryReply {
+public class Staff extends User {
     // Instances
     private ArrayList<CampInfo> campsCreated;
 

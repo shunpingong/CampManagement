@@ -8,8 +8,7 @@ import src.feedback.enquiry.EnquiryReply;
 import src.feedback.suggestions.Suggestion;
 import src.feedback.suggestions.SuggestionMenu;;
 
-
-public class CampCommittee extends Student implements EnquiryReply, SuggestionMenu {
+public class CampCommittee extends Student {
     // Instances
     private int points;
     private CampInfo committeeOf; //Camp the student is a committee of

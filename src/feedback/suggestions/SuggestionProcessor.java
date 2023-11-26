@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public interface SuggestionProcessor {
+public class SuggestionProcessor {
 
     /**
      * Displays the menu for processing suggestions made for camps in charge.

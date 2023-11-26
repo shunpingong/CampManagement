@@ -17,7 +17,7 @@ import java.util.Scanner;
 import src.user_data.CampCommittee;
 
 
-public interface SuggestionOutput{
+public class SuggestionOutput{
     
     /**
      * Displays the details of a specific suggestion.

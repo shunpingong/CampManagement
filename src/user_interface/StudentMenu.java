@@ -141,8 +141,13 @@ public class StudentMenu implements IUserMenu{
 						}
 						break;
 					case 2:
-						System.out.print("Choose a camp to sign up for (enter the number): ");
-						chosenCampIndex = sc.nextInt();
+						
+						chosenCampIndex = 0;
+						do{
+							System.out.print("Choose a camp to sign up for (enter the number): ");
+							chosenCampIndex = sc.nextInt();
+						}while(chosenCampIndex<1||chosenCampIndex>this.student.getAvailableCamps().size());
+						
 						if (this.student.getWithdrawnCamps().contains(this.student.getAvailableCamps().get(chosenCampIndex-1)) ||
 						this.student.getRegisteredCamps().contains(this.student.getAvailableCamps().get(chosenCampIndex-1))) {
 							System.out.println("Cannot register. "+ this.student.getName() + " has already registered/withdrawn from this camp: " + this.student.getAvailableCamps().get(chosenCampIndex-1).getCampName());
@@ -154,21 +159,36 @@ public class StudentMenu implements IUserMenu{
 						else{
 							System.out.println("1. Sign up as member");
 							System.out.println("2. Sign up as committee");
-							System.out.print("Enter your choice:");
-							int signup = sc.nextInt();
+							int signup = 0;
+							do{
+								System.out.print("Enter your choice:");
+								signup = sc.nextInt();
+							}while(signup<1 ||signup>this.student.getAvailableCamps().size());
+							
+
 
 							// Find the correct CampInfo
 							CampInfo correctCampInfo = this.student.getAvailableCamps().get(chosenCampIndex-1);
 
 							if (signup ==1){
 								// Adjust the student attendees for that camp
-								correctCampInfo.addStudentAttendees(this.student);
-								this.student.addRegisteredCamp(this.student.getAvailableCamps().get(chosenCampIndex-1));
-								StudentData.setUser(this.student);
+								if(this.student.getAvailableCamps().get(chosenCampIndex-1).getTotalSlots() != 0){
+									correctCampInfo.addStudentAttendees(this.student);
+									this.student.addRegisteredCamp(this.student.getAvailableCamps().get(chosenCampIndex-1));
+									StudentData.setUser(this.student);
+								}
+								else{
+									System.out.println("No Available Slots");
+								}
+								
 							}
 
 							if (signup == 2){
 								//if user is already a committee for a camp -> cannot register as committee
+								if(this.student.getAvailableCamps().get(chosenCampIndex-1).getCommitteeSlots() <1){
+									System.out.println("No Available Committee Slots");
+									break;
+								}
 								if (this.student.getRole().equalsIgnoreCase("Committee")) {
 									System.out.println("You are already a committee member for the camp: " + (correctCampInfo.getCampName()));
 									do{

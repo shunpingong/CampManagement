@@ -11,9 +11,9 @@ import src.user_data.Staff;
  * It prompts the user for necessary information such as camp name, description, dates,
  * location, and other details, and then constructs a CampInfo object with the provided data.
  *
+ * @author Yi heng
  * @version 1.0
  * @since 2023-11-26
- * @author Yi heng
  */
 public class CreateNewCamp {
 

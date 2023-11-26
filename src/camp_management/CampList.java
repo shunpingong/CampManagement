@@ -13,9 +13,9 @@ import src.camp_management.sorter.CampSorter;
  * This class utilizes the {@code CampInfo} class to represent individual camps and the {@code CampSorter} class for sorting the camps.
  * The camp list can be manipulated, and various details about camps can be accessed through the provided methods.
  *
+ * @author Yi heng
  * @version 1.0
  * @since 2023-11-26
- * @author Yi heng
  */
 public class CampList {
 

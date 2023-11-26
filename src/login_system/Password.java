@@ -11,8 +11,27 @@ import src.user_data.Student;
 import src.user_data.StudentData;
 import src.user_data.User;
 
+/**
+ * The {@code Password} class provides functionality for changing the password of a user.
+ * It includes a method to validate the current password, input a new password, and update the password in the data source.
+ * <p>
+ * The class is designed to work with both staff and student users and performs password change operations based on the user type.
+ * <p>
+ * Implementing classes should provide concrete implementations for the methods defined in this class.
+ *
+ * @author Aaron
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class Password {
     
+    /**
+     * Changes the password for the specified user.
+     * Prompts the user to enter the current password and a new password.
+     * Validates the entered passwords and updates the user's password in the data source.
+     *
+     * @param user The user for whom the password needs to be changed.
+     */
     public static void change(User user) {
 
         String curPassword, newPassword;

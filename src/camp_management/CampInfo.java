@@ -14,9 +14,9 @@ import src.user_data.Student;
  * The CampInfo class represents information about a specific camp,
  * including details about the camp, attendees, committees, suggestions, etc.
  * 
+ * @author Yi heng
  * @version 1.0
  * @since 2023-11-26
- * @author Yi heng
  */
 public class CampInfo {
 	

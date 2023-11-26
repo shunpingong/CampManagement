@@ -10,9 +10,9 @@ import src.user_data.Faculty;
 /**
  * The {@code UserInput} class provides methods for handling user input related to camp management.
  * 
+ * @author Yi heng
  * @version 1.0
  * @since 2023-11-26
- * @author Yi heng
  */
 public class UserInput {
 

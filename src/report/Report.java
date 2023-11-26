@@ -1,24 +1,54 @@
 package src.report;
-import java.util.ArrayList;
-
 import src.camp_management.CampInfo;
 
 import java.util.*;
 
+/**
+ * The {@code Report} class is responsible for generating and exporting camp-related reports to a CSV file.
+ * It provides methods to set the report data, which includes camp details, attendees, committee members,
+ * withdrawn students, enquirers, and suggestions. The generated report can be exported to a CSV file.
+ * <p>
+ * Subclasses can extend this class to provide additional data specific to their reports.
+ *
+ * @author Cai yong
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class Report {
 	
-	
-
+    /**
+     * The camp information for which the report is generated.
+     */
 	protected CampInfo camp;
+
+    /**
+     * The desired file name for the generated report.
+     */
 	protected String fileName;
+
+    /**
+     * The list of string arrays representing the data for the report.
+     * Each string array corresponds to a row in the report, and each element
+     * of the array represents a cell in that row.
+     */
 	private List<String[]> data = new ArrayList<String[]>();
 	
+    /**
+     * Constructs a new Report object for the given camp and file name.
+     *
+     * @param camp      The camp information for which the report is generated.
+     * @param fileName  The desired file name for the generated report.
+     */
 	public Report(CampInfo camp, String fileName){
 		this.camp = camp;
 		this.fileName = fileName;
 		setData();
 	}
 	
+    /**
+     * Sets the data for the report. Subclasses should override this method
+     * to provide camp-specific data for their reports.
+     */
 	public void setData() {
 		data.add(new String[] {"Camp Name", camp.getCampName()});
 		data.add(new String[] {"Start Date", camp.getStartDate().toString()});
@@ -74,6 +104,10 @@ public class Report {
 			data.add(new String[] {"Status", camp.getSuggestionForCamp().get(i).getStatus().toString()});
 		}
 	}
+
+    /**
+     * Exports the report data to a CSV file.
+     */
 	public void export() {
 		GenerateReport toCSV = new GenerateReport(fileName, data);
 		toCSV.exportCSV();

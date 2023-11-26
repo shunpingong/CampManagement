@@ -17,7 +17,7 @@ import src.camp_management.CampList;
 import src.user_data.CampCommittee;
 import src.user_data.User;
 
-public interface SuggestionMenu {
+public class SuggestionMenu {
 
     /**
      * Displays the menu for camp committee members to interact with suggestions.

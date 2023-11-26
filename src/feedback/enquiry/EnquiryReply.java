@@ -17,7 +17,7 @@ import src.user_data.User;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public interface EnquiryReply {
+public class EnquiryReply {
 
     /**
      * Retrieves a list of unprocessed enquiries for a specific camp.

@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import src.camp_management.CampInfo;
 import src.camp_management.CampList;
 import src.feedback.enquiry.Enquiry;
-import src.feedback.enquiry.EnquiryMenu;
 
-public class Student extends User implements EnquiryMenu{
+public class Student extends User{
 	private ArrayList<CampInfo> availableCamps = new ArrayList<CampInfo>(); //List of Camps available to student
 	private ArrayList<CampInfo> registeredCamps = new ArrayList<CampInfo>(); //List of Camps Student Registered for
 	private ArrayList<CampInfo> withdrawnCamps = new ArrayList<CampInfo>(); //List of Camps Student Withdrawn from

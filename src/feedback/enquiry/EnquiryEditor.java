@@ -17,7 +17,7 @@ import src.user_data.Student;
 
 import java.util.ArrayList;
 
-public interface EnquiryEditor {
+public class EnquiryEditor {
     
     /**
      * Displays the edit menu for a given student and list of enquiries.

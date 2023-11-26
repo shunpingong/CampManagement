@@ -20,7 +20,7 @@ import src.user_interface.CampViewerST;
 import src.user_interface.interfaces.IMenu;
 
 
-public interface EnquiryMenu {
+public class EnquiryMenu {
 
     /**
      * Displays the menu for managing student enquiries and processes user choices.

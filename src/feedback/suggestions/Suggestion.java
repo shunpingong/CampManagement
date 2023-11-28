@@ -138,7 +138,7 @@ public class Suggestion extends Feedback{
      */
     @Override
     public void updateDescription(String newText) {
-        if (this.status != SuggestionStatus.ACCEPTED) {
+        if (this.status == SuggestionStatus.PENDING) {
             this.setDescription(newText);
             System.out.println("Suggestion Updated");
         } else {

@@ -60,16 +60,21 @@ public class SuggestionProcessor {
         System.out.println("Accept? 1) Yes  2) No  3) Cancel.");
         System.out.print("Enter choice: ");
         choice = sc.nextInt();
-        if (choice == 1){
-            System.out.println("Suggestion accepted");
-            requiredSuggestion.accept();
-        }
-        else if(choice == 2){
-            System.out.println("Suggestion rejected");
-            requiredSuggestion.reject();
+        if (requiredSuggestion.getStatus() != SuggestionStatus.PENDING){
+            System.out.println("Suggestion is already processed.");
         }
         else{
-            System.out.println("Suggestion pending.");
+            if (choice == 1){
+                System.out.println("Suggestion accepted");
+                requiredSuggestion.accept();
+            }
+            else if(choice == 2){
+                System.out.println("Suggestion rejected");
+                requiredSuggestion.reject();
+            }
+            else{
+                System.out.println("Suggestion pending.");
+            }
         }
         int confirm = 0;
         do{

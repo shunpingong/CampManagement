@@ -138,6 +138,7 @@ public class CampManagerMenu implements IMenu{
                     if (ic.getCampsCreated().get(delete-1).getCampName().equalsIgnoreCase(CampList.getCampList().get(k).getCampName())){
                         if(CampList.getCampList().get(k).getStudentAttendees().size() == 0 && CampList.getCampList().get(k).getCampCom().size()==0){
                             CampList.getCampList().remove(k);
+                            ic.getCampsCreated().remove(k);
                         }
                         else{
                             System.out.println("Unable To Delete, There Are Participants Signed Up");
